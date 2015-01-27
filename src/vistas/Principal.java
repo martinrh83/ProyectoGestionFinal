@@ -5,17 +5,20 @@
  */
 package vistas;
 
+import modelo.GestionConexion;
+
 /**
  *
  * @author martinrh83
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
-    public Principal() {
+    private GestionConexion conexion;
+    
+    public Principal(GestionConexion c) {
+        conexion=c;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -193,6 +196,7 @@ public class Principal extends javax.swing.JFrame {
     private void menuItAltaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaProdActionPerformed
        AltaProducto windowAlta = new AltaProducto(this, true);
        windowAlta.setVisible(true);
+       
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 
     private void menuItModPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModPerActionPerformed

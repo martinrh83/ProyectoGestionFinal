@@ -5,6 +5,10 @@
  */
 package controlador;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.GestionConexion;
 import vistas.Principal;
 
 /**
@@ -17,8 +21,17 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Principal window = new Principal();
-        window.setVisible(true);
+        try {
+            GestionConexion conexion = new GestionConexion();
+            conexion.conectar();
+            Principal window = new Principal(conexion);
+            window.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
     
 }
