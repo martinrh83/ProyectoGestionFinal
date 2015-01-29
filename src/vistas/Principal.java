@@ -84,9 +84,19 @@ public class Principal extends javax.swing.JFrame {
         menuProducto.add(menuItBajaProd);
 
         menuItModProd.setText("Modificacion");
+        menuItModProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItModProdActionPerformed(evt);
+            }
+        });
         menuProducto.add(menuItModProd);
 
         menuItListProd.setText("Listado");
+        menuItListProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItListProdActionPerformed(evt);
+            }
+        });
         menuProducto.add(menuItListProd);
 
         jMenuBar1.add(menuProducto);
@@ -94,6 +104,11 @@ public class Principal extends javax.swing.JFrame {
         menuVenta.setText("Venta");
 
         menuItNvaVenta.setText("Nueva");
+        menuItNvaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItNvaVentaActionPerformed(evt);
+            }
+        });
         menuVenta.add(menuItNvaVenta);
 
         menuItListVenta.setText("Listado");
@@ -139,6 +154,11 @@ public class Principal extends javax.swing.JFrame {
         menuPersonal.add(menuItGConPer);
 
         menuItAltaPer.setText("Alta");
+        menuItAltaPer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItAltaPerActionPerformed(evt);
+            }
+        });
         menuPersonal.add(menuItAltaPer);
 
         menuItBajaPer.setText("Baja");
@@ -206,6 +226,23 @@ public class Principal extends javax.swing.JFrame {
     private void menuItModCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItModCliActionPerformed
+
+    private void menuItModProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModProdActionPerformed
+        ModProducto windowModProd = new ModProducto(this, true);
+        windowModProd.setVisible(true);
+    }//GEN-LAST:event_menuItModProdActionPerformed
+
+    private void menuItListProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListProdActionPerformed
+        ListProducto windowListProd = new ListProducto(this, true);
+        windowListProd.setVisible(true);    }//GEN-LAST:event_menuItListProdActionPerformed
+
+    private void menuItNvaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaVentaActionPerformed
+        NuevaVenta windowNewVenta = new NuevaVenta (this, true);
+        windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
+
+    private void menuItAltaPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaPerActionPerformed
+       AltaPersonal windowAltaPer = new AltaPersonal(this, true);
+       windowAltaPer.setVisible(true);    }//GEN-LAST:event_menuItAltaPerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
