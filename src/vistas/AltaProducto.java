@@ -5,19 +5,32 @@
  */
 package vistas;
 
+import controlador.ControladorAlta;
+import controlador.Producto;
+import java.awt.Frame;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author martinrh83
  */
 public class AltaProducto extends javax.swing.JFrame {
+    private Producto producto;
+    private ControladorAlta alta;
 
     /**
      * Creates new form AltaProducto
      */
-    public AltaProducto(java.awt.Frame parent, boolean modal) {
+    public AltaProducto(java.awt.Frame parent, boolean modal,ControladorAlta cAlta,Producto producto) {
+
         initComponents();
         this.setLocationRelativeTo(null);
+        this.producto = producto;
+        this.alta = cAlta;
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +48,6 @@ public class AltaProducto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtDesc_Prod = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtFecV_Prod = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtPMin_Prod = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -43,17 +55,24 @@ public class AltaProducto extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtCant_Prod = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        c = new javax.swing.JComboBox();
+        combo_cat = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
         txtMarca_Prod = new javax.swing.JTextField();
         btnAgregar_Prod = new javax.swing.JButton();
         btnCancelar_Prod = new javax.swing.JButton();
         btnFin_Prod = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alta Producto");
 
         jLabel1.setText("Codigo");
+
+        txtCod_Prod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCod_ProdActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre");
 
@@ -69,11 +88,21 @@ public class AltaProducto extends javax.swing.JFrame {
 
         jLabel8.setText("Categoria");
 
-        c.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Limpieza", "Bebida", "Lacteos", "Alimentos", "Golosinas" }));
+        combo_cat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Limpieza", "Bebida", "Lacteos", "Alimentos", "Golosinas" }));
+        combo_cat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_catActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Marca");
 
         btnAgregar_Prod.setText("Agregar");
+        btnAgregar_Prod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar_ProdActionPerformed(evt);
+            }
+        });
 
         btnCancelar_Prod.setText("Cancelar");
 
@@ -95,7 +124,7 @@ public class AltaProducto extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFecV_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -119,7 +148,7 @@ public class AltaProducto extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel8)
                                         .addGap(22, 22, 22)
-                                        .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(combo_cat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(84, 84, 84)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,17 +183,19 @@ public class AltaProducto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtMarca_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtDesc_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(txtFecV_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(txtMarca_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPMin_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -176,8 +207,8 @@ public class AltaProducto extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtCant_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addComponent(combo_cat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar_Prod)
                     .addComponent(btnCancelar_Prod)
@@ -188,13 +219,40 @@ public class AltaProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregar_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ProdActionPerformed
+       // Producto prod = new Producto();
+     producto.setCodigoProd(Integer.valueOf(txtCod_Prod.getText()));
+     producto.setNombreProd(txtName_Prod.getText());
+     producto.setDescripcionProd(txtDesc_Prod.getText());
+     producto.setCantProd(Integer.valueOf(txtCant_Prod.getText()));
+     producto.setMarca(txtMarca_Prod.getText());
+     producto.setPrecMin(Float.valueOf(txtPMin_Prod.getText()));
+     producto.setPrecMay(Float.valueOf(txtPMay_Prod.getText()));
+     producto.setCatProd(combo_cat.getSelectedItem().toString());
+     Date fechaVenc = jDateChooser1.getDate();
+     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+     producto.setFechaVenc(formato.format(fechaVenc));
+     this.alta.agregarProducto();
+
+     this.dispose();
+    }//GEN-LAST:event_btnAgregar_ProdActionPerformed
+
+    private void txtCod_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCod_ProdActionPerformed
+
+    private void combo_catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_catActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_catActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar_Prod;
     private javax.swing.JButton btnCancelar_Prod;
     private javax.swing.JButton btnFin_Prod;
-    private javax.swing.JComboBox c;
+    private javax.swing.JComboBox combo_cat;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -207,7 +265,6 @@ public class AltaProducto extends javax.swing.JFrame {
     private javax.swing.JTextField txtCant_Prod;
     private javax.swing.JTextField txtCod_Prod;
     private javax.swing.JTextField txtDesc_Prod;
-    private javax.swing.JTextField txtFecV_Prod;
     private javax.swing.JTextField txtMarca_Prod;
     private javax.swing.JTextField txtName_Prod;
     private javax.swing.JTextField txtPMay_Prod;

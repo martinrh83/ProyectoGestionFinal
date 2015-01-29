@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import java.sql.Time;
+
 /**
  *
  * @author martinrh83
@@ -19,7 +21,7 @@ public class Producto {
     private float precMay;
     private float precMin;
     private String marca;
-
+    private String fechaVenc;
     public Producto() {
     }
 
@@ -86,6 +88,16 @@ public class Producto {
     public void setMarca(String marca) {
         this.marca = marca;
     }
+
+    public String getFechaVenc() {
+        return fechaVenc;
+    }
+
+    public void setFechaVenc(String fechaVenc) {
+        this.fechaVenc = fechaVenc;
+    }
+
+
     
     
     

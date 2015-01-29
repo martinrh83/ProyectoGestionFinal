@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import controlador.ControladorAlta;
 import modelo.GestionConexion;
 
 /**
@@ -194,8 +195,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItAltaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaProdActionPerformed
-       AltaProducto windowAlta = new AltaProducto(this, true);
-       windowAlta.setVisible(true);
+       ControladorAlta contAlta= new ControladorAlta(this, conexion);
        
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 
