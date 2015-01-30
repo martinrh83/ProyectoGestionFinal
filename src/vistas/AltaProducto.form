@@ -37,7 +37,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jDateChooser1" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -46,26 +46,21 @@
                               </Group>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCod_AProd" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <Component id="txtName_AProd" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="txtName_Prod" min="-2" pref="136" max="-2" attributes="0"/>
+                                  <Component id="txtCod_Prod" min="-2" pref="84" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txtFecV_AProd" min="-2" pref="84" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="txtPMin_AProd" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="txtPMin_Prod" min="-2" pref="60" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txtCant_AProd" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="txtCant_Prod" min="-2" pref="81" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -81,12 +76,12 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="txtMarca_AProd" min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="txtMarca_Prod" min="-2" pref="83" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="txtPMay_AProd" min="-2" pref="60" max="-2" attributes="0"/>
+                                              <Component id="txtPMay_Prod" min="-2" pref="60" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -96,14 +91,14 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btnAgregar_AProd" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAgregar_Prod" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                      <Component id="btnCancelar_AProd" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCancelar_Prod" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Component id="btnFin_AProd" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnFin_Prod" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -113,12 +108,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCod_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCod_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtName_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtName_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -132,7 +127,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDesc_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDesc_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -143,27 +138,25 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="txtPMin_AProd" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="txtPMin_Prod" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPMay_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPMay_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCant_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCant_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="combo_cat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAgregar_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCancelar_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnFin_AProd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAgregar_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancelar_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFin_Prod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -186,19 +179,14 @@
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtName_AProd">
-      <Properties>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor de Texto"/>
-        </Property>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtName_Prod">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descripcion"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDesc_AProd">
+    <Component class="javax.swing.JTextField" name="txtDesc_Prod">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
@@ -210,21 +198,21 @@
         <Property name="text" type="java.lang.String" value="Pcio Minorista"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPMin_AProd">
+    <Component class="javax.swing.JTextField" name="txtPMin_Prod">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pcio Mayorista"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPMay_AProd">
+    <Component class="javax.swing.JTextField" name="txtPMay_Prod">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cantidad"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCant_AProd">
+    <Component class="javax.swing.JTextField" name="txtCant_Prod">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -252,9 +240,9 @@
         <Property name="text" type="java.lang.String" value="Marca"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtMarca_AProd">
+    <Component class="javax.swing.JTextField" name="txtMarca_Prod">
     </Component>
-    <Component class="javax.swing.JButton" name="btnAgregar_AProd">
+    <Component class="javax.swing.JButton" name="btnAgregar_Prod">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
@@ -262,12 +250,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregar_ProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnCancelar_AProd">
+    <Component class="javax.swing.JButton" name="btnCancelar_Prod">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnFin_AProd">
+    <Component class="javax.swing.JButton" name="btnFin_Prod">
       <Properties>
         <Property name="text" type="java.lang.String" value="Finalizar"/>
       </Properties>
