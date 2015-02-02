@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.GestionConexion;
+import vistas.Login;
 import vistas.Principal;
 
 /**
@@ -24,7 +25,7 @@ public class Main {
         try {
             GestionConexion conexion = new GestionConexion();
             conexion.conectar();
-            Principal window = new Principal(conexion);
+            Login window = new Login(conexion);
             window.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

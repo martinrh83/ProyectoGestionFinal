@@ -33,6 +33,8 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        laber_usuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuProducto = new javax.swing.JMenu();
         menuItAltaProd = new javax.swing.JMenuItem();
@@ -69,6 +71,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem24.setText("jMenuItem24");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Usuario:");
 
         menuProducto.setText("Producto");
 
@@ -204,11 +208,19 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(laber_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 364, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 249, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laber_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -245,9 +257,11 @@ public class Principal extends javax.swing.JFrame {
        windowAltaPer.setVisible(true);    }//GEN-LAST:event_menuItAltaPerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem24;
+    public javax.swing.JLabel laber_usuario;
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenu menuCompra;
     private javax.swing.JMenuItem menuItAltaCli;
