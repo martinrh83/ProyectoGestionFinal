@@ -12,7 +12,7 @@ import java.sql.Time;
  * @author martinrh83
  */
 public class Producto {
-    
+
     private int codigoProd;
     private String nombreProd;
     private String descripcionProd;
@@ -22,6 +22,7 @@ public class Producto {
     private float precMin;
     private String marca;
     private String fechaVenc;
+
     public Producto() {
     }
 
@@ -97,9 +98,4 @@ public class Producto {
         this.fechaVenc = fechaVenc;
     }
 
-
-    
-    
-    
-    
 }

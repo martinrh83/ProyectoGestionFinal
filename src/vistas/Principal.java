@@ -6,6 +6,7 @@
 package vistas;
 
 import controlador.ControladorAlta;
+import controlador.ControladorAltaUsuario;
 import modelo.GestionConexion;
 
 /**
@@ -253,9 +254,11 @@ public class Principal extends javax.swing.JFrame {
         windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
 
     private void menuItAltaPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaPerActionPerformed
-       AltaPersonal windowAltaPer = new AltaPersonal(this, true);
+        ControladorAltaUsuario user= new ControladorAltaUsuario(conexion);
+        /*
        windowAltaPer.setVisible(true);    }//GEN-LAST:event_menuItAltaPerActionPerformed
-
+*/
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;

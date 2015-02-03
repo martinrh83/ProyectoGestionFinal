@@ -16,21 +16,20 @@ import java.util.Date;
  * @author martinrh83
  */
 public class AltaProducto extends javax.swing.JFrame {
+
     private Producto producto;
     private ControladorAlta alta;
 
     /**
      * Creates new form AltaProducto
      */
-    public AltaProducto(java.awt.Frame parent, boolean modal,ControladorAlta cAlta,Producto producto) {
+    public AltaProducto(java.awt.Frame parent, boolean modal, ControladorAlta cAlta, Producto producto) {
 
         initComponents();
         this.setLocationRelativeTo(null);
         this.producto = producto;
         this.alta = cAlta;
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -220,21 +219,21 @@ public class AltaProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregar_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ProdActionPerformed
-       // Producto prod = new Producto();
-     producto.setCodigoProd(Integer.valueOf(txtCod_Prod.getText()));
-     producto.setNombreProd(txtName_Prod.getText());
-     producto.setDescripcionProd(txtDesc_Prod.getText());
-     producto.setCantProd(Integer.valueOf(txtCant_Prod.getText()));
-     producto.setMarca(txtMarca_Prod.getText());
-     producto.setPrecMin(Float.valueOf(txtPMin_Prod.getText()));
-     producto.setPrecMay(Float.valueOf(txtPMay_Prod.getText()));
-     producto.setCatProd(combo_cat.getSelectedItem().toString());
-     Date fechaVenc = jDateChooser1.getDate();
-     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-     producto.setFechaVenc(formato.format(fechaVenc));
-     this.alta.agregarProducto();
+        // Producto prod = new Producto();
+        producto.setCodigoProd(Integer.valueOf(txtCod_Prod.getText()));
+        producto.setNombreProd(txtName_Prod.getText());
+        producto.setDescripcionProd(txtDesc_Prod.getText());
+        producto.setCantProd(Integer.valueOf(txtCant_Prod.getText()));
+        producto.setMarca(txtMarca_Prod.getText());
+        producto.setPrecMin(Float.valueOf(txtPMin_Prod.getText()));
+        producto.setPrecMay(Float.valueOf(txtPMay_Prod.getText()));
+        producto.setCatProd(combo_cat.getSelectedItem().toString());
+        Date fechaVenc = jDateChooser1.getDate();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        producto.setFechaVenc(formato.format(fechaVenc));
+        this.alta.agregarProducto();
 
-     this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnAgregar_ProdActionPerformed
 
     private void txtCod_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCod_ProdActionPerformed
@@ -245,7 +244,6 @@ public class AltaProducto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_catActionPerformed
 
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar_Prod;

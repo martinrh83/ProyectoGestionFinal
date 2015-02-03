@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controlador;
 
 import java.sql.ResultSet;
@@ -21,53 +20,47 @@ import vistas.Principal;
  * @author Martin
  */
 public class ControladorLogin {
+
     private GestionConexion conexion;
 
-    
     public ControladorLogin(GestionConexion conn) {
-        conexion=conn;
+        conexion = conn;
 
     }
-    
-    
-    public void acceder(String usuario,String pass){
-        String cap="";
-       String sql="SELECT * FROM Usuario WHERE User='"+usuario+"' && Pass='"+pass+"'";
+
+    public void acceder(String usuario, String pass) {
+        String cap = "";
+        String sql = "SELECT * FROM Usuario WHERE User='" + usuario + "' && Pass='" + pass + "'";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
-            while(rs.next())
-            {
-                cap=rs.getString("Tipo");
+            while (rs.next()) {
+                cap = rs.getString("Tipo");
             }
-            if(cap.equals("Administrador"))
-            {
+            if (cap.equals("Administrador")) {
 
-                    JOptionPane.showMessageDialog(null, "Bienvenido");
-                    Principal ingreso = new Principal(conexion);
-                    ingreso.setVisible(true);
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+                Principal ingreso = new Principal(conexion);
+                ingreso.setVisible(true);
 
-                    ingreso.laber_usuario.setText(usuario);
+                ingreso.laber_usuario.setText(usuario);
                     // ventanaadmin.lblusu.setText(usuario);
-        
-                
+
             }
-            if(cap.equals("Empleado"))
-            {
-           
-                    JOptionPane.showMessageDialog(null, "Bienvenido");
-                     Principal ingresos = new Principal(conexion);
-                    ingresos.setVisible(true);
-                       ingresos.laber_usuario.setText(usuario);
-                   //  ventanacliente.lblconectado.setText(usuario);
+            if (cap.equals("Empleado")) {
+
+                JOptionPane.showMessageDialog(null, "Bienvenido");
+                Principal ingresos = new Principal(conexion);
+                ingresos.setVisible(true);
+                ingresos.laber_usuario.setText(usuario);
+                //  ventanacliente.lblconectado.setText(usuario);
             }
-           /* if((!cap.equals("Administrador"))&& (!cap.equals("Cajero")))
-            {
-                JOptionPane.showMessageDialog(ControladorLogin,"No existe sus datos");
-            }*/
+            if ((!cap.equals("Administrador")) && (!cap.equals("Cajero"))) {
+                JOptionPane.showMessageDialog(null, "No existe sus datos");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
 }
