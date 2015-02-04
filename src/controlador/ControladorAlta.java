@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import modelo.GestionConexion;
 import vistas.AltaProducto;
 import vistas.Principal;
+import vistas.PrincipalEmpleado;
 
 /**
  *
@@ -28,6 +29,12 @@ public class ControladorAlta {
         alta.setVisible(true);
     }
 
+    public ControladorAlta(PrincipalEmpleado principal, GestionConexion conexion) {
+        this.conn = conexion;
+        this.producto = new Producto();
+        AltaProducto alta = new AltaProducto(principal, true, this, producto);
+        alta.setVisible(true);
+    }
     public void agregarProducto() {
         try {
             conn.getStatement().executeUpdate("INSERT INTO producto (CodigoProducto,Nombre, Presentacion,Fecha_de_Vencimiento,Cantidad,Categoria,Precio_Minorista,Precio_Mayorista,Marca)"

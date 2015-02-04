@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import modelo.GestionConexion;
 import vistas.Login;
 import vistas.Principal;
+import vistas.PrincipalEmpleado;
 
 /**
  *
@@ -50,12 +51,12 @@ public class ControladorLogin {
             if (cap.equals("Empleado")) {
 
                 JOptionPane.showMessageDialog(null, "Bienvenido");
-                Principal ingresos = new Principal(conexion);
+                PrincipalEmpleado ingresos = new PrincipalEmpleado(conexion);
                 ingresos.setVisible(true);
                 ingresos.laber_usuario.setText(usuario);
                 //  ventanacliente.lblconectado.setText(usuario);
             }
-            if ((!cap.equals("Administrador")) && (!cap.equals("Cajero"))) {
+            if ((!cap.equals("Administrador")) && (!cap.equals("Empleado"))) {
                 JOptionPane.showMessageDialog(null, "No existe sus datos");
             }
         } catch (SQLException ex) {
