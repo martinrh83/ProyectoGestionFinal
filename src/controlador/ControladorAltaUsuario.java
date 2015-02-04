@@ -34,7 +34,7 @@ public class ControladorAltaUsuario {
         mostrarusuarios();
     }
 
-    void Generarnumeracion() {
+    public void Generarnumeracion() {
         String SQL = "select max(idUsuario) from Usuario";
        // String SQL="select count(*) from factura";
         //String SQL="SELECT MAX(cod_emp) AS cod_emp FROM empleado";
@@ -73,7 +73,7 @@ public class ControladorAltaUsuario {
     
     
     
-      void mostrarusuarios(){
+      public void mostrarusuarios(){
    String [] titulos= {"id","Nombre","Apellido","DNI","Tipo","Carga_Horaria","Fecha_Ingreso","Password","Usuario"};
    modelo=new  DefaultTableModel(null,titulos);   
    String datos []= new String[9];

@@ -7,6 +7,7 @@ package vistas;
 
 import controlador.ControladorAltaUsuario;
 import controlador.Usuario;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import modelo.GestionConexion;
@@ -73,6 +74,11 @@ public class AltaPersonal extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
 
         txt_Name.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txt_Name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_NameKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Tipo:");
 
@@ -90,6 +96,12 @@ public class AltaPersonal extends javax.swing.JFrame {
         txt_apellido.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel10.setText("Apellido:");
+
+        txt_Dni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_DniKeyTyped(evt);
+            }
+        });
 
         jLabel11.setText("DNI");
 
@@ -226,7 +238,7 @@ public class AltaPersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void limpiar(){
+    public void limpiar() {
         txt_Dni.setText(null);
         txt_Name.setText(null);
         txt_apellido.setText(null);
@@ -249,9 +261,28 @@ public class AltaPersonal extends javax.swing.JFrame {
 
         this.control.agregarUsuario();
         this.limpiar();
-
+        this.control.Generarnumeracion();
+        this.control.mostrarusuarios();
         //this.dispose();
     }//GEN-LAST:event_btnAgregar_APerActionPerformed
+
+    private void txt_DniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_DniKeyTyped
+        char car = evt.getKeyChar();
+        if (txt_Dni.getText().length() >= 8) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_DniKeyTyped
+
+    private void txt_NameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NameKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_NameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
