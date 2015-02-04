@@ -60,7 +60,7 @@ public class AltaPersonal extends javax.swing.JFrame {
         combo_tipo = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new org.netbeans.modules.form.InvalidComponent();
         txt_hora = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
@@ -219,6 +219,8 @@ public class AltaPersonal extends javax.swing.JFrame {
                 .addGap(59, 59, 59))
         );
 
+        jDateChooser1.getAccessibleContext().setAccessibleParent(jDateChooser1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -255,7 +257,7 @@ public class AltaPersonal extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar_APer;
     private javax.swing.JButton btnFin_APer;
     private javax.swing.JComboBox combo_tipo;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private org.netbeans.modules.form.InvalidComponent jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
