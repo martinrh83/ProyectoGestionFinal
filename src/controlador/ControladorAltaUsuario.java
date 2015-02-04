@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.GestionConexion;
 import vistas.AltaPersonal;
@@ -103,5 +104,24 @@ public class ControladorAltaUsuario {
   
   
    }
+      
+      /*public static void eliminarFila(){
+        int g=window.tablaUsuario.getTablaUsuario().getSelectedRow();
+       int f= window.tablaUsuario.getjTable1().getSelectedRow();
+       if(f>-1){
+           int n = JOptionPane.showConfirmDialog(tabla, "Esta seguro de Borrar ?", "Mensaje de Confirmación", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+       int idCalculo=(Integer)tabla.getjTable1().getModel().getValueAt(f, 0);
+       c.setId(idCalculo);
+       /*modelo.getRow(tabla.getSelectedRow());
+        calculo c=new calculo();
+        c.setId();
+        c.eliminar();
+            }
+       }else {
+            JOptionPane.showMessageDialog(tabla, "Debe seleccionar auna fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }*/
       
 }

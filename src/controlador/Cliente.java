@@ -10,7 +10,7 @@ package controlador;
  * @author Mariana
  */
 public class Cliente {
-    
+        private int idCliente;
         private String nombre;
         private String apellido;
         private int dni;
@@ -20,14 +20,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, int dni, int cuil, String direccion) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.cuil = cuil;
-        this.direccion = direccion;
-    }
-        
+   
         
 
     /**
@@ -35,6 +28,16 @@ public class Cliente {
      *
      * @return the value of direccion
      */
+    
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    
     public String getDireccion() {
         return direccion;
     }
@@ -124,10 +127,7 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuil=" + cuil + ", direccion=" + direccion + '}';
-    }
+   
 
     
 }

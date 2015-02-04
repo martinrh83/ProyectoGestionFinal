@@ -7,6 +7,7 @@ package vistas;
 
 import controlador.ControladorAlta;
 import controlador.ControladorAltaUsuario;
+import controlador.ControladorCliente;
 import modelo.GestionConexion;
 
 /**
@@ -185,6 +186,11 @@ public class Principal extends javax.swing.JFrame {
         menuCliente.setText("Cliente");
 
         menuItAltaCli.setText("Alta");
+        menuItAltaCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItAltaCliActionPerformed(evt);
+            }
+        });
         menuCliente.add(menuItAltaCli);
 
         menuItBajaCli.setText("Baja");
@@ -259,6 +265,10 @@ public class Principal extends javax.swing.JFrame {
        windowAltaPer.setVisible(true);    }//GEN-LAST:event_menuItAltaPerActionPerformed
 */
     }
+    private void menuItAltaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaCliActionPerformed
+        ControladorCliente cliente= new ControladorCliente(this,conexion);
+    }//GEN-LAST:event_menuItAltaCliActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;

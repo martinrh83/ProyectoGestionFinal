@@ -10,6 +10,7 @@ import controlador.Usuario;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JTable;
 import modelo.GestionConexion;
 
 /**
@@ -237,6 +238,14 @@ public class AltaPersonal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JTable getTablaUsuario() {
+        return tablaUsuario;
+    }
+
+    public void setTablaUsuario(JTable tablaUsuario) {
+        this.tablaUsuario = tablaUsuario;
+    }
 
     public void limpiar() {
         txt_Dni.setText(null);

@@ -52,6 +52,7 @@ public class AltaCliente extends javax.swing.JFrame {
         txtcuil = new javax.swing.JTextField();
         txtdir = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,20 +64,16 @@ public class AltaCliente extends javax.swing.JFrame {
 
         lbldir.setText("Dirección");
 
-        txtnom.setText(" ");
-
-        txtap.setText(" ");
-
-        txtdni.setText(" ");
-
-        txtcuil.setText(" ");
-
-        txtdir.setText(" ");
-
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
+            }
+        });
+
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
             }
         });
 
@@ -104,7 +101,9 @@ public class AltaCliente extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtdni))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblnomyap)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblnomyap)
+                                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -112,12 +111,14 @@ public class AltaCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(140, 140, 140)
                         .addComponent(btnAgregar)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(6, 6, 6)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnomyap)
                     .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,7 +145,7 @@ public class AltaCliente extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        
+        cliente.setIdCliente(Integer.valueOf(txt_id.getText()));
         cliente.setNombre(txtnom.getText());
         cliente.setApellido(txtap.getText());
         cliente.setDni(Integer.valueOf(txtdni.getText()));
@@ -156,6 +157,10 @@ public class AltaCliente extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
     
    
     
@@ -166,6 +171,7 @@ public class AltaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lbldir;
     private javax.swing.JLabel lbldni;
     private javax.swing.JLabel lblnomyap;
+    public javax.swing.JTextField txt_id;
     private javax.swing.JTextField txtap;
     private javax.swing.JTextField txtcuil;
     private javax.swing.JTextField txtdir;
