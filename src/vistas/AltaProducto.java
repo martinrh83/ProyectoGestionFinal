@@ -85,6 +85,12 @@ public class AltaProducto extends javax.swing.JFrame {
 
         jLabel7.setText("Cantidad");
 
+        txtCant_Prod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCant_ProdKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Categoria");
 
         combo_cat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Limpieza", "Bebida", "Lacteos", "Alimentos", "Golosinas" }));
@@ -122,7 +128,7 @@ public class AltaProducto extends javax.swing.JFrame {
                                 .addComponent(txtDesc_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,11 +196,11 @@ public class AltaProducto extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtDesc_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPMin_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,6 +249,13 @@ public class AltaProducto extends javax.swing.JFrame {
     private void combo_catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_catActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_catActionPerformed
+
+    private void txtCant_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant_ProdKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCant_ProdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

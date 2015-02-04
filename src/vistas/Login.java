@@ -44,6 +44,17 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
 
+        txt_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_userActionPerformed(evt);
+            }
+        });
+        txt_user.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_userKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("Usuario:");
 
         jLabel2.setText("Password:");
@@ -107,6 +118,17 @@ public class Login extends javax.swing.JFrame {
            login.acceder(usuario, pass);
            
     }//GEN-LAST:event_btn_accederActionPerformed
+
+    private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_userActionPerformed
+
+    private void txt_userKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_userKeyTyped
+        char car = evt.getKeyChar();
+        if (txt_user.getText().length() >= 11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_userKeyTyped
 
 
 

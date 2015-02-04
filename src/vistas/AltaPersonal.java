@@ -94,6 +94,11 @@ public class AltaPersonal extends javax.swing.JFrame {
         btnFin_APer.setText("Finalizar");
 
         txt_apellido.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_apellidoKeyTyped(evt);
+            }
+        });
 
         jLabel10.setText("Apellido:");
 
@@ -114,6 +119,12 @@ public class AltaPersonal extends javax.swing.JFrame {
         jLabel7.setText("Carga Horaria:");
 
         jLabel8.setText("Fecha Ingreso:");
+
+        txt_hora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_horaKeyTyped(evt);
+            }
+        });
 
         tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -283,6 +294,20 @@ public class AltaPersonal extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txt_NameKeyTyped
+
+    private void txt_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }    }//GEN-LAST:event_txt_apellidoKeyTyped
+
+    private void txt_horaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_horaKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_horaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
