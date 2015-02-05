@@ -10,6 +10,7 @@ import controlador.Usuario;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.GestionConexion;
 
@@ -66,6 +67,7 @@ public class AltaPersonal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        btn_delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alta Producto");
@@ -140,6 +142,13 @@ public class AltaPersonal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaUsuario);
 
+        btn_delete.setText("Eliminar");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,6 +206,10 @@ public class AltaPersonal extends javax.swing.JFrame {
                                 .addComponent(btnFin_APer)))
                         .addGap(0, 114, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_delete)
+                .addGap(170, 170, 170))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +253,9 @@ public class AltaPersonal extends javax.swing.JFrame {
                     .addComponent(btnFin_APer))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_delete)
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -310,15 +325,24 @@ public class AltaPersonal extends javax.swing.JFrame {
     private void txt_horaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_horaKeyTyped
         char car = evt.getKeyChar();
         if ((car < '0' || car > '9')) {
+            JOptionPane.showMessageDialog(this, "Solo numeros");
             evt.consume();
         }
+ 
     }//GEN-LAST:event_txt_horaKeyTyped
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        control.eliminarFila(this);
+        control.Generarnumeracion();
+        control.mostrarusuarios();
+    }//GEN-LAST:event_btn_deleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar_APer;
     private javax.swing.JButton btnCancelar_APer;
     private javax.swing.JButton btnFin_APer;
+    private javax.swing.JButton btn_delete;
     private javax.swing.JComboBox combo_tipo;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;

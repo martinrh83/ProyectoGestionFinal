@@ -5,7 +5,10 @@
  */
 package controlador;
 
+import java.sql.SQLException;
 import java.sql.Time;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -97,5 +100,7 @@ public class Usuario {
     public void setFechaIngreso(String FechaIngreso) {
         this.FechaIngreso = FechaIngreso;
     }
+    
+   
 
 }
