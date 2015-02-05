@@ -9,6 +9,7 @@ import controlador.Cliente;
 import controlador.ControladorAlta;
 import controlador.ControladorCliente;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -183,9 +184,11 @@ public class AltaCliente extends javax.swing.JFrame {
     private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
         char car = evt.getKeyChar();
         if (txtdni.getText().length() >= 9) {
+            JOptionPane.showMessageDialog(this, "Permitido hasta 9 digitos");
             evt.consume();
         }
         if ((car < '0' || car > '9')) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
             evt.consume();
         }
     }//GEN-LAST:event_txtdniKeyTyped
@@ -193,7 +196,8 @@ public class AltaCliente extends javax.swing.JFrame {
     private void txtnomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnomKeyTyped
         char car = evt.getKeyChar();
         if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && (car != (char) KeyEvent.VK_SPACE)) {
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
             evt.consume();
         }
     }//GEN-LAST:event_txtnomKeyTyped
@@ -201,7 +205,8 @@ public class AltaCliente extends javax.swing.JFrame {
     private void txtapKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapKeyTyped
         char car = evt.getKeyChar();
         if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && (car != (char) KeyEvent.VK_SPACE)) {
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
             evt.consume();
         }
     }//GEN-LAST:event_txtapKeyTyped

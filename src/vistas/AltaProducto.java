@@ -8,8 +8,10 @@ package vistas;
 import controlador.ControladorAlta;
 import controlador.Producto;
 import java.awt.Frame;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,6 +76,12 @@ public class AltaProducto extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Nombre");
+
+        txtName_Prod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtName_ProdKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Descripcion");
 
@@ -252,10 +260,20 @@ public class AltaProducto extends javax.swing.JFrame {
 
     private void txtCant_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant_ProdKeyTyped
         char car = evt.getKeyChar();
-        if ((car < '0' || car > '9')) {
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
             evt.consume();
         }
     }//GEN-LAST:event_txtCant_ProdKeyTyped
+
+    private void txtName_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtName_ProdKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtName_ProdKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

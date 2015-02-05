@@ -300,9 +300,11 @@ public class AltaPersonal extends javax.swing.JFrame {
     private void txt_DniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_DniKeyTyped
         char car = evt.getKeyChar();
         if (txt_Dni.getText().length() >= 9) {
+            JOptionPane.showMessageDialog(this, "Permitido hasta 8 digitos");
             evt.consume();
         }
         if ((car < '0' || car > '9')) {
+            JOptionPane.showMessageDialog(this, "Solo numeros");
             evt.consume();
         }
     }//GEN-LAST:event_txt_DniKeyTyped
@@ -310,7 +312,8 @@ public class AltaPersonal extends javax.swing.JFrame {
     private void txt_NameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NameKeyTyped
         char car = evt.getKeyChar();
         if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && (car != (char) KeyEvent.VK_SPACE)) {
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
             evt.consume();
         }
     }//GEN-LAST:event_txt_NameKeyTyped
@@ -318,13 +321,18 @@ public class AltaPersonal extends javax.swing.JFrame {
     private void txt_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyTyped
         char car = evt.getKeyChar();
         if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && (car != (char) KeyEvent.VK_SPACE)) {
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
             evt.consume();
         }    }//GEN-LAST:event_txt_apellidoKeyTyped
 
     private void txt_horaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_horaKeyTyped
         char car = evt.getKeyChar();
-        if ((car < '0' || car > '9')) {
+        if (txt_hora.getText().length() >= 8) {
+            JOptionPane.showMessageDialog(this, "Permitido hasta 8 digitos");
+            evt.consume();
+        }
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
             JOptionPane.showMessageDialog(this, "Solo numeros");
             evt.consume();
         }
