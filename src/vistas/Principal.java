@@ -59,9 +59,6 @@ public class Principal extends javax.swing.JFrame {
         menuItLiqSdoPer = new javax.swing.JMenuItem();
         menuItGConPer = new javax.swing.JMenuItem();
         menuItAltaPer = new javax.swing.JMenuItem();
-        menuItBajaPer = new javax.swing.JMenuItem();
-        menuItModPer = new javax.swing.JMenuItem();
-        menuItListPer = new javax.swing.JMenuItem();
         menuCliente = new javax.swing.JMenu();
         menuItAltaCli = new javax.swing.JMenuItem();
         menuItBajaCli = new javax.swing.JMenuItem();
@@ -159,27 +156,13 @@ public class Principal extends javax.swing.JFrame {
         menuItGConPer.setText("Gestion de Conceptos");
         menuPersonal.add(menuItGConPer);
 
-        menuItAltaPer.setText("Alta");
+        menuItAltaPer.setText("Gestión de Personal");
         menuItAltaPer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItAltaPerActionPerformed(evt);
             }
         });
         menuPersonal.add(menuItAltaPer);
-
-        menuItBajaPer.setText("Baja");
-        menuPersonal.add(menuItBajaPer);
-
-        menuItModPer.setText("Modificacion");
-        menuItModPer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItModPerActionPerformed(evt);
-            }
-        });
-        menuPersonal.add(menuItModPer);
-
-        menuItListPer.setText("Listado");
-        menuPersonal.add(menuItListPer);
 
         jMenuBar1.add(menuPersonal);
 
@@ -238,14 +221,6 @@ public class Principal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 
-    private void menuItModPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModPerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItModPerActionPerformed
-
-    private void menuItModCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModCliActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItModCliActionPerformed
-
     private void menuItModProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModProdActionPerformed
         ModProducto windowModProd = new ModProducto(this, true);
         windowModProd.setVisible(true);
@@ -259,15 +234,18 @@ public class Principal extends javax.swing.JFrame {
         NuevaVenta windowNewVenta = new NuevaVenta (this, true);
         windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
 
-    private void menuItAltaPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaPerActionPerformed
-        ControladorAltaUsuario user= new ControladorAltaUsuario(conexion);
-        /*
-       windowAltaPer.setVisible(true);    }//GEN-LAST:event_menuItAltaPerActionPerformed
-*/
-    }
     private void menuItAltaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaCliActionPerformed
         ControladorCliente cliente= new ControladorCliente(this,conexion);
     }//GEN-LAST:event_menuItAltaCliActionPerformed
+
+    private void menuItAltaPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaPerActionPerformed
+        ControladorAltaUsuario user= new ControladorAltaUsuario(conexion);
+        
+    }//GEN-LAST:event_menuItAltaPerActionPerformed
+
+    private void menuItModCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModCliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItModCliActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -282,19 +260,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItAltaProd;
     private javax.swing.JMenuItem menuItAltaProv;
     private javax.swing.JMenuItem menuItBajaCli;
-    private javax.swing.JMenuItem menuItBajaPer;
     private javax.swing.JMenuItem menuItBajaProd;
     private javax.swing.JMenuItem menuItBajaProv;
     private javax.swing.JMenuItem menuItGConPer;
     private javax.swing.JMenuItem menuItLiqSdoPer;
     private javax.swing.JMenuItem menuItListCli;
     private javax.swing.JMenuItem menuItListMCpra;
-    private javax.swing.JMenuItem menuItListPer;
     private javax.swing.JMenuItem menuItListProd;
     private javax.swing.JMenuItem menuItListProv;
     private javax.swing.JMenuItem menuItListVenta;
     private javax.swing.JMenuItem menuItModCli;
-    private javax.swing.JMenuItem menuItModPer;
     private javax.swing.JMenuItem menuItModProd;
     private javax.swing.JMenuItem menuItModProv;
     private javax.swing.JMenuItem menuItNvaCpra;

@@ -120,7 +120,7 @@ public class ControladorAltaUsuario {
 
             }
         } else {
-            JOptionPane.showMessageDialog(tabla, "Debe seleccionar auna fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }

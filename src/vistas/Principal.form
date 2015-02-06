@@ -136,29 +136,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItAltaPer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Alta"/>
+                <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Personal"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItAltaPerActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItBajaPer">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Baja"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItModPer">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Modificacion"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItModPerActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItListPer">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listado"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
