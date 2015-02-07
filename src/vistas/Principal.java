@@ -8,6 +8,7 @@ package vistas;
 import controlador.ControladorAlta;
 import controlador.ControladorAltaUsuario;
 import controlador.ControladorCliente;
+import controlador.ControladorProveedor;
 import modelo.GestionConexion;
 
 /**
@@ -51,10 +52,7 @@ public class Principal extends javax.swing.JFrame {
         menuItNvaPedCpra = new javax.swing.JMenuItem();
         menuItListMCpra = new javax.swing.JMenuItem();
         menuProveedor = new javax.swing.JMenu();
-        menuItAltaProv = new javax.swing.JMenuItem();
-        menuItBajaProv = new javax.swing.JMenuItem();
-        menuItModProv = new javax.swing.JMenuItem();
-        menuItListProv = new javax.swing.JMenuItem();
+        menuGestionProv = new javax.swing.JMenuItem();
         menuPersonal = new javax.swing.JMenu();
         menuItLiqSdoPer = new javax.swing.JMenuItem();
         menuItGConPer = new javax.swing.JMenuItem();
@@ -134,17 +132,13 @@ public class Principal extends javax.swing.JFrame {
 
         menuProveedor.setText("Proveedores");
 
-        menuItAltaProv.setText("Alta");
-        menuProveedor.add(menuItAltaProv);
-
-        menuItBajaProv.setText("Baja");
-        menuProveedor.add(menuItBajaProv);
-
-        menuItModProv.setText("Modificacion");
-        menuProveedor.add(menuItModProv);
-
-        menuItListProv.setText("Listado");
-        menuProveedor.add(menuItListProv);
+        menuGestionProv.setText("Gestion de Proveedor");
+        menuGestionProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGestionProvActionPerformed(evt);
+            }
+        });
+        menuProveedor.add(menuGestionProv);
 
         jMenuBar1.add(menuProveedor);
 
@@ -208,9 +202,9 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 249, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(laber_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(laber_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -247,6 +241,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItModCliActionPerformed
 
+    private void menuGestionProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionProvActionPerformed
+        ControladorProveedor prov = new ControladorProveedor (conexion);
+    }//GEN-LAST:event_menuGestionProvActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -255,23 +253,20 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JLabel laber_usuario;
     private javax.swing.JMenu menuCliente;
     private javax.swing.JMenu menuCompra;
+    private javax.swing.JMenuItem menuGestionProv;
     private javax.swing.JMenuItem menuItAltaCli;
     private javax.swing.JMenuItem menuItAltaPer;
     private javax.swing.JMenuItem menuItAltaProd;
-    private javax.swing.JMenuItem menuItAltaProv;
     private javax.swing.JMenuItem menuItBajaCli;
     private javax.swing.JMenuItem menuItBajaProd;
-    private javax.swing.JMenuItem menuItBajaProv;
     private javax.swing.JMenuItem menuItGConPer;
     private javax.swing.JMenuItem menuItLiqSdoPer;
     private javax.swing.JMenuItem menuItListCli;
     private javax.swing.JMenuItem menuItListMCpra;
     private javax.swing.JMenuItem menuItListProd;
-    private javax.swing.JMenuItem menuItListProv;
     private javax.swing.JMenuItem menuItListVenta;
     private javax.swing.JMenuItem menuItModCli;
     private javax.swing.JMenuItem menuItModProd;
-    private javax.swing.JMenuItem menuItModProv;
     private javax.swing.JMenuItem menuItNvaCpra;
     private javax.swing.JMenuItem menuItNvaPedCpra;
     private javax.swing.JMenuItem menuItNvaVenta;
