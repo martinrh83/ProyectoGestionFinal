@@ -258,7 +258,7 @@ public class AltaProveedor extends javax.swing.JFrame {
     private void btn_addProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addProvActionPerformed
         proveedor.setIdProveedor(Integer.valueOf(txt_idProv.getText()));
         proveedor.setCuitProv(Integer.valueOf(txt_cuitProv.getText()));
-        proveedor.setNombreProv(txt_idProv.getText());
+        proveedor.setNombreProv(txt_nombreProv.getText());
         proveedor.setTelefonoProv(Integer.valueOf(txt_telProv.getText()));
         proveedor.setRazonSocProv(combo_rsProv.getSelectedItem().toString());
         proveedor.setDireccionProv(txt_dirProv.getText());

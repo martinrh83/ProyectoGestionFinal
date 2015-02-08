@@ -147,9 +147,9 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         windowListProd.setVisible(true);    }//GEN-LAST:event_menuItListProdActionPerformed
 
     private void menuItNvaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaVentaActionPerformed
-        NuevaVenta windowNewVenta = new NuevaVenta (this, true);
+      /*NuevaVenta windowNewVenta = new NuevaVenta (this, true);
         windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
-
+*/}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -9,6 +9,7 @@ import controlador.ControladorAlta;
 import controlador.ControladorAltaUsuario;
 import controlador.ControladorCliente;
 import controlador.ControladorProveedor;
+import controlador.ControladorVenta;
 import modelo.GestionConexion;
 
 /**
@@ -225,9 +226,13 @@ public class Principal extends javax.swing.JFrame {
         windowListProd.setVisible(true);    }//GEN-LAST:event_menuItListProdActionPerformed
 
     private void menuItNvaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaVentaActionPerformed
-        NuevaVenta windowNewVenta = new NuevaVenta (this, true);
+        String user=laber_usuario.getText();
+        ControladorVenta venta = new ControladorVenta (conexion,user);
+        
+    }
+    /*
         windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
-
+*/
     private void menuItAltaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaCliActionPerformed
         ControladorCliente cliente= new ControladorCliente(this,conexion);
     }//GEN-LAST:event_menuItAltaCliActionPerformed
