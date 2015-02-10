@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import controlador.ControladorAlta;
+import controlador.ControladorProducto;
 import controlador.Producto;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
@@ -17,15 +17,15 @@ import javax.swing.JOptionPane;
  *
  * @author martinrh83
  */
-public class AltaProducto extends javax.swing.JFrame {
+public class GestionProducto extends javax.swing.JFrame {
 
     private Producto producto;
-    private ControladorAlta alta;
+    private ControladorProducto alta;
 
     /**
      * Creates new form AltaProducto
      */
-    public AltaProducto(java.awt.Frame parent, boolean modal, ControladorAlta cAlta, Producto producto) {
+    public GestionProducto(java.awt.Frame parent, boolean modal, ControladorProducto cAlta, Producto producto) {
 
         initComponents();
         this.setLocationRelativeTo(null);

@@ -56,7 +56,7 @@ public class ControladorCliente {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

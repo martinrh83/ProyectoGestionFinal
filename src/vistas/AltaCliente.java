@@ -6,7 +6,7 @@
 package vistas;
 
 import controlador.Cliente;
-import controlador.ControladorAlta;
+import controlador.ControladorProducto;
 import controlador.ControladorCliente;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;

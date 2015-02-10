@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import controlador.ControladorAltaUsuario;
+import controlador.ControladorUsuario;
 import controlador.Usuario;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
@@ -18,16 +18,16 @@ import modelo.GestionConexion;
  *
  * @author martinrh83
  */
-public class AltaPersonal extends javax.swing.JFrame {
+public class GestionPersonal extends javax.swing.JFrame {
 
     private GestionConexion connection;
     private Usuario user;
-    private ControladorAltaUsuario control;
+    private ControladorUsuario control;
 
     /**
      * Creates new form AltaProducto
      */
-    public AltaPersonal(ControladorAltaUsuario cont, GestionConexion conn, Usuario us) {
+    public GestionPersonal(ControladorUsuario cont, GestionConexion conn, Usuario us) {
         control = cont;
         connection = conn;
         user = us;

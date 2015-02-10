@@ -13,23 +13,23 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.GestionConexion;
-import vistas.AltaPersonal;
+import vistas.GestionPersonal;
 
 /**
  *
  * @author Martin
  */
-public class ControladorAltaUsuario {
+public class ControladorUsuario {
 
     private GestionConexion conexion;
-    private AltaPersonal window;
+    private GestionPersonal window;
     private Usuario user;
     private DefaultTableModel modelo;
 
-    public ControladorAltaUsuario(GestionConexion conn) {
+    public ControladorUsuario(GestionConexion conn) {
         conexion = conn;
         user = new Usuario();
-        window = new AltaPersonal(this, conexion, user);
+        window = new GestionPersonal(this, conexion, user);
         window.setVisible(true);
         Generarnumeracion();
         mostrarusuarios();
@@ -58,17 +58,17 @@ public class ControladorAltaUsuario {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     public void agregarUsuario() {
         try {
-            conexion.getStatement().executeUpdate("INSERT INTO usuario (IdUsuario,Nombre, Apellido,Dni,Tipo,Carga_Horaria,Fecha_Ingreso,Pass,User)"
+            conexion.getStatement().executeUpdate("INSERT INTO usuario (idUsuario,nombre, apellido,dni,tipo,carga_Horaria,fecha_Ingreso,pass,user)"
                     + "VALUES (" + user.getIdUsuario() + ",'" + user.getNomUsuario() + "','" + user.getApellidoUsuario() + "'," + user.getDniUsuario() + ",'" + user.getTipoUsuario() + "'," + user.getCargaHoraria() + ",'" + user.getFechaIngreso() + "','" + user.getPassUsuario() + "','" + user.getUserUsuario() + "');");
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -81,27 +81,27 @@ public class ControladorAltaUsuario {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("idusuario");
-                datos[1] = rs.getString("Nombre");
-                datos[2] = rs.getString("Apellido");
-                datos[3] = rs.getString("Dni");
-                datos[4] = rs.getString("Tipo");
-                datos[5] = rs.getString("Carga_Horaria");
-                datos[6] = rs.getString("Fecha_Ingreso");
-                datos[7] = rs.getString("Pass");
-                datos[8] = rs.getString("User");
+                datos[0] = rs.getString("idUsuario");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getString("apellido");
+                datos[3] = rs.getString("dni");
+                datos[4] = rs.getString("tipo");
+                datos[5] = rs.getString("carga_Horaria");
+                datos[6] = rs.getString("fecha_Ingreso");
+                datos[7] = rs.getString("pass");
+                datos[8] = rs.getString("user");
 
                 modelo.addRow(datos);
             }
             window.tablaUsuario.setModel(modelo);
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void eliminarFila(AltaPersonal tabla) {
+    public void eliminarFila(GestionPersonal tabla) {
 
         int flag = tabla.getTablaUsuario().getSelectedRow();
         if (flag > -1) {
@@ -110,12 +110,12 @@ public class ControladorAltaUsuario {
                 String idCalculo = (String)tabla.getTablaUsuario().getModel().getValueAt(flag, 0);
                 Integer.valueOf(idCalculo);
                 try {
-                    String query = "Delete from usuario where IdUsuario =" + idCalculo + ";";
+                    String query = "Delete from usuario where idUsuario =" + idCalculo + ";";
                     Statement st = conexion.getStatement();
                     st.executeUpdate(query);
                     System.out.println("Producto borrado. ");
                 } catch (SQLException ex) {
-                    Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }

@@ -35,27 +35,26 @@ public class ControladorVenta {
         conexion = conn;
         user = us;
         modelo = new DefaultTableModel(null, titulos);
-        venta=new Venta();
-        windowVenta = new NuevaVenta(this, conexion,venta);
+        venta = new Venta();
+        windowVenta = new NuevaVenta(this, conexion, venta);
         windowVenta.setVisible(true);
 
     }
 
-    public void setearUsuario(JLabel label,JLabel id) {
+    public void setearUsuario(JLabel label, JLabel id) {
         try {
             label.setText(user);
-            String sql="select IdUsuario from usuario where User='"+user+"'";
-            ResultSet rs=conexion.getStatement().executeQuery(sql);
+            String sql = "select idUsuario from usuario where user='" + user + "'";
+            ResultSet rs = conexion.getStatement().executeQuery(sql);
             while (rs.next()) {
-                 int idprueba=rs.getInt(1);
-            id.setText(""+idprueba);
+                int idprueba = rs.getInt(1);
+                id.setText("" + idprueba);
             }
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(ControladorVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-     
     }
 
     public void Generarnumeracion(JTextField idVenta) {
@@ -80,14 +79,14 @@ public class ControladorVenta {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     public void obtenerFecha(JTextField fecha) {
         Calendar Cal = Calendar.getInstance();
-        String fec = Cal.get(Cal.YEAR)+ "-" + (Cal.get(Cal.MONTH) + 1) + "-" + Cal.get(Cal.DATE)  + " " + Cal.get(Cal.HOUR_OF_DAY) + ":" + Cal.get(Cal.MINUTE) + ":" + Cal.get(Cal.SECOND);
+        String fec = Cal.get(Cal.YEAR) + "-" + (Cal.get(Cal.MONTH) + 1) + "-" + Cal.get(Cal.DATE) + " " + Cal.get(Cal.HOUR_OF_DAY) + ":" + Cal.get(Cal.MINUTE) + ":" + Cal.get(Cal.SECOND);
 
         fecha.setText(fec);
         fecha.setEnabled(false);
@@ -95,24 +94,24 @@ public class ControladorVenta {
 
     public void agregarCarrito(int codigo, JTable tVenta, String cant) {
 
-        String sql = "SELECT * FROM  producto where CodigoProducto=" + codigo + "";
+        String sql = "SELECT * FROM  producto where idProducto=" + codigo + "";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("CodigoProducto");
-                datos[1] = rs.getString("Nombre");
-                datos[2] = rs.getString("Presentacion");
-                datos[3] = rs.getString("Marca");
+                datos[0] = rs.getString("idProducto");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getString("descripcion");
+                datos[3] = rs.getString("marca");
                 datos[4] = cant;
-                datos[5] = rs.getString("Precio_Minorista");
+                datos[5] = rs.getString("pcioMin");
 
                 modelo.addRow(datos);
             }
             tVenta.setModel(modelo);
 
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -121,7 +120,7 @@ public class ControladorVenta {
         int baja = Integer.valueOf(cant);
         int stockPast = 0;
         int stockFinal;
-        String consul = "SELECT * FROM producto WHERE  CodigoProducto=" + codi + "";
+        String consul = "SELECT * FROM producto WHERE  idProducto=" + codi + "";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(consul);
@@ -132,7 +131,7 @@ public class ControladorVenta {
         } catch (Exception e) {
         }
         stockFinal = stockPast - baja;
-        String query = "UPDATE producto SET Cantidad=" + stockFinal + " WHERE CodigoProducto = " + codi + "";
+        String query = "UPDATE producto SET cantidad=" + stockFinal + " WHERE idProducto = " + codi + "";
         try {
             Statement st = conexion.getStatement();
             st.executeUpdate(query);
@@ -151,10 +150,10 @@ public class ControladorVenta {
             int id = Integer.valueOf(idVenta.getText());
 
             try {
-                String sql = "INSERT INTO Linea_de_Venta(cantidad,precio,Producto_idProducto,Venta_idVenta) VALUES (" + cantidad + "," + precio + "," + codprod + "," + id + ")";
+                String sql = "INSERT INTO Linea_de_Venta(cantidad,importe,Producto_idProducto,Venta_idVenta) VALUES (" + cantidad + "," + precio + "," + codprod + "," + id + ")";
                 conexion.getStatement().executeUpdate(sql);
             } catch (SQLException ex) {
-                Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -182,13 +181,13 @@ public class ControladorVenta {
         venta.getTxtTotal_Venta().setText("" + subtotal);
 
     }
-    
-    public void grabarVenta(){
-         try {
+
+    public void grabarVenta() {
+        try {
             conexion.getStatement().executeUpdate("INSERT INTO venta (idVenta,fechaVta,tipoVta,porcMarc,Cliente_idCliente,Usuario_idUsuario)"
-                    + "VALUES (" + venta.getIdVenta()+ ",'" + venta.getFechaVta() + "','" + venta.getTipoVta() + "'," + venta.getPorcMarc()+ "," + venta.getCliente_idCliente() + "," + venta.getUsuario_idUsuario()+ ");");
+                    + "VALUES (" + venta.getIdVenta() + ",'" + venta.getFechaVta() + "','" + venta.getTipoVta() + "'," + venta.getPorcMarc() + "," + venta.getCliente_idCliente() + "," + venta.getUsuario_idUsuario() + ");");
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorAltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

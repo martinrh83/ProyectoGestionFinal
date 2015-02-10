@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import controlador.ControladorAlta;
+import controlador.ControladorProducto;
 import modelo.GestionConexion;
 
 /**
@@ -133,7 +133,7 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItAltaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaProdActionPerformed
-       ControladorAlta contAlta= new ControladorAlta(this,conexion);
+       ControladorProducto contAlta= new ControladorProducto(this,conexion);
        
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 

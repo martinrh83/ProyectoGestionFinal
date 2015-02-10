@@ -12,14 +12,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.GestionConexion;
 
-public class AltaProveedor extends javax.swing.JFrame {
+public class GestionProveedor extends javax.swing.JFrame {
     
     private GestionConexion connection;
     private Proveedor proveedor;
     private ControladorProveedor control;
     
     
-    public AltaProveedor(ControladorProveedor cont, GestionConexion conn, Proveedor prov) {
+    public GestionProveedor(ControladorProveedor cont, GestionConexion conn, Proveedor prov) {
         connection = conn;
         proveedor = prov;
         control = cont;        
@@ -141,6 +141,11 @@ public class AltaProveedor extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tablaProveedor);
 
         btn_finProv.setText("Finalizar");
+        btn_finProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_finProvActionPerformed(evt);
+            }
+        });
 
         btn_cancelProv.setText("Cancelar");
         btn_cancelProv.addActionListener(new java.awt.event.ActionListener() {
@@ -271,8 +276,8 @@ public class AltaProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_addProvActionPerformed
 
     private void btn_editProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editProvActionPerformed
-        ModProveedor windowModProv = new ModProveedor(this, true);
-        windowModProv.setVisible(true);
+       ModProveedor window = new ModProveedor(control, connection, proveedor);
+       window.setVisible(true);
     }//GEN-LAST:event_btn_editProvActionPerformed
 
     private void btn_deleteProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteProvActionPerformed
@@ -280,6 +285,10 @@ public class AltaProveedor extends javax.swing.JFrame {
         control.generarNumeracion();
         control.mostrarProveedores();
     }//GEN-LAST:event_btn_deleteProvActionPerformed
+
+    private void btn_finProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finProvActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_finProvActionPerformed
 
     public JTable getTablaProveedor() {
         return tablaProveedor;

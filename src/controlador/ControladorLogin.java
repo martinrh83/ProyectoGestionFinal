@@ -31,7 +31,7 @@ public class ControladorLogin {
 
     public void acceder(String usuario, String pass) {
         String cap = "";
-        String sql = "SELECT * FROM Usuario WHERE User='" + usuario + "' && Pass='" + pass + "'";
+        String sql = "SELECT * FROM Usuario WHERE user='" + usuario + "' && pass='" + pass + "'";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);

@@ -5,8 +5,8 @@
  */
 package vistas;
 
-import controlador.ControladorAlta;
-import controlador.ControladorAltaUsuario;
+import controlador.ControladorProducto;
+import controlador.ControladorUsuario;
 import controlador.ControladorCliente;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
@@ -212,7 +212,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItAltaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaProdActionPerformed
-       ControladorAlta contAlta= new ControladorAlta(this, conexion);
+       ControladorProducto contAlta= new ControladorProducto(this, conexion);
        
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 
@@ -238,7 +238,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItAltaCliActionPerformed
 
     private void menuItAltaPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaPerActionPerformed
-        ControladorAltaUsuario user= new ControladorAltaUsuario(conexion);
+        ControladorUsuario user= new ControladorUsuario(conexion);
         
     }//GEN-LAST:event_menuItAltaPerActionPerformed
 

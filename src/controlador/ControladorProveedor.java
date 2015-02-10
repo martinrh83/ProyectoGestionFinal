@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.GestionConexion;
-import vistas.AltaProveedor;
+import vistas.GestionProveedor;
+import vistas.ModProveedor;
 
 /**
  *
@@ -22,15 +23,15 @@ import vistas.AltaProveedor;
 public class ControladorProveedor {
 
     private GestionConexion conexion;
-    private AltaProveedor window;
+    private GestionProveedor window;
     private Proveedor proveedor;
     private DefaultTableModel modelo;
 
     public ControladorProveedor(GestionConexion conn) {
         conexion = conn;
         proveedor = new Proveedor();
-        window = new AltaProveedor(this, conexion, proveedor);
-        window.setVisible(true); 
+        window = new GestionProveedor(this, conexion, proveedor);
+        window.setVisible(true);
         generarNumeracion();
         mostrarProveedores();
     }
@@ -56,9 +57,8 @@ public class ControladorProveedor {
             Logger.getLogger(ControladorProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    //INSERT INTO `finalgestion`.`proveedor` (`idProveedor`, `nombre`, `cuit`, `razonSocial`, `direccion`, `email`, `telefono`) VALUES (NULL, 'The Coca-Cola Company', '123456', 'S.A.', 'av. juan b. justo 1458', NULL, '0800888888');
 
+    //INSERT INTO `finalgestion`.`proveedor` (`idProveedor`, `nombre`, `cuit`, `razonSocial`, `direccion`, `email`, `telefono`) VALUES (NULL, 'The Coca-Cola Company', '123456', 'S.A.', 'av. juan b. justo 1458', NULL, '0800888888');
     public void agregarProveedor() {
         try {
             conexion.getStatement().executeUpdate("INSERT INTO proveedor (idProveedor, nombre, cuit, razonSocial, direccion, email, telefono)"
@@ -92,12 +92,12 @@ public class ControladorProveedor {
         }
     }
 
-    public void eliminarFila(AltaProveedor tabla) {
+    public void eliminarFila(GestionProveedor tabla) {
         int flag = tabla.getTablaProveedor().getSelectedRow();
         if (flag > -1) {
             int s = JOptionPane.showConfirmDialog(tabla, "¿Esta seguro de Borrar?", "Mensaje de Confirmación", JOptionPane.YES_NO_OPTION);
             if (s == JOptionPane.YES_OPTION) {
-                String idCalculo = (String)tabla.getTablaProveedor().getModel().getValueAt(flag, 0);
+                String idCalculo = (String) tabla.getTablaProveedor().getModel().getValueAt(flag, 0);
                 Integer.valueOf(idCalculo);
                 try {
                     String query = "Delete from proveedor where idProveedor =" + idCalculo + ";";
@@ -113,37 +113,68 @@ public class ControladorProveedor {
         }
     }
     /*UPDATE `finalgestion`.`proveedor` SET `nombre` = 'Walmart',
-        `direccion` = 'Av. Camino del Perú 950',
-        `email` = '45226',
-        `telefono` = '7895550' WHERE `proveedor`.`idProveedor` =4;
+     `direccion` = 'Av. Camino del Perú 950',
+     `email` = '45226',
+     `telefono` = '7895550' WHERE `proveedor`.`idProveedor` =4;
     
-    stm.execute(“UPDATE ” + tabla + ” SET nombre='” + usuario.get(“nombre”) + “‘ WHERE nombre='” + nombre + “‘”);
+     stm.execute(“UPDATE ” + tabla + ” SET nombre='” + usuario.get(“nombre”) + “‘ WHERE nombre='” + nombre + “‘”);
     
     
-    idProveedor, nombre, cuit, razonSocial, direccion, email, telefono
-    */
-    
-    public void modificarProv(AltaProveedor tabla){
-        int flag = tabla.getTablaProveedor().getSelectedRow();
-        if(flag > -1){
-                String idCalculo = (String)tabla.getTablaProveedor().getModel().getValueAt(flag, 0);
-                Integer.valueOf(idCalculo);
-            try {   
-                String qquery = ";" + "UPDATE proveedor SET nombre = '" + proveedor.getNombreProv() + "', " +
-                        "cuit =" + proveedor.getCuitProv() + ", " +
-                        "razonSocial = '" + proveedor.getRazonSocProv() + "', " +
-                        "direccion = '" + proveedor.getDireccionProv() + "', " +
-                        "email = '" + proveedor.getEmailProv() + "', " +
-                        "telefono ='" + proveedor.getTelefonoProv() +
-                        "WHERE idProveedor =" + idCalculo + ";";
+     idProveedor, nombre, cuit, razonSocial, direccion, email, telefono
+     */
+
+    public void modificarProv(ModProveedor mp) {
+        int flag = window.tablaProveedor.getSelectedRow();
+        String nom = "", rsoc = "", dir = "", em = "", cu = "", tel = "";
+        if (flag > -1) {
+            String idCalculo = (String) window.tablaProveedor.getModel().getValueAt(flag, 0);
+            Integer.valueOf(idCalculo);
+            try {
+                String sql = "SELECT * FROM proveedor WHERE idProveedor = " + idCalculo + ";";
                 Statement st = conexion.getStatement();
-                st.executeUpdate(qquery);
-                System.out.println("Proveedor borrado");
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    
+                    nom = rs.getString("nombre");
+                    cu = "" + rs.getInt("cuit");
+                    rsoc = rs.getString("razonSocial");
+                    dir = rs.getString("direccion");
+                    em = rs.getString("email");
+                    tel = "" + rs.getInt("telefono");
+                }
+                mp.txt_idProv.setText(idCalculo);
+                mp.getTxt_nombreMProv().setText(nom);
+                mp.getTxt_cuitMProv().setText(cu);
+                mp.getCombo_rsMProv().setSelectedItem(rsoc);
+                mp.getTxt_dirMProv().setText(dir);
+                mp.getTxt_mailMProv().setText(em);
+                mp.getTxt_telMProv().setText(tel);
+
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
+        } else {
+            JOptionPane.showMessageDialog(window.tablaProveedor, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
         }
-        else JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void updateProv(Proveedor prov){
+        try {
+            String qquery = "UPDATE proveedor SET nombre = '" + proveedor.getNombreProv() + "', " +
+                    "cuit =" + proveedor.getCuitProv() + "," +
+                    "razonSocial = '" + proveedor.getRazonSocProv() + "', " +
+                    "direccion = '" + proveedor.getDireccionProv() + "', " +
+                    "email = '" + proveedor.getEmailProv() + "', " +
+                    "telefono = " + proveedor.getTelefonoProv() + " " +
+                    "WHERE idProveedor = " + proveedor.getIdProveedor() + ";";
+            Statement st = conexion.getStatement();
+            st.executeUpdate(qquery);
+            JOptionPane.showMessageDialog(window, "El proveedor fue modificado.. sea feliz XD  ");
+            System.out.println("Proveedor Modificado");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

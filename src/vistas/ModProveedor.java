@@ -8,7 +8,9 @@ package vistas;
 import controlador.ControladorProveedor;
 import controlador.Proveedor;
 import java.awt.event.KeyEvent;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelo.GestionConexion;
 
 /**
@@ -20,9 +22,69 @@ public class ModProveedor extends javax.swing.JFrame {
     private Proveedor proveedor;
     private ControladorProveedor control;
     
-    public ModProveedor(java.awt.Frame parent, boolean modal) {
+    public ModProveedor(ControladorProveedor cont, GestionConexion conn, Proveedor prov) {
+        control = cont;
+        connection = conn;
+        proveedor = prov;
         initComponents();
         this.setLocationRelativeTo(null);
+        control.modificarProv(this);
+    }
+    
+    public void limpiar(){
+            txt_cuitMProv.setText(null);
+            txt_dirMProv.setText(null);
+            txt_mailMProv.setText(null);
+            txt_nombreMProv.setText(null);
+            txt_telMProv.setText(null);
+    }
+
+    public JComboBox getCombo_rsMProv() {
+        return combo_rsMProv;
+    }
+
+    public void setCombo_rsMProv(JComboBox combo_rsMProv) {
+        this.combo_rsMProv = combo_rsMProv;
+    }
+
+    public JTextField getTxt_cuitMProv() {
+        return txt_cuitMProv;
+    }
+
+    public void setTxt_cuitMProv(JTextField txt_cuitMProv) {
+        this.txt_cuitMProv = txt_cuitMProv;
+    }
+
+    public JTextField getTxt_dirMProv() {
+        return txt_dirMProv;
+    }
+
+    public void setTxt_dirMProv(JTextField txt_dirMProv) {
+        this.txt_dirMProv = txt_dirMProv;
+    }
+
+    public JTextField getTxt_mailMProv() {
+        return txt_mailMProv;
+    }
+
+    public void setTxt_mailMProv(JTextField txt_mailMProv) {
+        this.txt_mailMProv = txt_mailMProv;
+    }
+
+    public JTextField getTxt_nombreMProv() {
+        return txt_nombreMProv;
+    }
+
+    public void setTxt_nombreMProv(JTextField txt_nombreMProv) {
+        this.txt_nombreMProv = txt_nombreMProv;
+    }
+
+    public JTextField getTxt_telMProv() {
+        return txt_telMProv;
+    }
+
+    public void setTxt_telMProv(JTextField txt_telMProv) {
+        this.txt_telMProv = txt_telMProv;
     }
 
     
@@ -44,7 +106,7 @@ public class ModProveedor extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_nombreMProv = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btn_confModProv = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +124,8 @@ public class ModProveedor extends javax.swing.JFrame {
 
         jLabel4.setText("Razon Social");
 
+        txt_idProv.setEnabled(false);
+
         jLabel5.setText("Id Proveedor");
 
         jLabel6.setText("C.U.I.T.");
@@ -72,14 +136,19 @@ public class ModProveedor extends javax.swing.JFrame {
 
         jLabel9.setText("Telefono");
 
-        jButton1.setText("Confirmar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_confModProv.setText("Confirmar");
+        btn_confModProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_confModProvActionPerformed(evt);
             }
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +190,7 @@ public class ModProveedor extends javax.swing.JFrame {
                             .addComponent(combo_rsMProv, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btn_confModProv)
                         .addGap(62, 62, 62)
                         .addComponent(jButton2)
                         .addGap(92, 92, 92))))
@@ -153,7 +222,7 @@ public class ModProveedor extends javax.swing.JFrame {
                     .addComponent(txt_mailMProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btn_confModProv)
                     .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -173,20 +242,28 @@ public class ModProveedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_cuitMProvKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //control.modificarProv(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
-        public void limpiar(){
-            txt_cuitMProv.setText(null);
-            txt_dirMProv.setText(null);
-            txt_mailMProv.setText(null);
-            txt_nombreMProv.setText(null);
-            txt_telMProv.setText(null);
-    }
+    private void btn_confModProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_confModProvActionPerformed
+        proveedor.setIdProveedor(Integer.valueOf(txt_idProv.getText()));
+        proveedor.setCuitProv(Integer.valueOf(txt_cuitMProv.getText()));
+        proveedor.setNombreProv(txt_nombreMProv.getText());
+        proveedor.setTelefonoProv(Integer.valueOf(txt_telMProv.getText()));
+        proveedor.setRazonSocProv(combo_rsMProv.getSelectedItem().toString());
+        proveedor.setDireccionProv(txt_dirMProv.getText());
+        proveedor.setEmailProv(txt_mailMProv.getText());
+        
+        control.updateProv(proveedor);
+        control.mostrarProveedores();
+        this.dispose();
+    }//GEN-LAST:event_btn_confModProvActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+        
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_confModProv;
     private javax.swing.JComboBox combo_rsMProv;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
