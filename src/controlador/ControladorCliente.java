@@ -10,8 +10,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.GestionConexion;
-import vistas.AltaCliente;
+import vistas.GestionCliente;
+import vistas.ModCliente;
 import vistas.Principal;
 
 
@@ -23,20 +26,21 @@ public class ControladorCliente {
 
     private GestionConexion conn;
     private Cliente cliente;
-    private AltaCliente altacli;
+    private GestionCliente altacli;
+    private DefaultTableModel modelo_Cliente;
+    
+    
     public ControladorCliente(Principal principal, GestionConexion conexion) {
         this.conn = conexion;
         this.cliente = new Cliente();
-        altacli = new AltaCliente(principal, true, this, cliente);
+        altacli = new GestionCliente(principal, true, this, cliente);
         altacli.setVisible(true);
         Generarnumeracion();
+        mostrarClientes();
     }
 
         public void Generarnumeracion() {
-        String SQL = "select max(n_cliente) from cliente";
-       // String SQL="select count(*) from factura";
-        //String SQL="SELECT MAX(cod_emp) AS cod_emp FROM empleado";
-        //String SQL="SELECT @@identity AS ID";
+        String SQL = "select max(idCliente) from cliente";
            
             altacli.txt_id.setEnabled(false);
         int c = 0;
@@ -49,14 +53,14 @@ public class ControladorCliente {
             }
 
             if (c == 0) {
-                altacli.txt_id.setText("1");
+                altacli.txt_id.setText("123");
 
             } else {
                 altacli.txt_id.setText("" + (c + 1));
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -64,11 +68,129 @@ public class ControladorCliente {
   
    public void agregarCliente(){
 try {
-    conn.getStatement().executeUpdate("INSERT INTO cliente (n_cliente,nombre,apellido,dni,cuil,direccion)"
-            + "VALUES ("+cliente.getIdCliente()+",'"+cliente.getNombre()+"','"+cliente.getApellido()+"',"+cliente.getDni()+","+cliente.getCuil()+",'"+cliente.getDireccion()+"');");
+    conn.getStatement().executeUpdate("INSERT INTO cliente (idcliente,nombre,apellido,dni,cuil,direccion,telefono,email,tipo)"
+            + "VALUES ("+cliente.getIdCliente()+",'"+cliente.getNombre()+"','"+cliente.getApellido()+"',"+cliente.getDni()+","+cliente.getCuil()+",'"+cliente.getDireccion()+"',"+cliente.getTelefono()+",'"+cliente.getEmail()+"','"+cliente.getTipo()+"');");
   } catch(SQLException ex) {
-      Logger.getLogger(AltaCliente.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
   }
 
     }
+   
+   
+    public void mostrarClientes() {
+        String[] titulos = {"id", "Nombre", "Apellido", "DNI", "CUIL", "Direccion", "Telefono", "Email", "Tipo"};
+        modelo_Cliente = new DefaultTableModel(null, titulos);
+        String datos[] = new String[9];
+        String sql = "SELECT * FROM  cliente";
+        try {
+            Statement st = conn.getStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString("idCliente");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getString("apellido");
+                datos[3] = rs.getString("dni");
+                datos[4] = rs.getString("cuil");
+                datos[5] = rs.getString("direccion");
+                datos[6] = rs.getString("telefono");
+                datos[7] = rs.getString("email");
+                datos[8] = rs.getString("tipo");
+
+                modelo_Cliente.addRow(datos);
+            }
+            altacli.tablaCliente.setModel(modelo_Cliente);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void eliminarFilaCli(GestionCliente tabla) {
+
+        int flag = tabla.getTablaCliente().getSelectedRow();
+        if (flag > -1) {
+            int n = JOptionPane.showConfirmDialog(tabla, "Esta seguro de Borrar ?", "Mensaje de Confirmación", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                String idCalculo = (String)tabla.getTablaCliente().getModel().getValueAt(flag, 0);
+                Integer.valueOf(idCalculo);
+                try {
+                    String query = "Delete from cliente where idCliente =" + idCalculo + ";";
+                    Statement st = conn.getStatement();
+                    st.executeUpdate(query);
+                    System.out.println("Cliente borrado. ");
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+    
+     public void modificarCliente(ModCliente mod_Cli) {
+        int flag = altacli.tablaCliente.getSelectedRow();
+        String nom = "", ap = "", dni = "", cuil = "", dir = "", tel = "", email="", tipo="";
+        if (flag > -1) {
+            String idCalculo = (String) altacli.tablaCliente.getModel().getValueAt(flag, 0);
+            Integer.valueOf(idCalculo);
+            try {
+                String sql = "SELECT * FROM cliente WHERE idCliente = " + idCalculo + ";";
+                Statement st = conn.getStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    
+                    nom = rs.getString("nombre");
+                    ap =  rs.getString("Apellido");
+                    dni = "" + rs.getInt("Dni");
+                    cuil = "" + rs.getInt("cuil");
+                    dir = rs.getString("Direccion");
+                    tel = "" + rs.getInt("Telefono");
+                    email = rs.getString("Email");
+                    tipo =  rs.getString("Tipo");
+                }
+            
+                mod_Cli.txt_idmod.setText(idCalculo);
+                mod_Cli.getTxtnom_mod().setText(nom);
+                mod_Cli.getTxtap_mod().setText(ap);
+                mod_Cli.getTxtdni_mod().setText(dni);
+                mod_Cli.getTxtcuil_mod().setText(cuil);
+                mod_Cli.getTxtdir_mod().setText(dir);
+                mod_Cli.getTxttelefono_mod().setText(tel);
+                mod_Cli.getTxt_email_mod().setText(email);
+                mod_Cli.getjComboBox_tipoCliente_mod().setSelectedItem(tipo);                  
+             
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(altacli.tablaCliente, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void updateCliente(Cliente cli){
+        try {
+            String qquery = "UPDATE cliente SET nombre = '" + cliente.getNombre() + "', " +
+                    "apellido = '" + cliente.getApellido()+"', "+
+                    "dni = " + cliente.getDni()+","+
+                    "cuil = " + cliente.getCuil() + "," +
+                    "direccion = '" + cliente.getDireccion() + "', " +
+                    "telefono = " + cliente.getTelefono()+ ", " +
+                    "email = '" + cliente.getEmail() + "', " +
+                    "tipo = '" +cliente.getTipo()+"'  " +
+                    "WHERE idCliente = " + cliente.getIdCliente() + ";";
+            Statement st = conn.getStatement();
+            st.executeUpdate(qquery);
+            JOptionPane.showMessageDialog(altacli, "El Cliente fue modificado.. sea feliz XD  ");
+            System.out.println("Proveedor Modificado");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
+
+

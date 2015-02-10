@@ -16,18 +16,37 @@ public class Cliente {
         private int dni;
         private int cuil;
         private String direccion;
+        private int telefono;
+        private String email;
+        private String tipo;
 
     public Cliente() {
     }
 
-   
-        
+    
+    public String getTipo() {
+        return tipo;
+    }
 
-    /**
-     * Get the value of direccion
-     *
-     * @return the value of direccion
-     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
     
     public int getIdCliente() {
         return idCliente;
@@ -42,92 +61,44 @@ public class Cliente {
         return direccion;
     }
 
-    /**
-     * Set the value of direccion
-     *
-     * @param direccion new value of direccion
-     */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-
-    /**
-     * Get the value of cuil
-     *
-     * @return the value of cuil
-     */
     public int getCuil() {
         return cuil;
     }
 
-    /**
-     * Set the value of cuil
-     *
-     * @param cuil new value of cuil
-     */
     public void setCuil(int cuil) {
         this.cuil = cuil;
     }
 
 
-    /**
-     * Get the value of dni
-     *
-     * @return the value of dni
-     */
     public int getDni() {
         return dni;
     }
 
-    /**
-     * Set the value of dni
-     *
-     * @param dni new value of dni
-     */
     public void setDni(int dni) {
         this.dni = dni;
     }
 
 
-    /**
-     * Get the value of apellido
-     *
-     * @return the value of apellido
-     */
     public String getApellido() {
         return apellido;
     }
 
-    /**
-     * Set the value of apellido
-     *
-     * @param apellido new value of apellido
-     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
 
-    /**
-     * Get the value of nombre
-     *
-     * @return the value of nombre
-     */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * Set the value of nombre
-     *
-     * @param nombre new value of nombre
-     */
+ 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-   
-
     
 }
