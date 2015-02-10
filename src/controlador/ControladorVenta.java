@@ -29,7 +29,7 @@ public class ControladorVenta {
     private Venta venta;
 
     String datos[] = new String[7];
-    String[] titulos = {"Codigo", "Nombre", "Descripción", "Marca", "Cantidad", "Precio"};
+    String[] titulos = {"Codigo", "Nombre", "Descripción", "Marca", "Cantidad", "Precio","Subtotal"};
 
     public ControladorVenta(GestionConexion conn, String us) {
         conexion = conn;
@@ -105,7 +105,7 @@ public class ControladorVenta {
                 datos[3] = rs.getString("marca");
                 datos[4] = cant;
                 datos[5] = rs.getString("pcioMin");
-
+                datos[6] =""+Integer.valueOf(cant)*Integer.valueOf(datos[5]);
                 modelo.addRow(datos);
             }
             tVenta.setModel(modelo);
@@ -145,12 +145,12 @@ public class ControladorVenta {
         for (int i = 0; i < tVenta.getRowCount(); i++) {
 
             int cantidad = Integer.valueOf(tVenta.getValueAt(i, 4).toString());
-            float precio = Float.valueOf(tVenta.getValueAt(i, 5).toString());
+            float subtotal = Float.valueOf(tVenta.getValueAt(i, 6).toString());
             int codprod = Integer.valueOf(tVenta.getValueAt(i, 0).toString());
             int id = Integer.valueOf(idVenta.getText());
 
             try {
-                String sql = "INSERT INTO Linea_de_Venta(cantidad,importe,Producto_idProducto,Venta_idVenta) VALUES (" + cantidad + "," + precio + "," + codprod + "," + id + ")";
+                String sql = "INSERT INTO Linea_de_Venta(cantidad,importe,Producto_idProducto,Venta_idVenta) VALUES (" + cantidad + "," + subtotal + "," + codprod + "," + id + ")";
                 conexion.getStatement().executeUpdate(sql);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -175,7 +175,7 @@ public class ControladorVenta {
 
             importe = precio * cantidad;
             subtotal = subtotal + importe;
-            venta.getTxtSubTotal_Venta().setText("" + subtotal);
+            
 
         }
         venta.getTxtTotal_Venta().setText("" + subtotal);
@@ -184,8 +184,8 @@ public class ControladorVenta {
 
     public void grabarVenta() {
         try {
-            conexion.getStatement().executeUpdate("INSERT INTO venta (idVenta,fechaVta,tipoVta,porcMarc,Cliente_idCliente,Usuario_idUsuario)"
-                    + "VALUES (" + venta.getIdVenta() + ",'" + venta.getFechaVta() + "','" + venta.getTipoVta() + "'," + venta.getPorcMarc() + "," + venta.getCliente_idCliente() + "," + venta.getUsuario_idUsuario() + ");");
+            conexion.getStatement().executeUpdate("INSERT INTO venta (idVenta,fechaVta,tipoVta,porcMarc,impTotal,Cliente_idCliente,Usuario_idUsuario)"
+                    + "VALUES (" + venta.getIdVenta() + ",'" + venta.getFechaVta() + "','" + venta.getTipoVta() + "'," + venta.getPorcMarc() + ","+venta.getImpTotal()+"," + venta.getCliente_idCliente() + "," + venta.getUsuario_idUsuario() + ");");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -17,6 +17,7 @@ public class Venta {
     private String fechaVta;
     private String tipoVta;
     private float porcMarc;
+    private float impTotal;
     private int Cliente_idCliente;
     private int Usuario_idUsuario;
 
@@ -69,6 +70,14 @@ public class Venta {
 
     public void setUsuario_idUsuario(int Usuario_idUsuario) {
         this.Usuario_idUsuario = Usuario_idUsuario;
+    }
+
+    public float getImpTotal() {
+        return impTotal;
+    }
+
+    public void setImpTotal(float impTotal) {
+        this.impTotal = impTotal;
     }
     
     
