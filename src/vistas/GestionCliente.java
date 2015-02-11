@@ -87,6 +87,7 @@ public class GestionCliente extends javax.swing.JFrame {
         txt_email = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,6 +173,13 @@ public class GestionCliente extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,7 +193,9 @@ public class GestionCliente extends javax.swing.JFrame {
                                 .addGap(57, 57, 57)
                                 .addComponent(btnModificar)
                                 .addGap(57, 57, 57)
-                                .addComponent(btnEliminar))
+                                .addComponent(btnEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -273,7 +283,8 @@ public class GestionCliente extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(jButton1))
                 .addGap(34, 34, 34))
         );
 
@@ -347,6 +358,10 @@ public class GestionCliente extends javax.swing.JFrame {
        windown.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();     
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
    
     
@@ -355,6 +370,7 @@ public class GestionCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox_tipoCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_tipo;

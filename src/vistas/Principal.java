@@ -150,6 +150,11 @@ public class Principal extends javax.swing.JFrame {
         menuCliente.setText("Cliente");
 
         menuIGestionCli.setText("Gestionar");
+        menuIGestionCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIGestionCliActionPerformed(evt);
+            }
+        });
         menuCliente.add(menuIGestionCli);
 
         menuItListCli.setText("Listado");
@@ -206,6 +211,10 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         BuscarProducto search= new BuscarProducto(conexion);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuIGestionCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIGestionCliActionPerformed
+          ControladorCliente cliente= new ControladorCliente(this, conexion);
+    }//GEN-LAST:event_menuIGestionCliActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
