@@ -88,6 +88,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLabel3.setText("Tipo:");
 
         btnFin_APer.setText("Finalizar");
+        btnFin_APer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFin_APerActionPerformed(evt);
+            }
+        });
 
         txt_apellido.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -136,6 +141,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaUsuario);
 
         btnCancelar_APer.setText("Cancelar");
+        btnCancelar_APer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar_APerActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones"));
 
@@ -367,6 +377,14 @@ public class GestionPersonal extends javax.swing.JFrame {
         control.Generarnumeracion();
         control.mostrarusuarios();
     }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void btnFin_APerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFin_APerActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnFin_APerActionPerformed
+
+    private void btnCancelar_APerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar_APerActionPerformed
+        this.limpiar();
+    }//GEN-LAST:event_btnCancelar_APerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

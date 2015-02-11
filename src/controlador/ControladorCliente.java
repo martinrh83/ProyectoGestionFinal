@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import modelo.GestionConexion;
 import vistas.AltaCliente;
 import vistas.Principal;
-import vistas.PrincipalEmpleado;
+
 
 /**
  *

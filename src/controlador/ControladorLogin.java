@@ -16,6 +16,7 @@ import vistas.Login;
 import vistas.Principal;
 import vistas.PrincipalEmpleado;
 
+
 /**
  *
  * @author Martin
@@ -54,7 +55,7 @@ public class ControladorLogin {
                 PrincipalEmpleado ingresos = new PrincipalEmpleado(conexion);
                 ingresos.setVisible(true);
                 ingresos.laber_usuario.setText(usuario);
-                //  ventanacliente.lblconectado.setText(usuario);
+
             }
             if ((!cap.equals("Administrador")) && (!cap.equals("Empleado"))) {
                 JOptionPane.showMessageDialog(null, "No existe sus datos");

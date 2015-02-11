@@ -5,7 +5,12 @@
  */
 package vistas;
 
+import controlador.BuscarProducto;
 import controlador.ControladorProducto;
+import controlador.ControladorUsuario;
+import controlador.ControladorCliente;
+import controlador.ControladorProveedor;
+import controlador.ControladorVenta;
 import modelo.GestionConexion;
 
 /**
@@ -38,14 +43,14 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuProducto = new javax.swing.JMenu();
         menuItAltaProd = new javax.swing.JMenuItem();
-        menuItBajaProd = new javax.swing.JMenuItem();
-        menuItModProd = new javax.swing.JMenuItem();
-        menuItListProd = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuVenta = new javax.swing.JMenu();
         menuItNvaVenta = new javax.swing.JMenuItem();
+        menuItListVenta = new javax.swing.JMenuItem();
         menuCompra = new javax.swing.JMenu();
         menuItNvaCpra = new javax.swing.JMenuItem();
         menuItNvaPedCpra = new javax.swing.JMenuItem();
+        menuItListMCpra = new javax.swing.JMenuItem();
 
         jMenuItem20.setText("jMenuItem20");
 
@@ -65,24 +70,13 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         });
         menuProducto.add(menuItAltaProd);
 
-        menuItBajaProd.setText("Baja");
-        menuProducto.add(menuItBajaProd);
-
-        menuItModProd.setText("Modificacion");
-        menuItModProd.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Buscar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItModProdActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        menuProducto.add(menuItModProd);
-
-        menuItListProd.setText("Listado");
-        menuItListProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItListProdActionPerformed(evt);
-            }
-        });
-        menuProducto.add(menuItListProd);
+        menuProducto.add(jMenuItem1);
 
         jMenuBar1.add(menuProducto);
 
@@ -96,6 +90,9 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         });
         menuVenta.add(menuItNvaVenta);
 
+        menuItListVenta.setText("Listado");
+        menuVenta.add(menuItListVenta);
+
         jMenuBar1.add(menuVenta);
 
         menuCompra.setText("Compra");
@@ -105,6 +102,9 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
 
         menuItNvaPedCpra.setText("Nuevo Pedido");
         menuCompra.add(menuItNvaPedCpra);
+
+        menuItListMCpra.setText("Listado Mes");
+        menuCompra.add(menuItListMCpra);
 
         jMenuBar1.add(menuCompra);
 
@@ -133,34 +133,33 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItAltaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaProdActionPerformed
-       ControladorProducto contAlta= new ControladorProducto(this,conexion);
+       ControladorProducto contAlta= new ControladorProducto(conexion);
        
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 
-    private void menuItModProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItModProdActionPerformed
-        ModProducto windowModProd = new ModProducto(this, true);
-        windowModProd.setVisible(true);
-    }//GEN-LAST:event_menuItModProdActionPerformed
-
-    private void menuItListProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListProdActionPerformed
-        ListProducto windowListProd = new ListProducto(this, true);
-        windowListProd.setVisible(true);    }//GEN-LAST:event_menuItListProdActionPerformed
-
     private void menuItNvaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaVentaActionPerformed
-      /*NuevaVenta windowNewVenta = new NuevaVenta (this, true);
+        String user=laber_usuario.getText();
+        ControladorVenta venta = new ControladorVenta (conexion,user);
+        
+    }
+    /*
         windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
-*/}
+*/
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        BuscarProducto search= new BuscarProducto(conexion);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem24;
     public javax.swing.JLabel laber_usuario;
     private javax.swing.JMenu menuCompra;
     private javax.swing.JMenuItem menuItAltaProd;
-    private javax.swing.JMenuItem menuItBajaProd;
-    private javax.swing.JMenuItem menuItListProd;
-    private javax.swing.JMenuItem menuItModProd;
+    private javax.swing.JMenuItem menuItListMCpra;
+    private javax.swing.JMenuItem menuItListVenta;
     private javax.swing.JMenuItem menuItNvaCpra;
     private javax.swing.JMenuItem menuItNvaPedCpra;
     private javax.swing.JMenuItem menuItNvaVenta;

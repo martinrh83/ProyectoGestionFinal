@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import controlador.ControladorRFactura;
 import controlador.ControladorVenta;
 import controlador.Venta;
 import java.text.ParseException;
@@ -27,7 +28,7 @@ public class NuevaVenta extends javax.swing.JFrame {
     private GestionConexion conexion;
     private ControladorVenta control;
     private Venta venta;
-
+    private ControladorRFactura jasper;
     public NuevaVenta(ControladorVenta cont, GestionConexion conn, Venta vta) {
         conexion = conn;
         control = cont;
@@ -157,8 +158,18 @@ public class NuevaVenta extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setText("Facturar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         confVenta.setText("Confirmar Venta");
         confVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -337,7 +348,7 @@ public class NuevaVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBusProdLVtaActionPerformed
 
     private void confVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confVentaActionPerformed
-
+               
         control.agregarLVenta(tbVenta, txtNum_Venta);
         venta.setIdVenta(Integer.valueOf(txtNum_Venta.getText()));
         venta.setFechaVta(fechaVenta.getText());
@@ -349,6 +360,16 @@ public class NuevaVenta extends javax.swing.JFrame {
         control.grabarVenta();
 
     }//GEN-LAST:event_confVentaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jasper=new ControladorRFactura(conexion);
+        String paramReporte=txtNum_Venta.getText();
+        jasper.ejecutarReporte(paramReporte);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusProdLVta;
