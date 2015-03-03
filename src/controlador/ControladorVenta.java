@@ -117,11 +117,15 @@ public class ControladorVenta {
 
     }
 
-    public void descontarstock(int codi, String cant) {
-        int baja = Integer.valueOf(cant);
+    public void descontarstock(JTable tbVenta) {
+        int codigo;
+
         int stockPast = 0;
         int stockFinal;
-        String consul = "SELECT * FROM producto WHERE  idProducto=" + codi + "";
+        for (int i = 0; i < tbVenta.getRowCount(); i++) {
+            codigo = Integer.valueOf(tbVenta.getValueAt(i, 0).toString());
+            int cantidad = Integer.valueOf(tbVenta.getValueAt(i, 4).toString());
+        String consul = "SELECT * FROM producto WHERE  idProducto=" + codigo + "";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(consul);
@@ -131,14 +135,14 @@ public class ControladorVenta {
 
         } catch (Exception e) {
         }
-        stockFinal = stockPast - baja;
-        String query = "UPDATE producto SET cantidad=" + stockFinal + " WHERE idProducto = " + codi + "";
+        stockFinal = stockPast - cantidad;
+        String query = "UPDATE producto SET cantidad=" + stockFinal + " WHERE idProducto = " + codigo + "";
         try {
             Statement st = conexion.getStatement();
             st.executeUpdate(query);
         } catch (Exception e) {
         }
-
+       }
     }
 
     public void agregarLVenta(JTable tVenta, JTextField idVenta) {

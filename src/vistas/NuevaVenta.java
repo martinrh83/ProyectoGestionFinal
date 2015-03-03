@@ -343,13 +343,12 @@ public class NuevaVenta extends javax.swing.JFrame {
         int codigo = Integer.valueOf(txtCodProd.getText());
         String cant = txtCant.getText();
         control.agregarCarrito(codigo, tbVenta, cant);
-        control.descontarstock(codigo, cant);
+        
         control.calcular(this, tbVenta);
     }//GEN-LAST:event_btnBusProdLVtaActionPerformed
 
     private void confVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confVentaActionPerformed
-               
-        control.agregarLVenta(tbVenta, txtNum_Venta);
+        
         venta.setIdVenta(Integer.valueOf(txtNum_Venta.getText()));
         venta.setFechaVta(fechaVenta.getText());
         venta.setImpTotal(Float.valueOf(txtTotal_Venta.getText()));
@@ -357,6 +356,8 @@ public class NuevaVenta extends javax.swing.JFrame {
         venta.setCliente_idCliente(0);
         venta.setTipoVta("Minorista");
         venta.setPorcMarc(0);
+        control.descontarstock(tbVenta);       
+        control.agregarLVenta(tbVenta, txtNum_Venta);
         control.grabarVenta();
 
     }//GEN-LAST:event_confVentaActionPerformed

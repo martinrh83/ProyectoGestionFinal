@@ -9,6 +9,7 @@ import controlador.BuscarProducto;
 import controlador.ControladorProducto;
 import controlador.ControladorUsuario;
 import controlador.ControladorCliente;
+import controlador.ControladorCompra;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
 import modelo.GestionConexion;
@@ -107,6 +108,11 @@ public class Principal extends javax.swing.JFrame {
         menuCompra.setText("Compra");
 
         menuItNvaCpra.setText("Nueva");
+        menuItNvaCpra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItNvaCpraActionPerformed(evt);
+            }
+        });
         menuCompra.add(menuItNvaCpra);
 
         menuItNvaPedCpra.setText("Nuevo Pedido");
@@ -215,6 +221,11 @@ public class Principal extends javax.swing.JFrame {
     private void menuIGestionCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIGestionCliActionPerformed
           ControladorCliente cliente= new ControladorCliente(this, conexion);
     }//GEN-LAST:event_menuIGestionCliActionPerformed
+
+    private void menuItNvaCpraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaCpraActionPerformed
+        String user = laber_usuario.getText();
+        ControladorCompra compra = new ControladorCompra(conexion,user);
+    }//GEN-LAST:event_menuItNvaCpraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
