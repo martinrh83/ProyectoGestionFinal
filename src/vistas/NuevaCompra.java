@@ -5,8 +5,9 @@
  */
 package vistas;
 
-import controlador.Compra;
+import modelo.Compra;
 import controlador.ControladorCompra;
+import controlador.ControladorRFactura;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -22,6 +23,7 @@ public class NuevaCompra extends javax.swing.JFrame {
     private GestionConexion conexion;
     private ControladorCompra control;
     private Compra compra;
+    private ControladorRFactura jasper;
     
            
     public NuevaCompra(ControladorCompra cont, GestionConexion conn, Compra cpra) {
@@ -32,7 +34,7 @@ public class NuevaCompra extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         control.GenerarNumeracion(txt_NumCpra);
         control.obtenerFecha(txt_FecCpra);
-        control.setearUsuario(user_label, label_id);
+        control.setearUsuario(label_id);
         
        //control.llenarCB();
         control.llenarCB(cmb_ProvNvaCpra);
@@ -61,7 +63,6 @@ public class NuevaCompra extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtCant = new javax.swing.JTextField();
         btnBusProdLCpra = new javax.swing.JButton();
-        user_label = new javax.swing.JLabel();
         label_id = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_ConfComp = new javax.swing.JButton();
@@ -144,8 +145,6 @@ public class NuevaCompra extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        user_label.setBackground(new java.awt.Color(255, 255, 51));
-
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btn_ConfComp.setText("Confirmar Compra");
@@ -156,6 +155,11 @@ public class NuevaCompra extends javax.swing.JFrame {
         });
 
         btn_Comprobante.setText("Comprobante");
+        btn_Comprobante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ComprobanteActionPerformed(evt);
+            }
+        });
 
         btn_SalirComp.setText("Salir");
         btn_SalirComp.addActionListener(new java.awt.event.ActionListener() {
@@ -210,10 +214,8 @@ public class NuevaCompra extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(user_label, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)
+                                .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -261,8 +263,7 @@ public class NuevaCompra extends javax.swing.JFrame {
                     .addComponent(cmb_ProvNvaCpra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel1)
-                    .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user_label, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -292,13 +293,7 @@ public class NuevaCompra extends javax.swing.JFrame {
         this.txt_TotCpra = txt_TotCpra;
     }
 
-    public JLabel getUser_label() {
-        return user_label;
-    }
-
-    public void setUser_label(JLabel user_label) {
-        this.user_label = user_label;
-    }
+  
 
     public JTable getTbCpra() {
         return tbCpra;
@@ -347,6 +342,12 @@ public class NuevaCompra extends javax.swing.JFrame {
         control.calcular(tbCpra);
     }//GEN-LAST:event_btnBusProdLCpraActionPerformed
 
+    private void btn_ComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ComprobanteActionPerformed
+       String idComp=txt_NumCpra.getText();
+         jasper=new ControladorRFactura(conexion);
+       jasper.ejecutarReporteCompra(idComp);
+    }//GEN-LAST:event_btn_ComprobanteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusProdLCpra;
     private javax.swing.JButton btn_Comprobante;
@@ -372,6 +373,5 @@ public class NuevaCompra extends javax.swing.JFrame {
     private javax.swing.JTextField txt_FecCpra;
     private javax.swing.JTextField txt_NumCpra;
     private javax.swing.JTextField txt_TotCpra;
-    private javax.swing.JLabel user_label;
     // End of variables declaration//GEN-END:variables
 }

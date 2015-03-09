@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modelo.Proveedor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -37,7 +38,7 @@ public class ControladorProveedor {
     }
 
     public void generarNumeracion() {
-        String SQL = "select max(idProveedor) from proveedor";
+        String SQL = "SELECT max(idProveedor) FROM proveedor";
         window.txt_idProv.setEnabled(false);
         int c = 0;
         int b = 0;
@@ -48,7 +49,7 @@ public class ControladorProveedor {
                 c = rs.getInt(1);
             }
             if (c == 0) {
-                window.txt_idProv.setText("1");
+                window.txt_idProv.setText("7000");
 
             } else {
                 window.txt_idProv.setText("" + (c + 1));
@@ -61,15 +62,15 @@ public class ControladorProveedor {
     //INSERT INTO `finalgestion`.`proveedor` (`idProveedor`, `nombre`, `cuit`, `razonSocial`, `direccion`, `email`, `telefono`) VALUES (NULL, 'The Coca-Cola Company', '123456', 'S.A.', 'av. juan b. justo 1458', NULL, '0800888888');
     public void agregarProveedor() {
         try {
-            conexion.getStatement().executeUpdate("INSERT INTO proveedor (idProveedor, nombre, cuit, razonSocial, direccion, email, telefono)"
-                    + "VALUES (" + proveedor.getIdProveedor() + ",'" + proveedor.getNombreProv() + "'," + proveedor.getCuitProv() + ",'" + proveedor.getRazonSocProv() + "','" + proveedor.getDireccionProv() + "','" + proveedor.getEmailProv() + "'," + proveedor.getTelefonoProv() + ");");
+            conexion.getStatement().executeUpdate("INSERT INTO proveedor (idProveedor, nombre, cuit, razonSocial, email, telefono)"
+                    + "VALUES (" + proveedor.getIdProveedor() + ",'" + proveedor.getNombreProv() + "'," + proveedor.getCuitProv() + ",'" + proveedor.getRazonSocProv() + "','" + proveedor.getEmailProv() + "'," + proveedor.getTelefonoProv() + ");");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void mostrarProveedores() {
-        String[] titulos = {"ID", "Nombre", "C.U.I.T.", "Razon Social", "Dirección", "e-mail", "Telefono"};
+        String[] titulos = {"ID", "Nombre", "C.U.I.T.", "Razon Social", "e-mail", "Telefono"};
         modelo = new DefaultTableModel(null, titulos);
         String datos[] = new String[7];
         String sql = "SELECT * FROM  proveedor";
@@ -81,9 +82,8 @@ public class ControladorProveedor {
                 datos[1] = rs.getString("nombre");
                 datos[2] = rs.getString("cuit");
                 datos[3] = rs.getString("razonSocial");
-                datos[4] = rs.getString("direccion");
-                datos[5] = rs.getString("email");
-                datos[6] = rs.getString("telefono");
+                datos[4] = rs.getString("email");
+                datos[5] = rs.getString("telefono");
                 modelo.addRow(datos);
             }
             window.tablaProveedor.setModel(modelo);
@@ -100,7 +100,7 @@ public class ControladorProveedor {
                 String idCalculo = (String) tabla.getTablaProveedor().getModel().getValueAt(flag, 0);
                 Integer.valueOf(idCalculo);
                 try {
-                    String query = "Delete from proveedor where idProveedor =" + idCalculo + ";";
+                    String query = "DELETE FROM proveedor WHERE idProveedor =" + idCalculo + ";";
                     Statement st = conexion.getStatement();
                     st.executeUpdate(query);
                     System.out.println("Proveedor borrado");
@@ -112,20 +112,10 @@ public class ControladorProveedor {
             JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    /*UPDATE `finalgestion`.`proveedor` SET `nombre` = 'Walmart',
-     `direccion` = 'Av. Camino del Perú 950',
-     `email` = '45226',
-     `telefono` = '7895550' WHERE `proveedor`.`idProveedor` =4;
-    
-     stm.execute(“UPDATE ” + tabla + ” SET nombre='” + usuario.get(“nombre”) + “‘ WHERE nombre='” + nombre + “‘”);
-    
-    
-     idProveedor, nombre, cuit, razonSocial, direccion, email, telefono
-     */
 
     public void modificarProv(ModProveedor mp) {
         int flag = window.tablaProveedor.getSelectedRow();
-        String nom = "", rsoc = "", dir = "", em = "", cu = "", tel = "";
+        String nom = "", rsoc = "", em = "", cu = "", tel = "";
         if (flag > -1) {
             String idCalculo = (String) window.tablaProveedor.getModel().getValueAt(flag, 0);
             Integer.valueOf(idCalculo);
@@ -138,7 +128,6 @@ public class ControladorProveedor {
                     nom = rs.getString("nombre");
                     cu = "" + rs.getInt("cuit");
                     rsoc = rs.getString("razonSocial");
-                    dir = rs.getString("direccion");
                     em = rs.getString("email");
                     tel = "" + rs.getInt("telefono");
                 }
@@ -146,7 +135,6 @@ public class ControladorProveedor {
                 mp.getTxt_nombreMProv().setText(nom);
                 mp.getTxt_cuitMProv().setText(cu);
                 mp.getCombo_rsMProv().setSelectedItem(rsoc);
-                mp.getTxt_dirMProv().setText(dir);
                 mp.getTxt_mailMProv().setText(em);
                 mp.getTxt_telMProv().setText(tel);
 
@@ -164,7 +152,6 @@ public class ControladorProveedor {
             String qquery = "UPDATE proveedor SET nombre = '" + proveedor.getNombreProv() + "', " +
                     "cuit =" + proveedor.getCuitProv() + "," +
                     "razonSocial = '" + proveedor.getRazonSocProv() + "', " +
-                    "direccion = '" + proveedor.getDireccionProv() + "', " +
                     "email = '" + proveedor.getEmailProv() + "', " +
                     "telefono = " + proveedor.getTelefonoProv() + " " +
                     "WHERE idProveedor = " + proveedor.getIdProveedor() + ";";

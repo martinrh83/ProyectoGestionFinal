@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modelo.Venta;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -42,10 +43,10 @@ public class ControladorVenta {
 
     }
 
-    public void setearUsuario(JLabel label, JLabel id) {
+    public void setearUsuario(JLabel id) {
         try {
-            label.setText(user);
-            String sql = "select idUsuario from usuario where user='" + user + "'";
+            //label.setText(user);
+            String sql = "SELECT idEmpleado FROM empleado WHERE user='" + user + "'";
             ResultSet rs = conexion.getStatement().executeQuery(sql);
             while (rs.next()) {
                 int idprueba = rs.getInt(1);
@@ -59,10 +60,7 @@ public class ControladorVenta {
     }
 
     public void Generarnumeracion(JTextField idVenta) {
-        String SQL = "select max(idVenta) from venta";
-        // String SQL="select count(*) from factura";
-        //String SQL="SELECT MAX(cod_emp) AS cod_emp FROM empleado";
-        //String SQL="SELECT @@identity AS ID";
+        String SQL = "SELECT max(idVenta) FROM venta";
         idVenta.setEnabled(false);
         int c = 0;
         try {
@@ -73,7 +71,7 @@ public class ControladorVenta {
             }
 
             if (c == 0) {
-                idVenta.setText("1");
+                idVenta.setText("80092000");
 
             } else {
                 idVenta.setText("" + (c + 1));
@@ -95,7 +93,7 @@ public class ControladorVenta {
 
     public void agregarCarrito(int codigo, JTable tVenta, String cant) {
 
-        String sql = "SELECT * FROM  producto where idProducto=" + codigo + "";
+        String sql = "SELECT * FROM  producto WHERE idProducto=" + codigo + "";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -155,7 +153,7 @@ public class ControladorVenta {
             int id = Integer.valueOf(idVenta.getText());
 
             try {
-                String sql = "INSERT INTO Linea_de_Venta(cantidad,importe,Producto_idProducto,Venta_idVenta) VALUES (" + cantidad + "," + subtotal + "," + codprod + "," + id + ")";
+                String sql = "INSERT INTO Linea_de_Venta(cantidad,subtotal,producto_idProducto,venta_idVenta) VALUES (" + cantidad + "," + subtotal + "," + codprod + "," + id + ")";
                 conexion.getStatement().executeUpdate(sql);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,8 +187,13 @@ public class ControladorVenta {
 
     public void grabarVenta() {
         try {
-            conexion.getStatement().executeUpdate("INSERT INTO venta (idVenta,fechaVta,tipoVta,porcMarc,impTotal,Cliente_idCliente,Usuario_idUsuario)"
-                    + "VALUES (" + venta.getIdVenta() + ",'" + venta.getFechaVta() + "','" + venta.getTipoVta() + "'," + venta.getPorcMarc() + ","+venta.getImpTotal()+"," + venta.getCliente_idCliente() + "," + venta.getUsuario_idUsuario() + ");");
+            conexion.getStatement().executeUpdate("INSERT INTO venta (idVenta,fechaVta,tipoVta,impTotal,empleado_idEmpleado,cliente_idCliente)"
+                    + "VALUES (" + venta.getIdVenta() + ",'" 
+                    + venta.getFechaVta() + "','" 
+                    + venta.getTipoVta() + "'," 
+                    + venta.getImpTotal()+ "," 
+                    + venta.getUsuario_idUsuario() + ","
+                    + venta.getCliente_idCliente() + ");");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }

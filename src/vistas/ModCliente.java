@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import controlador.Cliente;
+import modelo.Cliente;
 import controlador.ControladorCliente;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
@@ -43,7 +43,6 @@ public class ModCliente extends javax.swing.JFrame {
         txtap_mod.setText(null);
         txtdni_mod.setText(null);
         txtcuil_mod.setText(null);
-        txtdir_mod.setText(null);
         txttelefono_mod.setText(null);
         txt_email_mod.setText(null);
         
@@ -81,14 +80,6 @@ public class ModCliente extends javax.swing.JFrame {
 
     public void setTxtcuil_mod(JTextField txtcuil_mod) {
         this.txtcuil_mod = txtcuil_mod;
-    }
-
-    public JTextField getTxtdir_mod() {
-        return txtdir_mod;
-    }
-
-    public void setTxtdir_mod(JTextField txtdir_mod) {
-        this.txtdir_mod = txtdir_mod;
     }
 
     public JTextField getTxtdni_mod() {
@@ -138,12 +129,10 @@ public class ModCliente extends javax.swing.JFrame {
         lblnomyap = new javax.swing.JLabel();
         lbldni = new javax.swing.JLabel();
         lblcuil = new javax.swing.JLabel();
-        lbldir = new javax.swing.JLabel();
         txtnom_mod = new javax.swing.JTextField();
         txtap_mod = new javax.swing.JTextField();
         txtdni_mod = new javax.swing.JTextField();
         txtcuil_mod = new javax.swing.JTextField();
-        txtdir_mod = new javax.swing.JTextField();
         btnCancelar_mod = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,8 +165,6 @@ public class ModCliente extends javax.swing.JFrame {
         lbldni.setText("Dni");
 
         lblcuil.setText("Cuil");
-
-        lbldir.setText("Dirección");
 
         txtnom_mod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -238,10 +225,6 @@ public class ModCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtap_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbldir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtdir_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_tipo)
                         .addGap(33, 33, 33)
                         .addComponent(jComboBox_tipoCliente_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -259,7 +242,7 @@ public class ModCliente extends javax.swing.JFrame {
                             .addComponent(lblemail)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txt_email_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,17 +264,13 @@ public class ModCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcuil)
                     .addComponent(txtcuil_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbldir)
-                    .addComponent(txtdir_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltelefono)
                     .addComponent(lblemail)
                     .addComponent(txt_email_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txttelefono_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_tipo)
                     .addComponent(jComboBox_tipoCliente_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -299,7 +278,7 @@ public class ModCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar_mod)
                     .addComponent(btnCancelar_mod))
-                .addGap(24, 24, 24))
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -312,7 +291,6 @@ public class ModCliente extends javax.swing.JFrame {
         cliente.setApellido(txtap_mod.getText());
         cliente.setDni(Integer.valueOf(txtdni_mod.getText()));
         cliente.setCuil(Integer.valueOf(txtcuil_mod.getText()));
-        cliente.setDireccion(txtdir_mod.getText());
         cliente.setTelefono(Integer.valueOf(txttelefono_mod.getText()));
         cliente.setEmail(txt_email_mod.getText());
         cliente.setTipo(jComboBox_tipoCliente_mod.getSelectedItem().toString());
@@ -365,40 +343,6 @@ public class ModCliente extends javax.swing.JFrame {
       this.dispose();
     }//GEN-LAST:event_btnCancelar_modActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-               
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar_mod;
@@ -406,7 +350,6 @@ public class ModCliente extends javax.swing.JFrame {
     public javax.swing.JComboBox jComboBox_tipoCliente_mod;
     private javax.swing.JLabel lbl_tipo;
     private javax.swing.JLabel lblcuil;
-    private javax.swing.JLabel lbldir;
     private javax.swing.JLabel lbldni;
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblidcliente;
@@ -416,7 +359,6 @@ public class ModCliente extends javax.swing.JFrame {
     public javax.swing.JTextField txt_idmod;
     public javax.swing.JTextField txtap_mod;
     public javax.swing.JTextField txtcuil_mod;
-    public javax.swing.JTextField txtdir_mod;
     public javax.swing.JTextField txtdni_mod;
     public javax.swing.JTextField txtnom_mod;
     public javax.swing.JTextField txttelefono_mod;

@@ -30,7 +30,7 @@ public class ControladorRFactura {
     
     public void ejecutarReporte(String ds){
         try {
-            String dir="C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\report1.jrxml";
+            String dir="C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\FacturaVenta.jrxml";
             JasperReport reporteJasper=JasperCompileManager.compileReport(dir);
             int idSearch=Integer.valueOf(ds);
             Map parametro=new HashMap();
@@ -44,4 +44,19 @@ public class ControladorRFactura {
         
     }
     
+    public void ejecutarReporteCompra(String ds){
+        try {
+            String dir="C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\ReciboCompra.jrxml";
+            JasperReport reporteJasper=JasperCompileManager.compileReport(dir);
+            int idSearch=Integer.valueOf(ds);
+            Map parametro=new HashMap();
+            parametro.put("idImprimir", idSearch);
+            
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporteJasper, parametro, conexion.getConnection());
+        JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            Logger.getLogger(ControladorRFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

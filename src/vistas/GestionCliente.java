@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import controlador.Cliente;
+import modelo.Cliente;
 import controlador.ControladorCliente;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -49,7 +49,6 @@ public class GestionCliente extends javax.swing.JFrame {
         txtap.setText(null);
         txtdni.setText(null);
         txtcuil.setText(null);
-        txtdir.setText(null);
         txttelefono.setText(null);
         txt_email.setText(null);
         
@@ -68,12 +67,10 @@ public class GestionCliente extends javax.swing.JFrame {
         lblnomyap = new javax.swing.JLabel();
         lbldni = new javax.swing.JLabel();
         lblcuil = new javax.swing.JLabel();
-        lbldir = new javax.swing.JLabel();
         txtnom = new javax.swing.JTextField();
         txtap = new javax.swing.JTextField();
         txtdni = new javax.swing.JTextField();
         txtcuil = new javax.swing.JTextField();
-        txtdir = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         txt_id = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -96,8 +93,6 @@ public class GestionCliente extends javax.swing.JFrame {
         lbldni.setText("Dni");
 
         lblcuil.setText("Cuil");
-
-        lbldir.setText("Dirección");
 
         txtnom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -192,9 +187,9 @@ public class GestionCliente extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addComponent(btnModificar)
-                                .addGap(57, 57, 57)
+                                .addGap(37, 37, 37)
                                 .addComponent(btnEliminar)
-                                .addGap(18, 18, 18)
+                                .addGap(38, 38, 38)
                                 .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
@@ -230,10 +225,6 @@ public class GestionCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtap, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbldir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtdir, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lbltelefono)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,10 +254,6 @@ public class GestionCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcuil)
                     .addComponent(txtcuil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbldir)
-                    .addComponent(txtdir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltelefono)
@@ -285,7 +272,7 @@ public class GestionCliente extends javax.swing.JFrame {
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar)
                     .addComponent(jButton1))
-                .addGap(34, 34, 34))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -298,7 +285,6 @@ public class GestionCliente extends javax.swing.JFrame {
         cliente.setApellido(txtap.getText());
         cliente.setDni(Integer.valueOf(txtdni.getText()));
         cliente.setCuil(Integer.valueOf(txtcuil.getText()));
-        cliente.setDireccion(txtdir.getText());
         cliente.setTelefono(Integer.valueOf(txttelefono.getText()));
         cliente.setEmail(txt_email.getText());
         cliente.setTipo(jComboBox_tipoCliente.getSelectedItem().toString());
@@ -375,7 +361,6 @@ public class GestionCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_tipo;
     private javax.swing.JLabel lblcuil;
-    private javax.swing.JLabel lbldir;
     private javax.swing.JLabel lbldni;
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblidcliente;
@@ -386,7 +371,6 @@ public class GestionCliente extends javax.swing.JFrame {
     public javax.swing.JTextField txt_id;
     private javax.swing.JTextField txtap;
     private javax.swing.JTextField txtcuil;
-    private javax.swing.JTextField txtdir;
     private javax.swing.JTextField txtdni;
     private javax.swing.JTextField txtnom;
     private javax.swing.JTextField txttelefono;

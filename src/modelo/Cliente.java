@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package modelo;
 
 /**
  *
@@ -15,7 +15,6 @@ public class Cliente {
         private String apellido;
         private int dni;
         private int cuil;
-        private String direccion;
         private int telefono;
         private String email;
         private String tipo;
@@ -54,15 +53,6 @@ public class Cliente {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     public int getCuil() {

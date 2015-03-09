@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
-
-import java.sql.Time;
+package modelo;
 
 /**
  *
@@ -17,12 +15,14 @@ public class Producto {
     private String nombreProd;
     private String descripcionProd;
     private int cantProd;
-    private String catProd;
     private float precMay;
     private float precMin;
     private String marca;
     private String fechaVenc;
-
+    private float pcioCpra;
+    private int idCategoria;
+    
+    
     public Producto() {
     }
 
@@ -58,14 +58,6 @@ public class Producto {
         this.cantProd = cantProd;
     }
 
-    public String getCatProd() {
-        return catProd;
-    }
-
-    public void setCatProd(String catProd) {
-        this.catProd = catProd;
-    }
-
     public float getPrecMay() {
         return precMay;
     }
@@ -98,4 +90,20 @@ public class Producto {
         this.fechaVenc = fechaVenc;
     }
 
+    public float getPcioCpra() {
+        return pcioCpra;
+    }
+
+    public void setPcioCpra(float pcioCpra) {
+        this.pcioCpra = pcioCpra;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+    
 }

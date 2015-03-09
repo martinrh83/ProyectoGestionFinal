@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modelo.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +37,7 @@ public class ControladorUsuario {
     }
 
     public void Generarnumeracion() {
-        String SQL = "select max(idUsuario) from Usuario";
+        String SQL = "SELECT MAX(idEmpleado) FROM empleado";
         // String SQL="select count(*) from factura";
         //String SQL="SELECT MAX(cod_emp) AS cod_emp FROM empleado";
         //String SQL="SELECT @@identity AS ID";
@@ -51,7 +52,7 @@ public class ControladorUsuario {
             }
 
             if (c == 0) {
-                window.txt_idUser.setText("1");
+                window.txt_idUser.setText("3500");
 
             } else {
                 window.txt_idUser.setText("" + (c + 1));
@@ -65,8 +66,17 @@ public class ControladorUsuario {
 
     public void agregarUsuario() {
         try {
-            conexion.getStatement().executeUpdate("INSERT INTO usuario (idUsuario,nombre, apellido,dni,tipo,carga_Horaria,fecha_Ingreso,pass,user)"
-                    + "VALUES (" + user.getIdUsuario() + ",'" + user.getNomUsuario() + "','" + user.getApellidoUsuario() + "'," + user.getDniUsuario() + ",'" + user.getTipoUsuario() + "'," + user.getCargaHoraria() + ",'" + user.getFechaIngreso() + "','" + user.getPassUsuario() + "','" + user.getUserUsuario() + "');");
+            conexion.getStatement().executeUpdate("INSERT INTO empleado (idEmpleado,nombre, apellido,dni,tipo,cargaHoraria,fechaIngreso,pass,user)"
+                    + "VALUES (" + user.getIdUsuario() + ",'" 
+                    + user.getNomUsuario() + "','" 
+                    + user.getApellidoUsuario() + "'," 
+                    + user.getDniUsuario() + ",'" 
+                    + user.getTipoUsuario() + "',"
+                    + user.getCargaHoraria() + ",'" 
+                    + user.getFechaIngreso() + "','"
+                    + user.getPassUsuario() + "','" 
+                    + user.getUserUsuario() + "');");
+            
         } catch (SQLException ex) {
             Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,18 +86,18 @@ public class ControladorUsuario {
         String[] titulos = {"id", "Nombre", "Apellido", "DNI", "Tipo", "Carga_Horaria", "Fecha_Ingreso", "Password", "Usuario"};
         modelo = new DefaultTableModel(null, titulos);
         String datos[] = new String[9];
-        String sql = "SELECT * FROM  usuario";
+        String sql = "SELECT * FROM  empleado";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("idUsuario");
+                datos[0] = rs.getString("idEmpleado");
                 datos[1] = rs.getString("nombre");
                 datos[2] = rs.getString("apellido");
                 datos[3] = rs.getString("dni");
                 datos[4] = rs.getString("tipo");
-                datos[5] = rs.getString("carga_Horaria");
-                datos[6] = rs.getString("fecha_Ingreso");
+                datos[5] = rs.getString("cargaHoraria");
+                datos[6] = rs.getString("fechaIngreso");
                 datos[7] = rs.getString("pass");
                 datos[8] = rs.getString("user");
 
@@ -110,7 +120,7 @@ public class ControladorUsuario {
                 String idCalculo = (String)tabla.getTablaUsuario().getModel().getValueAt(flag, 0);
                 Integer.valueOf(idCalculo);
                 try {
-                    String query = "Delete from usuario where idUsuario =" + idCalculo + ";";
+                    String query = "DELETE FROM empleado WHERE idEmpleado =" + idCalculo + ";";
                     Statement st = conexion.getStatement();
                     st.executeUpdate(query);
                     System.out.println("Producto borrado. ");

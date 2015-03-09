@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package controlador;
+package modelo;
 
 
 /**
@@ -16,7 +16,6 @@ public class Venta {
     private int idVenta;
     private String fechaVta;
     private String tipoVta;
-    private float porcMarc;
     private float impTotal;
     private int Cliente_idCliente;
     private int Usuario_idUsuario;
@@ -46,14 +45,6 @@ public class Venta {
 
     public void setTipoVta(String tipoVta) {
         this.tipoVta = tipoVta;
-    }
-
-    public float getPorcMarc() {
-        return porcMarc;
-    }
-
-    public void setPorcMarc(float porcMarc) {
-        this.porcMarc = porcMarc;
     }
 
     public int getCliente_idCliente() {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package modelo;
 
 import java.sql.SQLException;
 import java.sql.Time;
@@ -25,6 +25,7 @@ public class Usuario {
     private String tipoUsuario;
     private int CargaHoraria;
     private String FechaIngreso;
+
 
     public Usuario() {
     }
@@ -100,7 +101,6 @@ public class Usuario {
     public void setFechaIngreso(String FechaIngreso) {
         this.FechaIngreso = FechaIngreso;
     }
-    
-   
+
 
 }

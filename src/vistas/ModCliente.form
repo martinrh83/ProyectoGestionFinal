@@ -54,11 +54,6 @@
                       <Component id="txtap_mod" min="-2" pref="151" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lbldir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtdir_mod" min="-2" pref="285" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="lbl_tipo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jComboBox_tipoCliente_mod" min="-2" pref="152" max="-2" attributes="0"/>
@@ -81,7 +76,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -109,11 +104,6 @@
                   <Component id="lblcuil" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtcuil_mod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbldir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtdir_mod" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbltelefono" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -121,7 +111,7 @@
                   <Component id="txt_email_mod" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txttelefono_mod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_tipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox_tipoCliente_mod" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,7 +121,7 @@
                   <Component id="btnAceptar_mod" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancelar_mod" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -217,11 +207,6 @@
         <Property name="text" type="java.lang.String" value="Cuil"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbldir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtnom_mod">
       <Events>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnom_modKeyTyped"/>
@@ -253,12 +238,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcuil_modActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtdir_mod">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

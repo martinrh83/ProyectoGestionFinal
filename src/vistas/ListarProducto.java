@@ -169,7 +169,7 @@ public class ListarProducto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String cat = cmbCat_LProd.getSelectedItem().toString();
-         control.busquedaCategoria(cat,tablaProducto);
+        // control.busquedaCategoria(cat,tablaProducto);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtName_LProdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtName_LProdKeyReleased

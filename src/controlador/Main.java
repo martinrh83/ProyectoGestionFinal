@@ -25,6 +25,7 @@ public class Main {
         try {
             GestionConexion conexion = new GestionConexion();
             conexion.conectar();
+            //Principal window=new Principal(conexion);
             Login window = new Login(conexion);
             window.setVisible(true);
         } catch (SQLException ex) {

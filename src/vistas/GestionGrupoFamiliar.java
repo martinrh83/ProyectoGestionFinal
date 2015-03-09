@@ -6,7 +6,7 @@
 package vistas;
 
 import controlador.ControladorGrupoFamiliar;
-import controlador.Familiar;
+import modelo.Familiar;
 
 /**
  *

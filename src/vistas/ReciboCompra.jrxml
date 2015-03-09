@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReciboCompra" language="groovy" pageWidth="600" pageHeight="700" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ffceeaa-453f-472c-ae91-a87b3cde510f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="idImprimir" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     compra.`idCompra` AS compra_idCompra,
+     compra.`fechaCpra` AS compra_fechaCpra,
+     compra.`impTotal` AS compra_impTotal,
+     compra.`proveedor_idProveedor` AS compra_proveedor_idProveedor,
+     compra.`empleado_idEmpleado` AS compra_empleado_idEmpleado,
+     linea_de_compra.`cantidad` AS linea_de_compra_cantidad,
+     linea_de_compra.`subtotal` AS linea_de_compra_subtotal,
+     proveedor.`nombre` AS proveedor_nombre,
+     proveedor.`cuit` AS proveedor_cuit,
+     producto.`nombre` AS producto_nombre,
+     producto.`descripcion` AS producto_descripcion,
+     producto.`pcioCpra` AS producto_pcioCpra,
+     producto.`marca` AS producto_marca,
+     linea_de_compra.`producto_idProducto` AS linea_de_compra_producto_idProducto
+FROM
+     `compra` compra INNER JOIN `linea_de_compra` linea_de_compra ON compra.`idCompra` = linea_de_compra.`compra_idCompra`
+     INNER JOIN `producto` producto ON linea_de_compra.`producto_idProducto` = producto.`idProducto`
+     INNER JOIN `proveedor` proveedor ON compra.`proveedor_idProveedor` = proveedor.`idProveedor`
+     INNER JOIN `empleado` empleado ON compra.`empleado_idEmpleado` = empleado.`idEmpleado`
+WHERE
+     compra.`idCompra`=$P{idImprimir}]]>
+	</queryString>
+	<field name="compra_idCompra" class="java.lang.Integer"/>
+	<field name="compra_fechaCpra" class="java.lang.String"/>
+	<field name="compra_impTotal" class="java.lang.Float"/>
+	<field name="compra_proveedor_idProveedor" class="java.lang.Integer"/>
+	<field name="compra_empleado_idEmpleado" class="java.lang.Integer"/>
+	<field name="linea_de_compra_cantidad" class="java.lang.Integer"/>
+	<field name="linea_de_compra_subtotal" class="java.lang.Float"/>
+	<field name="proveedor_nombre" class="java.lang.String"/>
+	<field name="proveedor_cuit" class="java.lang.Integer"/>
+	<field name="producto_nombre" class="java.lang.String"/>
+	<field name="producto_descripcion" class="java.lang.String"/>
+	<field name="producto_pcioCpra" class="java.lang.Float"/>
+	<field name="producto_marca" class="java.lang.String"/>
+	<field name="linea_de_compra_producto_idProducto" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="-21" y="-21" width="608" height="100" uuid="b442bdc2-1c0f-4a9b-86b2-3aa503ce5d06"/>
+				<imageExpression><![CDATA["C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\bannerARGestion Final.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="122" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="12" y="15" width="78" height="15" forecolor="#000000" uuid="e3160503-6f7d-480a-8bda-c2424309b5cf"/>
+				<text><![CDATA[Nro Compra:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="104" y="15" width="94" height="15" uuid="6450515f-7e27-469f-ba00-7208fd73f590"/>
+				<textFieldExpression><![CDATA[$F{compra_idCompra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="381" y="15" width="51" height="15" forecolor="#000000" uuid="bb312afb-a654-4f63-b576-5424cd17d436"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="442" y="15" width="50" height="37" uuid="e39af79b-424a-4afc-8f6e-2e41b8a5bf2e"/>
+				<textFieldExpression><![CDATA[$F{compra_fechaCpra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="12" y="52" width="78" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="7177524b-0189-4cb6-abc0-de230e91f625"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ID Usuario:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="104" y="52" width="91" height="15" uuid="e0ee5698-25fe-4508-804d-bbd6cea00fd5"/>
+				<textFieldExpression><![CDATA[$F{compra_empleado_idEmpleado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="12" y="90" width="92" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="21dd1c39-6294-4ead-a4e2-c65c65f37577"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ID Proveedor:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="104" y="90" width="91" height="15" uuid="6d453505-f258-458b-8869-d3c92641fd27"/>
+				<textFieldExpression><![CDATA[$F{compra_proveedor_idProveedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="220" y="90" width="68" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="34b9755f-7b4b-4f73-9eb9-94ef31bbbdf5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Proveedor:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="288" y="90" width="93" height="15" uuid="c0629dab-2e6f-4fb1-b40b-283e0bce35bf"/>
+				<textFieldExpression><![CDATA[$F{proveedor_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="393" y="90" width="39" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="50ccdf96-b163-4233-8179-234e7457489b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CUIT:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="442" y="90" width="104" height="15" uuid="c06c5843-7e1c-4b2f-955c-49d1ff9d4e26"/>
+				<textFieldExpression><![CDATA[$F{proveedor_cuit}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="-21" y="0" width="608" height="122" uuid="3cf27648-d21e-4e8c-be2f-59d6ee77ca17"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="0" width="608" height="24" backcolor="#AADAFF" uuid="f8f1103d-a7c4-455f-8193-2aee5ed833ed"/>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="1" y="0" width="81" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0d7e6616-1a55-4bfb-b8e7-af11e5a7bb33"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ID Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="82" y="0" width="96" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b455f3ac-db95-470b-b96e-20adce200e85"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="178" y="0" width="95" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="5897b5ed-a44c-41b4-a0e7-f4e7782e93d6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="274" y="1" width="77" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d80bf227-c4e7-4c06-bc0f-1cd8809dc061"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="492" y="0" width="68" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b1a229ed-3761-46d5-ba6c-8826758e5b30"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="351" y="0" width="69" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="aa8314a6-61c1-4a60-af17-a4e11e58b986"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="420" y="0" width="72" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="21c2391a-4279-46a3-8dc8-a8c986da2332"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" isPrintRepeatedValues="false" mode="Transparent" x="0" y="0" width="555" height="15" uuid="6520e58c-401f-489c-a19f-12faf2f77991"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="1" y="0" width="81" height="15" uuid="1f04ebe4-48fb-4244-aa89-6a148f020724"/>
+					<textFieldExpression><![CDATA[$F{linea_de_compra_producto_idProducto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="82" y="0" width="96" height="15" uuid="bff958d2-bd76-4e83-9b87-adafbd02e0d5"/>
+					<textFieldExpression><![CDATA[$F{producto_nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="178" y="0" width="95" height="15" uuid="3b6202a8-d937-43de-ac88-0cbd2849f0e0"/>
+					<textFieldExpression><![CDATA[$F{producto_descripcion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="274" y="0" width="77" height="15" uuid="8a058fab-df55-4200-81c5-a2939bff2b53"/>
+					<textFieldExpression><![CDATA[$F{producto_marca}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="351" y="0" width="69" height="15" uuid="36fc2114-f9ce-4f36-a5a7-88794ed5deb3"/>
+					<textFieldExpression><![CDATA[$F{producto_pcioCpra}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="420" y="0" width="72" height="15" uuid="6275c280-6f0f-42d1-be6c-85d192430e2e"/>
+					<textFieldExpression><![CDATA[$F{linea_de_compra_cantidad}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="492" y="0" width="60" height="15" uuid="7f3a2077-197c-46d8-a8e6-788b39de5c62"/>
+					<textFieldExpression><![CDATA[$F{linea_de_compra_subtotal}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="cf9289c8-4626-4cea-8e53-9ff10023d866"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="420" y="30" width="72" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b930c0d9-3cc4-4836-9720-c5844fec5e52"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" x="492" y="30" width="60" height="15" uuid="50c2ccb9-8f75-49ed-aed3-e3e610805c83"/>
+				<textFieldExpression><![CDATA[$F{compra_impTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="608" height="24" forecolor="#D0B48E" backcolor="#AADAFF" uuid="4deba031-5a45-4da8-8e36-25254419639d"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="737c88b8-2a48-4cf3-8c53-fab12a8d70fc"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

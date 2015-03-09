@@ -32,12 +32,12 @@ public class ControladorLogin {
 
     public void acceder(String usuario, String pass) {
         String cap = "";
-        String sql = "SELECT * FROM Usuario WHERE user='" + usuario + "' && pass='" + pass + "'";
+        String sql = "SELECT * FROM empleado WHERE user='" + usuario + "' && pass='" + pass + "'";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                cap = rs.getString("Tipo");
+                cap = rs.getString("tipo");
             }
             if (cap.equals("Administrador")) {
 

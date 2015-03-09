@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modelo.Producto;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,19 +28,20 @@ public class BuscarProducto {
     private DefaultTableModel model;
     private ListarProducto window;
     private Producto prod;
+
     public BuscarProducto(GestionConexion conn) {
 
         conexion = conn;
 
         window = new ListarProducto(this, conexion);
-        
+
         window.setVisible(true);
     }
 
     public void busquedaPredictiva(String comodin, JTable tb) {
-        String[] titulos = {"idProducto", "nombre", "descripcion", "fechaVenc", "cantidad", "pcioMin", "pcioMay", "marca"};
+        String[] titulos = {"idProducto", "nombre", "descripcion", "fechaVenc", "cantidad", "P. Compra", "pcioMin", "pcioMay", "marca"};
         model = new DefaultTableModel(null, titulos);
-        String val[] = new String[8];
+        String val[] = new String[9];
         try {
             String sql = "SELECT * FROM producto WHERE nombre LIKE '" + comodin + "'";
             Statement st = conexion.getStatement();
@@ -50,9 +52,11 @@ public class BuscarProducto {
                 val[2] = rs.getString("descripcion");
                 val[3] = rs.getString("fechaVenc");
                 val[4] = rs.getString("cantidad");
-                val[5] = rs.getString("pcioMin");
-                val[6] = rs.getString("pcioMay");
-                val[7] = rs.getString("marca");
+                val[5] = rs.getString("pcioCpra");
+                val[6] = rs.getString("pcioMin");
+                val[7] = rs.getString("pcioMay");
+                val[8] = rs.getString("marca");
+
                 model.addRow(val);
             }
             window.getTablaProducto().setModel(model);
@@ -61,35 +65,36 @@ public class BuscarProducto {
         }
 
     }
-
-    public void busquedaCategoria(String cat, JTable tb) {
-        String[] titulos = {"idProducto", "nombre", "descripcion", "fechaVenc", "cantidad", "pcioMin", "pcioMay", "marca"};
-        model = new DefaultTableModel(null, titulos);
-        String val[] = new String[8];
-        String sql = "SELECT * FROM producto WHERE categoria = '" + cat + "';";
-        try {
-            Statement st = conexion.getStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                val[0] = rs.getString("idProducto");
-                val[1] = rs.getString("nombre");
-                val[2] = rs.getString("descripcion");
-                val[3] = rs.getString("fechaVenc");
-                val[4] = rs.getString("cantidad");
-                val[5] = rs.getString("pcioMin");
-                val[6] = rs.getString("pcioMay");
-                val[7] = rs.getString("marca");
-                model.addRow(val);
-            }
-            window.getTablaProducto().setModel(model);
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    /* BUSQUEDA POR CATEGORIA
+     public void busquedaCategoria(String cat, JTable tb) {
+     String[] titulos = {"idProducto", "nombre", "descripcion", "fechaVenc", "cantidad", "pcioCmpra", "pcioMin", "pcioMay", "marca"};
+     model = new DefaultTableModel(null, titulos);
+     String val[] = new String[9];
+     String sql = "SELECT * FROM producto WHERE categoria = '" + cat + "';";
+     try {
+     Statement st = conexion.getStatement();
+     ResultSet rs = st.executeQuery(sql);
+     while (rs.next()) {
+     val[0] = rs.getString("idProducto");
+     val[1] = rs.getString("nombre");
+     val[2] = rs.getString("descripcion");
+     val[3] = rs.getString("fechaVenc");
+     val[4] = rs.getString("cantidad");
+     val[5] = rs.getString("pcioCpra");
+     val[6] = rs.getString("pcioMin");
+     val[7] = rs.getString("pcioMay");
+     val[8] = rs.getString("marca");
+     model.addRow(val);
+     }
+     window.getTablaProducto().setModel(model);
+     } catch (SQLException ex) {
+     Logger.getLogger(ControladorProducto.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     }*/
 
     public void modificarProd(JTable tabla, ModProducto mod) {
         int flag = window.getTablaProducto().getSelectedRow();
-        String nom = "", des = "", fv = "", mar = "", pmin = "", pmay = "", can = "", cat = "";
+        String nom = "", des = "", fv = "", mar = "", pmin = "", pmay = "", can = "", pcpra = "", cat = "";
         if (flag > -1) {
             String idP = (String) window.getTablaProducto().getModel().getValueAt(flag, 0);
             Integer.valueOf(idP);
@@ -98,23 +103,25 @@ public class BuscarProducto {
                 Statement st = conexion.getStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-
                     nom = rs.getString("nombre");
                     des = rs.getString("descripcion");
                     fv = rs.getString("fechaVenc");
-                    mar = rs.getString("marca");
+                    can = rs.getString("cantidad");
+                    pcpra = rs.getString("pcioCpra");
                     pmin = "" + rs.getInt("pcioMin");
                     pmay = "" + rs.getInt("pcioMay");
-                    can = rs.getString("cantidad");
-                    cat = rs.getString("categoria");
+                    mar = rs.getString("marca");
+                    cat = rs.getString("categoria_idCategoria");
+
                     mod.getTxtCod_MProd().setText(idP);
                     mod.getTxtName_MProd().setText(nom);
                     mod.getTxtDesc_MProd().setText(des);
                     mod.getTxtFecV_MProd().setText(fv);
                     mod.getTxtMarca_MProd().setText(mar);
-                    mod.getTxtPMin_MProd().setText(pmin);
-                    mod.getTxtPMay_MProd().setText(pmay);
+                    mod.getTxtPMin().setText(pmin);
+                    mod.getTxtPMay().setText(pmay);
                     mod.getTxtCant_MProd().setText(can);
+                    mod.getTxtPCpra().setText(pcpra);
                     mod.getCmbCatMProd().setSelectedItem(cat);
 
                 }
@@ -126,28 +133,28 @@ public class BuscarProducto {
         }
     }
 
-    
-     public void updateProv(Producto prod){
-     try {
-     String sql = "UPDATE proveedor SET nombre = '" + prod.getNombreProd() + "', " +
-     "descripcion = '" + prod.getDescripcionProd() + "', " +
-     "fechaVenc = '" + prod.getFechaVenc() + "', " +
-     "cantidad = " + prod.getCantProd() + ", " +
-     "categoria = '" + prod.getCatProd() + "', " +
-     "pcioMin = " + prod.getPrecMin() + " " +
-     "pcioMay = " + prod.getPrecMay() + " " +
-     "WHERE idProducto = " + prod.getCodigoProd() +";";
-     
-     Statement st = conexion.getStatement();
-     st.executeUpdate(sql);
-     JOptionPane.showMessageDialog(window, "El Producto fue modificado...");
-     } catch (SQLException ex) {
-     Logger.getLogger(BuscarProducto.class.getName()).log(Level.SEVERE, null, ex);
-     }
-        
-     }
-        
-    
+    public void updateProd(Producto prod) {
+        try {
+            String sql = "UPDATE producto SET nombre = '" + prod.getNombreProd() + "', "
+                    + "descripcion = '" + prod.getDescripcionProd() + "', "
+                    + "fechaVenc = '" + prod.getFechaVenc() + "', "
+                    + "cantidad = " + prod.getCantProd() + ", "
+                    + "pcioCpra = " + prod.getPcioCpra() + ", "
+                    + "pcioMin = " + prod.getPrecMin() + ", "
+                    + "pcioMay = " + prod.getPrecMay() + ", "
+                    + "marca = '" + prod.getMarca() + "' "
+                    //falta la categoria
+                    + "WHERE idProducto = " + prod.getCodigoProd() + ";";
+
+            Statement st = conexion.getStatement();
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(window, "El Producto fue modificado...");
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void eliminarProd(JTable tabla) {
         int flag = window.getTablaProducto().getSelectedRow();
         if (flag > 1) {

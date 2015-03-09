@@ -7,7 +7,7 @@ package vistas;
 
 import controlador.ControladorRFactura;
 import controlador.ControladorVenta;
-import controlador.Venta;
+import modelo.Venta;
 import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +37,7 @@ public class NuevaVenta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         control.Generarnumeracion(txtNum_Venta);
         control.obtenerFecha(fechaVenta);
-        control.setearUsuario(user_label, label_id);
+        control.setearUsuario(label_id);
     }
 
     /**
@@ -74,7 +74,6 @@ public class NuevaVenta extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         confVenta = new javax.swing.JButton();
-        user_label = new javax.swing.JLabel();
         label_id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,8 +200,6 @@ public class NuevaVenta extends javax.swing.JFrame {
                 .addComponent(jButton2))
         );
 
-        user_label.setBackground(new java.awt.Color(255, 255, 51));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,18 +224,15 @@ public class NuevaVenta extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(178, 178, 178)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNum_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(19, 19, 19)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(user_label, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtNum_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fechaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -272,14 +266,12 @@ public class NuevaVenta extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(txtNum_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(fechaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addComponent(user_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,12 +319,16 @@ public class NuevaVenta extends javax.swing.JFrame {
         this.txtTotal_Venta = txtTotal_Venta;
     }
 
-    public JLabel getUser_label() {
+    /*public JLabel getUser_label() {
         return user_label;
     }
 
     public void setUser_label(JLabel user_label) {
         this.user_label = user_label;
+    }*/
+    public void cleanProduc(){
+        txtCodProd.setText(null);
+        txtCant.setText(null);
     }
 
     private void btnEliminarLVtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLVtaActionPerformed
@@ -343,8 +339,8 @@ public class NuevaVenta extends javax.swing.JFrame {
         int codigo = Integer.valueOf(txtCodProd.getText());
         String cant = txtCant.getText();
         control.agregarCarrito(codigo, tbVenta, cant);
-        
         control.calcular(this, tbVenta);
+        this.cleanProduc();
     }//GEN-LAST:event_btnBusProdLVtaActionPerformed
 
     private void confVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confVentaActionPerformed
@@ -355,7 +351,7 @@ public class NuevaVenta extends javax.swing.JFrame {
         venta.setUsuario_idUsuario(Integer.valueOf(label_id.getText()));
         venta.setCliente_idCliente(0);
         venta.setTipoVta("Minorista");
-        venta.setPorcMarc(0);
+       
         control.descontarstock(tbVenta);       
         control.agregarLVenta(tbVenta, txtNum_Venta);
         control.grabarVenta();
@@ -399,6 +395,5 @@ public class NuevaVenta extends javax.swing.JFrame {
     private javax.swing.JTextField txtDesc_Venta;
     private javax.swing.JTextField txtNum_Venta;
     private javax.swing.JTextField txtTotal_Venta;
-    private javax.swing.JLabel user_label;
     // End of variables declaration//GEN-END:variables
 }

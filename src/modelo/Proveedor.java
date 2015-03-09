@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package modelo;
 
 /**
  *
@@ -14,7 +14,6 @@ public class Proveedor {
     private String nombreProv;
     private int cuitProv;
     private String razonSocProv;
-    private String direccionProv;
     private String emailProv;
     private int telefonoProv;
     
@@ -52,14 +51,6 @@ public class Proveedor {
 
     public void setRazonSocProv(String razonSocProv) {
         this.razonSocProv = razonSocProv;
-    }
-
-    public String getDireccionProv() {
-        return direccionProv;
-    }
-
-    public void setDireccionProv(String direccionProv) {
-        this.direccionProv = direccionProv;
     }
 
     public String getEmailProv() {

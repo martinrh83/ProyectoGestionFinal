@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modelo.Compra;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -48,10 +48,9 @@ public class ControladorCompra {
 
     }
 
-    public void setearUsuario(JLabel label, JLabel id) {
+    public void setearUsuario(JLabel id) {
         try {
-            label.setText(usuario);
-            String sql = "SELECT idUsuario FROM usuario WHERE user='" + usuario + "'";
+            String sql = "SELECT idEmpleado FROM empleado WHERE user='" + usuario + "'";
             ResultSet rs = conexion.getStatement().executeQuery(sql);
             while (rs.next()) {
                 int idprueba = rs.getInt(1);
@@ -74,35 +73,27 @@ public class ControladorCompra {
             while (rs.next()) {
                 c = rs.getInt(1);
             }
-
             if (c == 0) {
-                idCompra.setText("1");
-
+                idCompra.setText("10078000");
             } else {
                 idCompra.setText("" + (c + 1));
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public ArrayList<String> consulta() {//Retornamos un ArrayList para tratarlo en el JComboBox
-        String sql = "SELECT idProveedor,nombre FROM proveedor";
-
+        String sql = "SELECT idProveedor, nombre FROM proveedor";
         ArrayList<String> ls = new ArrayList<String>();
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
-
             while (rs.next()) {
                 String nombre=rs.getString("nombre");
                 int id=rs.getInt("idProveedor");
-                ls.add(""+id+": "+nombre);
-
-                
-                System.out.println("nombre"+ls);
+                ls.add("" + id + ": " + nombre);
+                System.out.println("nombre" + ls);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorCompra.class.getName()).log(Level.SEVERE, null, ex);
@@ -111,10 +102,9 @@ public class ControladorCompra {
     }
 
     public void llenarCB(JComboBox cmb) {
-        //wincompra.cmb_ProvNvaCpra.removeAllItems(); //Vaciamos el JComboBox
         ArrayList<String> resul;
         resul = consulta();
-        System.out.println("resultado"+resul);
+        System.out.println("resultado" + resul);
        for (int i = 0; i < resul.size(); i++) {
             cmb.addItem(resul.get(i));
         }
@@ -133,13 +123,13 @@ public class ControladorCompra {
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {//"Cod", "Nombre", "Descripcion", "Cantidad", "Marca", "P. Compra", "Importe"
+            while (rs.next()) {
                 val[0] = rs.getString("idProducto");
                 val[1] = rs.getString("nombre");
                 val[2] = rs.getString("descripcion");
                 val[3] = cant;
                 val[4] = rs.getString("marca");
-                val[5] = rs.getString("pcioMay");
+                val[5] = rs.getString("pcioCpra");
                 val[6] = "" + Integer.valueOf(cant) * Integer.valueOf(val[5]);
 
                 modelo.addRow(val);
@@ -206,7 +196,7 @@ public class ControladorCompra {
                 int codprod = Integer.valueOf(tbCompra.getValueAt(i, 0).toString());
                 int id = Integer.valueOf(idCompra.getText());
             try {    
-                String sql = "INSERT INTO linea_de_compra(importe,cantidad,Producto_idProducto,Compra_idCompra) VALUES (" + importe + "," + cantidad + "," + codprod + "," + id + ")";
+                String sql = "INSERT INTO linea_de_compra(cantidad,subtotal,compra_idCompra,producto_idProducto) VALUES (" + cantidad + "," + importe + "," + id+ "," + codprod  + ")";
                 conexion.getStatement().executeUpdate(sql);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorCompra.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,7 +207,7 @@ public class ControladorCompra {
     }
 
     public void guardarCompra() {
-        String query = "INSERT INTO compra (idCompra, fechaCpra, impTotal, Proveedor_idProveedor, Usuario_idUsuario)"
+        String query = "INSERT INTO compra (idCompra, fechaCpra, impTotal, proveedor_idProveedor, empleado_idEmpleado)"
                     + "VALUES (" + compra.getIdCompra() + ",'" + compra.getFecCompra() + "', " + compra.getImpTotal() + ","+compra.getProveedor_idProveedor()+"," + compra.getUsuario_idUsuario() + ");";
         try {
             conexion.getStatement().executeUpdate(query);
@@ -225,7 +215,7 @@ public class ControladorCompra {
             Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        JOptionPane.showMessageDialog(null, "Se registro la compra");
+        JOptionPane.showMessageDialog(null, "Se registro la compra.. SEA LIBRE!!! ");
     }
 
 }

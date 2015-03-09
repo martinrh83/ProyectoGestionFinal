@@ -9,7 +9,7 @@ package vistas;
 
 import controlador.ControladorLogin;
 import modelo.GestionConexion;
-
+import org.apache.commons.codec.digest.DigestUtils;
 /**
  *
  * @author Martin
@@ -37,9 +37,9 @@ public class Login extends javax.swing.JFrame {
         txt_user = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txt_pass = new javax.swing.JTextField();
         btn_acceder = new javax.swing.JButton();
         btn_out = new javax.swing.JButton();
+        txt_Pass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -82,7 +82,7 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_user, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                            .addComponent(txt_pass)))
+                            .addComponent(txt_Pass)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_acceder)
                         .addGap(18, 18, 18)
@@ -99,7 +99,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_acceder)
@@ -113,9 +113,11 @@ public class Login extends javax.swing.JFrame {
     private void btn_accederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_accederActionPerformed
 
            String usuario= txt_user.getText();
-           String pass=txt_pass.getText();
+           //String pass=txt_pass.getText();
+           String password=txt_Pass.getText();
+           String PassCrypto=DigestUtils.md5Hex(password);
            ControladorLogin login=new ControladorLogin(conexion);
-           login.acceder(usuario, pass);
+           login.acceder(usuario, PassCrypto);
            
     }//GEN-LAST:event_btn_accederActionPerformed
 
@@ -137,7 +139,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btn_out;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txt_pass;
+    private javax.swing.JPasswordField txt_Pass;
     private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
