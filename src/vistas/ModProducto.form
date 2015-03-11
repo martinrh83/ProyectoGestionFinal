@@ -217,6 +217,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCod_MProd">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnMod_MProd">
       <Properties>
@@ -285,12 +288,7 @@
     <Component class="javax.swing.JComboBox" name="cmbCatMProd">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Limpieza"/>
-            <StringItem index="1" value="Bebida"/>
-            <StringItem index="2" value="Lacteos"/>
-            <StringItem index="3" value="Golosinas Alimentos"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
     </Component>

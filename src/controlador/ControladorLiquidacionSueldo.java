@@ -149,7 +149,7 @@ public class ControladorLiquidacionSueldo {
         if (flag > -1) {
             String concepto = (String) window.getTablaConceptos().getModel().getValueAt(flag, 1);
 
-            if (!concepto.equals("sueldo basico")) {
+            if (!concepto.equals("sueldo basico")&&!concepto.equals("Asig por hijo")) {
 
                 datos[0] = (String) window.getTablaConceptos().getModel().getValueAt(flag, 1);
                 datos[1] = (String) window.getTablaConceptos().getModel().getValueAt(flag, 2);
@@ -229,13 +229,13 @@ public class ControladorLiquidacionSueldo {
                 try {
                     importe = Float.valueOf((String) window.getTablaConceptos().getModel().getValueAt(flag, 2));
                     id = Integer.valueOf(window.getTxt_id().getText());
-                    String sql = "SELECT count(*) FROM familiar AS f WHERE f.parentesco LIKE 'hijo%' AND f.empleado_idEmpleado = " + id + ";";
+                    String sql = "SELECT count(*) AS count FROM familiar AS f WHERE f.parentesco LIKE 'hijo%' AND f.empleado_idEmpleado = " + id + ";";
 
                     Statement st = conexion.getStatement();
                     ResultSet rs = st.executeQuery(sql);
                     while (rs.next()) {
-                       dude=rs.getInt('f');
-                        System.out.println("nro"+dude);
+                       dude=rs.getInt("count");
+                       
             }
                     
                     asignacion=dude*importe;

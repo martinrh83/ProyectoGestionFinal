@@ -20,6 +20,7 @@ public class ListarPersona extends javax.swing.JFrame {
      */
     public ListarPersona(GestionConexion conn, ControladorListarPersonas p,AltaDomicilio dom) {
         initComponents();
+        this.setLocationRelativeTo(null);
         conexion = conn;
         control = p;
         domic=dom;
@@ -51,6 +52,7 @@ public class ListarPersona extends javax.swing.JFrame {
         btn_BuscarPersona = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Listado de Personas");
 
         jLabel1.setText("Elija Persona:");
 

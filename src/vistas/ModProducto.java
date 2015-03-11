@@ -207,6 +207,8 @@ public class ModProducto extends javax.swing.JFrame {
 
         jLabel1.setText("Codigo");
 
+        txtCod_MProd.setEnabled(false);
+
         btnMod_MProd.setText("Modificar");
         btnMod_MProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,8 +242,6 @@ public class ModProducto extends javax.swing.JFrame {
         });
 
         jLabel17.setText("Categoria");
-
-        cmbCatMProd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Limpieza", "Bebida", "Lacteos", "Golosinas Alimentos" }));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Precios"));
 
@@ -384,7 +384,8 @@ public class ModProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCant_MProdActionPerformed
 
     private void btnMod_MProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMod_MProdActionPerformed
-        try {
+       
+        /* try {
             prod.setCodigoProd(Integer.valueOf(txtCod_MProd.getText()));
             prod.setNombreProd(txtName_MProd.getText());
             prod.setDescripcionProd(txtDesc_MProd.getText());
@@ -414,9 +415,9 @@ public class ModProducto extends javax.swing.JFrame {
             st.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(ModProducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
-        this.dispose();
+        //this.dispose();
         
     }//GEN-LAST:event_btnMod_MProdActionPerformed
 

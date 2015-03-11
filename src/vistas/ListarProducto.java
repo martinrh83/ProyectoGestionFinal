@@ -187,7 +187,9 @@ public class ListarProducto extends javax.swing.JFrame {
     private void btnEdit_LProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_LProdActionPerformed
         ModProducto window = new ModProducto(conexion);
         window.setVisible(true);
-        control.modificarProd(tablaProducto, window);
+        control.modificarProd(window);
+        control.llenarCB(window);
+        
     }//GEN-LAST:event_btnEdit_LProdActionPerformed
 
     private void btnDelete_LProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete_LProdActionPerformed

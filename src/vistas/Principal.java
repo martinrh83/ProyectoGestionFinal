@@ -55,7 +55,6 @@ public class Principal extends javax.swing.JFrame {
         menuItListVenta = new javax.swing.JMenuItem();
         menuCompra = new javax.swing.JMenu();
         menuItNvaCpra = new javax.swing.JMenuItem();
-        menuItNvaPedCpra = new javax.swing.JMenuItem();
         menuItListMCpra = new javax.swing.JMenuItem();
         menuProveedor = new javax.swing.JMenu();
         menuGestionProv = new javax.swing.JMenuItem();
@@ -66,7 +65,6 @@ public class Principal extends javax.swing.JFrame {
         menuAltaDomicilio = new javax.swing.JMenuItem();
         menuCliente = new javax.swing.JMenu();
         menuIGestionCli = new javax.swing.JMenuItem();
-        menuItListCli = new javax.swing.JMenuItem();
         menuUsuario = new javax.swing.JMenu();
         changePass = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
@@ -132,10 +130,7 @@ public class Principal extends javax.swing.JFrame {
         });
         menuCompra.add(menuItNvaCpra);
 
-        menuItNvaPedCpra.setText("Nuevo Pedido");
-        menuCompra.add(menuItNvaPedCpra);
-
-        menuItListMCpra.setText("Listado Mes");
+        menuItListMCpra.setText("Listado");
         menuCompra.add(menuItListMCpra);
 
         jMenuBar1.add(menuCompra);
@@ -190,16 +185,13 @@ public class Principal extends javax.swing.JFrame {
 
         menuCliente.setText("Cliente");
 
-        menuIGestionCli.setText("Gestionar");
+        menuIGestionCli.setText("Gestionar Cliente");
         menuIGestionCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuIGestionCliActionPerformed(evt);
             }
         });
         menuCliente.add(menuIGestionCli);
-
-        menuItListCli.setText("Listado");
-        menuCliente.add(menuItListCli);
 
         jMenuBar1.add(menuCliente);
 
@@ -329,11 +321,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItAltaProd;
     private javax.swing.JMenuItem menuItGConPer;
     private javax.swing.JMenuItem menuItLiqSdoPer;
-    private javax.swing.JMenuItem menuItListCli;
     private javax.swing.JMenuItem menuItListMCpra;
     private javax.swing.JMenuItem menuItListVenta;
     private javax.swing.JMenuItem menuItNvaCpra;
-    private javax.swing.JMenuItem menuItNvaPedCpra;
     private javax.swing.JMenuItem menuItNvaVenta;
     private javax.swing.JMenu menuPersonal;
     private javax.swing.JMenu menuProducto;

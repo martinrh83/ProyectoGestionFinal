@@ -134,8 +134,10 @@ public class ModCliente extends javax.swing.JFrame {
         txtdni_mod = new javax.swing.JTextField();
         txtcuil_mod = new javax.swing.JTextField();
         btnCancelar_mod = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Modificacion de Cliente");
 
         btnAceptar_mod.setText("Aceptar");
         btnAceptar_mod.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +146,13 @@ public class ModCliente extends javax.swing.JFrame {
             }
         });
 
+        txttelefono_mod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefono_modKeyTyped(evt);
+            }
+        });
+
+        txt_idmod.setEnabled(false);
         txt_idmod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idmodActionPerformed(evt);
@@ -154,7 +163,7 @@ public class ModCliente extends javax.swing.JFrame {
 
         lbltelefono.setText("Teléfono");
 
-        lblemail.setText("email");
+        lblemail.setText("Email");
 
         lbl_tipo.setText("Tipo");
 
@@ -166,6 +175,11 @@ public class ModCliente extends javax.swing.JFrame {
 
         lblcuil.setText("Cuil");
 
+        txtnom_mod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnom_modActionPerformed(evt);
+            }
+        });
         txtnom_mod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtnom_modKeyTyped(evt);
@@ -189,11 +203,23 @@ public class ModCliente extends javax.swing.JFrame {
                 txtcuil_modActionPerformed(evt);
             }
         });
+        txtcuil_mod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcuil_modKeyTyped(evt);
+            }
+        });
 
         btnCancelar_mod.setText("Cancelar");
         btnCancelar_mod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelar_modActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -205,44 +231,50 @@ public class ModCliente extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblcuil)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtcuil_mod))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbldni)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtdni_mod))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblnomyap)
                                     .addComponent(lblidcliente))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_idmod, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtnom_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtap_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txt_idmod, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtnom_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtap_mod))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblcuil)
+                                    .addComponent(lbldni))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtdni_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtcuil_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbltelefono)
+                                    .addComponent(lbl_tipo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txttelefono_mod)
+                                    .addComponent(jComboBox_tipoCliente_mod, 0, 133, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(lblemail)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_email_mod)))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_tipo)
-                        .addGap(33, 33, 33)
-                        .addComponent(jComboBox_tipoCliente_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(61, 61, 61)
-                            .addComponent(btnAceptar_mod)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar_mod))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(lbltelefono)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txttelefono_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblemail)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txt_email_mod, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34)
+                        .addComponent(btnAceptar_mod)
+                        .addGap(81, 81, 81)
+                        .addComponent(btnCancelar_mod)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +283,7 @@ public class ModCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_idmod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblidcliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblnomyap)
                     .addComponent(txtnom_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,15 +302,16 @@ public class ModCliente extends javax.swing.JFrame {
                     .addComponent(lblemail)
                     .addComponent(txt_email_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txttelefono_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_tipo)
                     .addComponent(jComboBox_tipoCliente_mod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar_mod)
                     .addComponent(btnAceptar_mod)
-                    .addComponent(btnCancelar_mod))
-                .addGap(49, 49, 49))
+                    .addComponent(btnSalir))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -324,15 +357,15 @@ public class ModCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtap_modKeyTyped
 
     private void txtdni_modKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdni_modKeyTyped
-        /*   char car = evt.getKeyChar();
-        if (txtdni.getText().length() >= 9) {
+         char car = evt.getKeyChar();
+        if (txtdni_mod.getText().length() >= 9) {
             JOptionPane.showMessageDialog(this, "Permitido hasta 9 digitos");
             evt.consume();
         }
         if ((car < '0' || car > '9')) {
             JOptionPane.showMessageDialog(this, "Ingrese solo números");
             evt.consume();
-        }*/
+        }
     }//GEN-LAST:event_txtdni_modKeyTyped
 
     private void txtcuil_modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcuil_modActionPerformed
@@ -343,10 +376,39 @@ public class ModCliente extends javax.swing.JFrame {
       this.dispose();
     }//GEN-LAST:event_btnCancelar_modActionPerformed
 
+    private void txtcuil_modKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuil_modKeyTyped
+         char car = evt.getKeyChar();
+        if (txtcuil_mod.getText().length() >= 9) {
+            JOptionPane.showMessageDialog(this, "Permitido hasta 9 digitos");
+            evt.consume();
+        }
+        if ((car < '0' || car > '9')) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtcuil_modKeyTyped
+
+    private void txttelefono_modKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefono_modKeyTyped
+         char car = evt.getKeyChar();
+        if ((car < '0' || car > '9')) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txttelefono_modKeyTyped
+
+    private void txtnom_modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnom_modActionPerformed
+    
+    }//GEN-LAST:event_txtnom_modActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar_mod;
     private javax.swing.JButton btnCancelar_mod;
+    private javax.swing.JButton btnSalir;
     public javax.swing.JComboBox jComboBox_tipoCliente_mod;
     private javax.swing.JLabel lbl_tipo;
     private javax.swing.JLabel lblcuil;

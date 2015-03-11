@@ -78,7 +78,7 @@ WHERE
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="442" y="15" width="50" height="37" uuid="e39af79b-424a-4afc-8f6e-2e41b8a5bf2e"/>
+				<reportElement style="Detail" x="442" y="15" width="82" height="37" uuid="e39af79b-424a-4afc-8f6e-2e41b8a5bf2e"/>
 				<textFieldExpression><![CDATA[$F{compra_fechaCpra}]]></textFieldExpression>
 			</textField>
 			<staticText>

@@ -64,7 +64,7 @@ public class ControladorCliente {
     public void agregarCliente() {
         try {
             conn.getStatement().executeUpdate("INSERT INTO cliente (idcliente,nombre,apellido,dni,cuil,telefono,email,tipo)"
-                    + "VALUES (" + cliente.getIdCliente() + ",'" + cliente.getNombre() + "','" + cliente.getApellido() + "'," + cliente.getDni() + "," + cliente.getCuil() + cliente.getTelefono() + ",'" + cliente.getEmail() + "','" + cliente.getTipo() + "');");
+                    + "VALUES (" + cliente.getIdCliente() + ",'" + cliente.getNombre() + "','" + cliente.getApellido() + "'," + cliente.getDni() + "," + cliente.getCuil() + "," + cliente.getTelefono() + ",'" + cliente.getEmail() + "','" + cliente.getTipo() + "');");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

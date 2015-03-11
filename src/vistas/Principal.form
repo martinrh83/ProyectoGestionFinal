@@ -78,14 +78,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItNvaCpraActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItNvaPedCpra">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nuevo Pedido"/>
-              </Properties>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItListMCpra">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listado Mes"/>
+                <Property name="text" type="java.lang.String" value="Listado"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -151,16 +146,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuIGestionCli">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gestionar"/>
+                <Property name="text" type="java.lang.String" value="Gestionar Cliente"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuIGestionCliActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItListCli">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listado"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>

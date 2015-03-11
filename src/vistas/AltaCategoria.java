@@ -135,6 +135,7 @@ public class AltaCategoria extends javax.swing.JFrame {
         categoria.setDescripcion(txt_descCat.getText());
         control.agregarCategoria();
         control.generarNumeracion();
+        txt_descCat.setText(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

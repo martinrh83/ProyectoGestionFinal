@@ -30,7 +30,7 @@ public class BuscarProducto {
     private DefaultTableModel model;
     private ListarProducto window;
     private Producto prod;
-
+    private ModProducto mod;
     public BuscarProducto(GestionConexion conn) {
         conexion = conn;
         window = new ListarProducto(this, conexion);
@@ -119,8 +119,35 @@ public class BuscarProducto {
             Logger.getLogger(ControladorProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+public ArrayList<String> consulta() {//Retornamos un ArrayList para tratarlo en el JComboBox
+        String sql = "SELECT * FROM categoria";
+        ArrayList<String> ls = new ArrayList<String>();
+        try {
+            Statement st = conexion.getStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String nombre=rs.getString("descripcion");
+                int id=rs.getInt("idCategoria");
+                ls.add("" + id + ": " + nombre);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ls;
+    }
 
-    public void modificarProd(JTable tabla, ModProducto mod) {
+    public void llenarCB(ModProducto m) {
+        JComboBox cmb=m.getCmbCatMProd();
+        ArrayList<String> resul;
+        resul = consulta();
+        System.out.println("resultado" + resul);
+       for (int i = 0; i < resul.size(); i++) {
+            cmb.addItem(resul.get(i));
+        }
+    }
+    public void modificarProd( ModProducto m) {
+        mod=m;
         int flag = window.getTablaProducto().getSelectedRow();
         String nom = "", des = "", fv = "", mar = "", pmin = "", pmay = "", can = "", pcpra = "", cat = "";
         if (flag > -1) {
