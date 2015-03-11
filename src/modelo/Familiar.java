@@ -13,45 +13,34 @@ import modelo.Entidad;
  * @author Mariana
  */
 public class Familiar {
-    
-    private double idFamiliar;
-    private String nomYap;
+    private int idf;
+    private String nya;
     private int dni;
-    private String fecha_nac;
-    private String nacionalidad;
     private String parentesco;
+    private String fnac;
     private String escolaridad;
-    private String discapacidad;
-    private String estado_civil;
+    private String nacionalidad;
+    private String esciv;
+    private String disc;
+    private int empid;
 
-    public Familiar(double idFamiliar, String nomYap, int dni, String fecha_nac, String nacionalidad, String parentesco, String escolaridad, String discapacidad, String estado_civil, String entidad, modelo.GestionConexion GestionConexion) {
- 
-        this.idFamiliar = idFamiliar;
-        this.nomYap = nomYap;
-        this.dni = dni;
-        this.fecha_nac = fecha_nac;
-        this.nacionalidad = nacionalidad;
-        this.parentesco = parentesco;
-        this.escolaridad = escolaridad;
-        this.discapacidad = discapacidad;
-        this.estado_civil = estado_civil;
+    public Familiar() {
     }
 
-
-    public double getIdFamiliar() {
-        return idFamiliar;
+    public int getIdf() {
+        return idf;
     }
 
-    public void setIdFamiliar(double idFamiliar) {
-        this.idFamiliar = idFamiliar;
+    public void setIdf(int idf) {
+        this.idf = idf;
     }
 
-    public String getNomYap() {
-        return nomYap;
+    public String getNya() {
+        return nya;
     }
 
-    public void setNomYap(String nomYap) {
-        this.nomYap = nomYap;
+    public void setNya(String nya) {
+        this.nya = nya;
     }
 
     public int getDni() {
@@ -62,28 +51,20 @@ public class Familiar {
         this.dni = dni;
     }
 
-    public String getFecha_nac() {
-        return fecha_nac;
-    }
-
-    public void setFecha_nac(String fecha_nac) {
-        this.fecha_nac = fecha_nac;
-    }
-
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-
     public String getParentesco() {
         return parentesco;
     }
 
     public void setParentesco(String parentesco) {
         this.parentesco = parentesco;
+    }
+
+    public String getFnac() {
+        return fnac;
+    }
+
+    public void setFnac(String fnac) {
+        this.fnac = fnac;
     }
 
     public String getEscolaridad() {
@@ -94,21 +75,37 @@ public class Familiar {
         this.escolaridad = escolaridad;
     }
 
-    public String getDiscapacidad() {
-        return discapacidad;
+    public String getNacionalidad() {
+        return nacionalidad;
     }
 
-    public void setDiscapacidad(String discapacidad) {
-        this.discapacidad = discapacidad;
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
-    public String getEstado_civil() {
-        return estado_civil;
+    public String getEsciv() {
+        return esciv;
     }
 
-    public void setEstado_civil(String estado_civil) {
-        this.estado_civil = estado_civil;
+    public void setEsciv(String esciv) {
+        this.esciv = esciv;
     }
 
+    public String getDisc() {
+        return disc;
+    }
+
+    public void setDisc(String disc) {
+        this.disc = disc;
+    }
+
+    public int getEmpid() {
+        return empid;
+    }
+
+    public void setEmpid(int empid) {
+        this.empid = empid;
+    }
+    
     
 }

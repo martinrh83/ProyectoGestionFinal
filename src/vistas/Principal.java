@@ -11,6 +11,7 @@ import controlador.ControladorProducto;
 import controlador.ControladorUsuario;
 import controlador.ControladorCliente;
 import controlador.ControladorCompra;
+import controlador.ControladorConceptoLiq;
 import controlador.ControladorDomicilio;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
@@ -156,6 +157,11 @@ public class Principal extends javax.swing.JFrame {
         menuPersonal.add(menuItLiqSdoPer);
 
         menuItGConPer.setText("Gestion de Conceptos");
+        menuItGConPer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItGConPerActionPerformed(evt);
+            }
+        });
         menuPersonal.add(menuItGConPer);
 
         menuItAltaPer.setText("Gestión de Personal");
@@ -287,6 +293,10 @@ public class Principal extends javax.swing.JFrame {
     private void menuIAddCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIAddCatActionPerformed
         ControladorCategoria cat = new ControladorCategoria(conexion);
     }//GEN-LAST:event_menuIAddCatActionPerformed
+
+    private void menuItGConPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItGConPerActionPerformed
+        ControladorConceptoLiq concep=new ControladorConceptoLiq(conexion);
+    }//GEN-LAST:event_menuItGConPerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem changePass;

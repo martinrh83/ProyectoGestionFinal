@@ -10,17 +10,13 @@ package modelo;
  * @author Mariana
  */
 public class Concepto {
-    
-     private int idConcepto; 
+
+    private int idConcepto;
     private String descripcion;
     private float importe;
     private String tipo_concepto;
 
-    public Concepto(int idConcepto, String descripcion, float importe, String tipo_concepto) {
-        this.idConcepto = idConcepto;
-        this.descripcion = descripcion;
-        this.importe = importe;
-        this.tipo_concepto = tipo_concepto;
+    public Concepto() {
     }
 
     public int getIdConcepto() {
@@ -53,5 +49,5 @@ public class Concepto {
 
     public void setTipo_concepto(String tipo_concepto) {
         this.tipo_concepto = tipo_concepto;
-    }  
+    }
 }
