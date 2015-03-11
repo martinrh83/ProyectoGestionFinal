@@ -29,6 +29,7 @@ public class AltaDomicilio extends javax.swing.JFrame {
         conexion = conn;
         street = doc;
         initComponents();
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -95,6 +96,11 @@ public class AltaDomicilio extends javax.swing.JFrame {
         });
 
         btn_out.setText("Salir");
+        btn_out.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_outActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Persona:");
 
@@ -265,6 +271,10 @@ public class AltaDomicilio extends javax.swing.JFrame {
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         ControladorListarPersonas window = new ControladorListarPersonas(this, conexion);
     }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void btn_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_outActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_outActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

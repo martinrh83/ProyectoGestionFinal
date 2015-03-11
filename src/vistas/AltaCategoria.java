@@ -25,6 +25,7 @@ public class AltaCategoria extends javax.swing.JFrame {
      */
     public AltaCategoria(ControladorCategoria con, GestionConexion conn, Categoria cat) {
         initComponents();
+        this.setLocationRelativeTo(null);
         control = con;
         conexion = conn;
         categoria = cat;

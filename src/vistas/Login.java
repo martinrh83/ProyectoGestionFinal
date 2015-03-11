@@ -117,7 +117,7 @@ public class Login extends javax.swing.JFrame {
            String password=txt_Pass.getText();
            String PassCrypto=DigestUtils.md5Hex(password);
            ControladorLogin login=new ControladorLogin(conexion);
-           login.acceder(usuario, PassCrypto);
+           login.acceder(usuario, PassCrypto,this);
            
     }//GEN-LAST:event_btn_accederActionPerformed
 

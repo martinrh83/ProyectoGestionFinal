@@ -30,7 +30,7 @@ public class ControladorLogin {
 
     }
 
-    public void acceder(String usuario, String pass) {
+    public void acceder(String usuario, String pass,Login log) {
         String cap = "";
         String sql = "SELECT * FROM empleado WHERE user='" + usuario + "' && pass='" + pass + "'";
         try {
@@ -44,8 +44,9 @@ public class ControladorLogin {
                 JOptionPane.showMessageDialog(null, "Bienvenido");
                 Principal ingreso = new Principal(conexion);
                 ingreso.setVisible(true);
-
+                
                 ingreso.laber_usuario.setText(usuario);
+                log.dispose();
                     // ventanaadmin.lblusu.setText(usuario);
 
             }
@@ -55,10 +56,10 @@ public class ControladorLogin {
                 PrincipalEmpleado ingresos = new PrincipalEmpleado(conexion);
                 ingresos.setVisible(true);
                 ingresos.laber_usuario.setText(usuario);
-
+                log.dispose();
             }
             if ((!cap.equals("Administrador")) && (!cap.equals("Empleado"))) {
-                JOptionPane.showMessageDialog(null, "No existe sus datos");
+                JOptionPane.showMessageDialog(null, "No existe sus datos. Ingrese nuevamente");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);

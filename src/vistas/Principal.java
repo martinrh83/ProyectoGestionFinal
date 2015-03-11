@@ -13,6 +13,7 @@ import controlador.ControladorCliente;
 import controlador.ControladorCompra;
 import controlador.ControladorConceptoLiq;
 import controlador.ControladorDomicilio;
+import controlador.ControladorLiquidacionSueldo;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
 import modelo.GestionConexion;
@@ -24,9 +25,9 @@ import modelo.GestionConexion;
 public class Principal extends javax.swing.JFrame {
 
     private GestionConexion conexion;
-    
+
     public Principal(GestionConexion c) {
-        conexion=c;
+        conexion = c;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -154,6 +155,11 @@ public class Principal extends javax.swing.JFrame {
         menuPersonal.setText("Personal");
 
         menuItLiqSdoPer.setText("Liqudacion Sueldo");
+        menuItLiqSdoPer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItLiqSdoPerActionPerformed(evt);
+            }
+        });
         menuPersonal.add(menuItLiqSdoPer);
 
         menuItGConPer.setText("Gestion de Conceptos");
@@ -242,52 +248,54 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItAltaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaProdActionPerformed
-       ControladorProducto contAlta= new ControladorProducto(conexion);
-       
+        ControladorProducto contAlta = new ControladorProducto(conexion);
+
     }//GEN-LAST:event_menuItAltaProdActionPerformed
 
     private void menuItNvaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaVentaActionPerformed
-        String user=laber_usuario.getText();
-        ControladorVenta venta = new ControladorVenta (conexion,user);
-        
+        String user = laber_usuario.getText();
+        ControladorVenta venta = new ControladorVenta(conexion, user);
+
     }
     /*
         windowNewVenta.setVisible(true);    }//GEN-LAST:event_menuItNvaVentaActionPerformed
 */
     private void menuItAltaPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItAltaPerActionPerformed
-        ControladorUsuario user= new ControladorUsuario(conexion);
-        
+        ControladorUsuario user = new ControladorUsuario(conexion);
+
     }//GEN-LAST:event_menuItAltaPerActionPerformed
 
     private void menuGestionProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGestionProvActionPerformed
-        ControladorProveedor prov = new ControladorProveedor (conexion);
+        ControladorProveedor prov = new ControladorProveedor(conexion);
     }//GEN-LAST:event_menuGestionProvActionPerformed
 
     private void menuIBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIBuscarPActionPerformed
-        BuscarProducto search= new BuscarProducto(conexion);
+        BuscarProducto search = new BuscarProducto(conexion);
     }//GEN-LAST:event_menuIBuscarPActionPerformed
 
     private void menuIGestionCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIGestionCliActionPerformed
-          ControladorCliente cliente= new ControladorCliente(this, conexion);
+        ControladorCliente cliente = new ControladorCliente(this, conexion);
     }//GEN-LAST:event_menuIGestionCliActionPerformed
 
     private void menuItNvaCpraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaCpraActionPerformed
         String user = laber_usuario.getText();
-        ControladorCompra compra = new ControladorCompra(conexion,user);
+        ControladorCompra compra = new ControladorCompra(conexion, user);
     }//GEN-LAST:event_menuItNvaCpraActionPerformed
 
     private void changePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassActionPerformed
         String user = laber_usuario.getText();
-        ModPass window=new ModPass(conexion,user);
+        ModPass window = new ModPass(conexion, user);
         window.setVisible(true);
     }//GEN-LAST:event_changePassActionPerformed
 
     private void menuAltaDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaDomicilioActionPerformed
-       ControladorDomicilio window = new ControladorDomicilio(conexion);
+        ControladorDomicilio window = new ControladorDomicilio(conexion);
     }//GEN-LAST:event_menuAltaDomicilioActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         this.dispose();
+        Login window = new Login(conexion);
+        window.setVisible(true);
     }//GEN-LAST:event_exitActionPerformed
 
     private void menuIAddCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIAddCatActionPerformed
@@ -295,8 +303,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuIAddCatActionPerformed
 
     private void menuItGConPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItGConPerActionPerformed
-        ControladorConceptoLiq concep=new ControladorConceptoLiq(conexion);
+        ControladorConceptoLiq concep = new ControladorConceptoLiq(conexion);
     }//GEN-LAST:event_menuItGConPerActionPerformed
+
+    private void menuItLiqSdoPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItLiqSdoPerActionPerformed
+        ControladorLiquidacionSueldo v1= new ControladorLiquidacionSueldo(conexion);
+    }//GEN-LAST:event_menuItLiqSdoPerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem changePass;

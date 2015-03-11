@@ -6,6 +6,7 @@
 package vistas;
 
 import controlador.BuscarDomicilio;
+import controlador.ControladorGrupoFamiliar;
 import controlador.ControladorUsuario;
 import modelo.Usuario;
 import java.awt.event.KeyEvent;
@@ -193,6 +194,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         );
 
         jButton2.setText("Administrar Grupo Familiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -397,6 +403,11 @@ public class GestionPersonal extends javax.swing.JFrame {
     private void btnCancelar_APerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar_APerActionPerformed
         this.limpiar();
     }//GEN-LAST:event_btnCancelar_APerActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int idUser=control.administrarGFamiliar(this);
+        ControladorGrupoFamiliar grFam=new ControladorGrupoFamiliar(connection,idUser);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

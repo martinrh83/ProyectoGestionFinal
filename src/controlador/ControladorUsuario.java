@@ -26,7 +26,7 @@ public class ControladorUsuario {
     private GestionPersonal window;
     private Usuario user;
     private DefaultTableModel modelo;
-
+    private ControladorGrupoFamiliar grFam;
     public ControladorUsuario(GestionConexion conn) {
         conexion = conn;
         user = new Usuario();
@@ -133,5 +133,20 @@ public class ControladorUsuario {
             JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+    
+    
+    public int administrarGFamiliar(GestionPersonal v1){
+        window=v1;
+        int id = 0;
+        int flag = window.getTablaUsuario().getSelectedRow();
+        if (flag > -1) {
+                String idUser = (String)window.getTablaUsuario().getModel().getValueAt(flag, 0);
+                id=Integer.valueOf(idUser);
+                
+                            
+            }
+         
+        return id;
     }
 }

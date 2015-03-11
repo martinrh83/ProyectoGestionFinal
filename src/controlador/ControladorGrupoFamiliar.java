@@ -25,14 +25,24 @@ public class ControladorGrupoFamiliar {
     private DefaultTableModel modelo;
     private GestionGrupoFamiliar window;
     private Familiar flia;
-
-    public ControladorGrupoFamiliar(GestionConexion conn) {
+    private int idUser;
+    public ControladorGrupoFamiliar(GestionConexion conn,Integer id) {
         conexion = conn;
+        idUser=id;
         flia = new Familiar();
         window = new GestionGrupoFamiliar(flia, this);
+        window.setVisible(true);
+        this.generarNumeracion();
+        this.mostrarDatosEmp(window);
+        this.mostrarFamiliares();
     }
-
-    public void buscarEmpleado(GestionGrupoFamiliar f) {
+    
+    public void mostrarDatosEmp(GestionGrupoFamiliar v1){
+    window=v1;
+    window.getTxtId_Personal().setText(""+idUser);
+    window.getTxtId_Personal().setEnabled(false);
+    }
+    /*public void buscarEmpleado(GestionGrupoFamiliar f) {
 
         window = f;
         int id = Integer.valueOf(window.getTxtId_Personal().getText());
@@ -54,13 +64,35 @@ public class ControladorGrupoFamiliar {
         
         window.getTxtnom_ap().setText(nom + " " + ap);
         window.getTxtdni_Personal().setText(d);
-    }
+    }*/
 
+    public void generarNumeracion() {
+        String sql = "SELECT max(idFamiliar) FROM familiar";
+        window.getTxt_idFam().setEnabled(false);
+        int c = 0;
+
+        try {
+            Statement st = conexion.getStatement();
+            ResultSet rs;
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                c = rs.getInt(1);
+            }
+            if (c == 0) {
+                window.getTxt_idFam().setText("1");
+            } else {
+                window.getTxt_idFam().setText("" + (c + 1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void mostrarFamiliares() {
-        String[] titulos = {"ID", "Nombre", "D.N.I.", "Parentesco", "Fec. Nac.", "Escalaridad", "Nacionalidad", "Est. Civil", "Discapacidad", "ID. Empleado"};
+        String[] titulos = {"ID", "Nombre", "D.N.I.", "Parentesco", "Fec. Nac.", "Escalaridad", "Nacionalidad", "Est. Civil", "Discapacidad","idEmpleado"};
         modelo = new DefaultTableModel(null, titulos);
         String datos[] = new String[10];
-        String sql = "SELECT * FROM  faliliar";
+        String sql = "SELECT * FROM  familiar where empleado_idEmpleado="+idUser+";";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -74,7 +106,7 @@ public class ControladorGrupoFamiliar {
                 datos[6] = rs.getString("nacionalidad");
                 datos[7] = rs.getString("estCivil");
                 datos[8] = rs.getString("discapacitado");
-                datos[9] = rs.getString("empleado_idEmpleado");
+                datos[9]=rs.getString("Empleado_idEmpleado");
 
                 modelo.addRow(datos);
             }
