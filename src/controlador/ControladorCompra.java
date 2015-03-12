@@ -215,7 +215,7 @@ public class ControladorCompra {
             Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        JOptionPane.showMessageDialog(null, "Se registro la compra.. SEA LIBRE!!! ");
+        JOptionPane.showMessageDialog(null, "Se registro la compra ");
     }
 
 }

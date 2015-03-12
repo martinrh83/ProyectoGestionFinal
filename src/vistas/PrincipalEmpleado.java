@@ -9,6 +9,7 @@ import controlador.BuscarProducto;
 import controlador.ControladorProducto;
 import controlador.ControladorUsuario;
 import controlador.ControladorCliente;
+import controlador.ControladorCompra;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
 import modelo.GestionConexion;
@@ -49,8 +50,12 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         menuItListVenta = new javax.swing.JMenuItem();
         menuCompra = new javax.swing.JMenu();
         menuItNvaCpra = new javax.swing.JMenuItem();
-        menuItNvaPedCpra = new javax.swing.JMenuItem();
         menuItListMCpra = new javax.swing.JMenuItem();
+        menuCliente = new javax.swing.JMenu();
+        menuIGestionCli = new javax.swing.JMenuItem();
+        menuUsuario = new javax.swing.JMenu();
+        changePass = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
 
         jMenuItem20.setText("jMenuItem20");
 
@@ -98,15 +103,49 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         menuCompra.setText("Compra");
 
         menuItNvaCpra.setText("Nueva");
+        menuItNvaCpra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItNvaCpraActionPerformed(evt);
+            }
+        });
         menuCompra.add(menuItNvaCpra);
 
-        menuItNvaPedCpra.setText("Nuevo Pedido");
-        menuCompra.add(menuItNvaPedCpra);
-
-        menuItListMCpra.setText("Listado Mes");
+        menuItListMCpra.setText("Listado");
         menuCompra.add(menuItListMCpra);
 
         jMenuBar1.add(menuCompra);
+
+        menuCliente.setText("Cliente");
+
+        menuIGestionCli.setText("Gestionar Cliente");
+        menuIGestionCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIGestionCliActionPerformed(evt);
+            }
+        });
+        menuCliente.add(menuIGestionCli);
+
+        jMenuBar1.add(menuCliente);
+
+        menuUsuario.setText("Mi Cuenta");
+
+        changePass.setText("Cambiar Contraseña");
+        changePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePassActionPerformed(evt);
+            }
+        });
+        menuUsuario.add(changePass);
+
+        exit.setText("Cerrar Sesión");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        menuUsuario.add(exit);
+
+        jMenuBar1.add(menuUsuario);
 
         setJMenuBar(jMenuBar1);
 
@@ -118,7 +157,7 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(laber_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 364, Short.MAX_VALUE))
+                .addGap(0, 249, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,21 +188,46 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         BuscarProducto search= new BuscarProducto(conexion);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void menuIGestionCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIGestionCliActionPerformed
+        ControladorCliente cliente = new ControladorCliente(this, conexion);
+    }//GEN-LAST:event_menuIGestionCliActionPerformed
+
+    private void changePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassActionPerformed
+        String user = laber_usuario.getText();
+        ModPass window = new ModPass(conexion, user);
+        window.setVisible(true);
+    }//GEN-LAST:event_changePassActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        this.dispose();
+        Login window = new Login(conexion);
+        window.setVisible(true);
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void menuItNvaCpraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItNvaCpraActionPerformed
+        String user = laber_usuario.getText();
+        ControladorCompra compra = new ControladorCompra(conexion, user);
+    }//GEN-LAST:event_menuItNvaCpraActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem changePass;
+    private javax.swing.JMenuItem exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem24;
     public javax.swing.JLabel laber_usuario;
+    private javax.swing.JMenu menuCliente;
     private javax.swing.JMenu menuCompra;
+    private javax.swing.JMenuItem menuIGestionCli;
     private javax.swing.JMenuItem menuItAltaProd;
     private javax.swing.JMenuItem menuItListMCpra;
     private javax.swing.JMenuItem menuItListVenta;
     private javax.swing.JMenuItem menuItNvaCpra;
-    private javax.swing.JMenuItem menuItNvaPedCpra;
     private javax.swing.JMenuItem menuItNvaVenta;
     private javax.swing.JMenu menuProducto;
+    private javax.swing.JMenu menuUsuario;
     private javax.swing.JMenu menuVenta;
     // End of variables declaration//GEN-END:variables
 }

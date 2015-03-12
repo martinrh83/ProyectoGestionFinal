@@ -166,10 +166,11 @@ public class ModPass extends javax.swing.JFrame {
             }
             if (pass.equals(oldPass)) {
                 if (newPass.equals(newCpass)) {
-                    String query = "UPDATE empleado SET pass='" + newCpass + "' ;";
+                    String query = "UPDATE empleado SET pass='" + newCpass + "' where user='"+user+"' ;";
                     try {
 
                         st.executeUpdate(query);
+                        JOptionPane.showMessageDialog(null, "Se ha cambiado su contraseña correctamente"); 
                     } catch (Exception e) {
                     }
                 }
@@ -184,7 +185,8 @@ public class ModPass extends javax.swing.JFrame {
             Logger.getLogger(ModPass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-       JOptionPane.showMessageDialog(null, "Se ha cambiado su contraseña correctamente"); 
+       
+       this.dispose();
     }//GEN-LAST:event_btn_ChangeActionPerformed
 
     private void btn_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_outActionPerformed

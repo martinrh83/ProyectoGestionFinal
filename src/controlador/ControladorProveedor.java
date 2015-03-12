@@ -157,7 +157,7 @@ public class ControladorProveedor {
                     "WHERE idProveedor = " + proveedor.getIdProveedor() + ";";
             Statement st = conexion.getStatement();
             st.executeUpdate(qquery);
-            JOptionPane.showMessageDialog(window, "El proveedor fue modificado.. sea feliz XD  ");
+            JOptionPane.showMessageDialog(window, "El proveedor fue modificado");
             System.out.println("Proveedor Modificado");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorProveedor.class.getName()).log(Level.SEVERE, null, ex);

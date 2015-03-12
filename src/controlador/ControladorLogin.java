@@ -47,7 +47,7 @@ public class ControladorLogin {
                 
                 ingreso.laber_usuario.setText(usuario);
                 log.dispose();
-                    // ventanaadmin.lblusu.setText(usuario);
+                    
 
             }
             if (cap.equals("Empleado")) {

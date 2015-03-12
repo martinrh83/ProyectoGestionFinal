@@ -66,16 +66,52 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nueva"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItNvaPedCpra">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nuevo Pedido"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItNvaCpraActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItListMCpra">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listado Mes"/>
+                <Property name="text" type="java.lang.String" value="Listado"/>
               </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuCliente">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cliente"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuIGestionCli">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gestionar Cliente"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuIGestionCliActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuUsuario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Mi Cuenta"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="changePass">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cambiar Contrase&#xf1;a"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePassActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="exit">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -109,7 +145,7 @@
               <Component id="jLabel1" min="-2" pref="49" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="laber_usuario" min="-2" pref="66" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="364" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="249" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

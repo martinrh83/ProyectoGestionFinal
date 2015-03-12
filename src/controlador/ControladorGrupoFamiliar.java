@@ -42,29 +42,6 @@ public class ControladorGrupoFamiliar {
     window.getTxtId_Personal().setText(""+idUser);
     window.getTxtId_Personal().setEnabled(false);
     }
-    /*public void buscarEmpleado(GestionGrupoFamiliar f) {
-
-        window = f;
-        int id = Integer.valueOf(window.getTxtId_Personal().getText());
-        String nom = "";
-        String ap = "";
-        String d = "";
-        try {
-            String sql = "SELECT nombre, apellido, dni FROM empleado WHERE " + id + "= idEmpleado";
-            Statement st = conexion.getStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                nom = rs.getString("nombre");
-                ap = rs.getString("apellido");
-                d = rs.getString("dni");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorGrupoFamiliar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        window.getTxtnom_ap().setText(nom + " " + ap);
-        window.getTxtdni_Personal().setText(d);
-    }*/
 
     public void generarNumeracion() {
         String sql = "SELECT max(idFamiliar) FROM familiar";

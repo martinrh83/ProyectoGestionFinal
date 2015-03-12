@@ -17,6 +17,7 @@ import modelo.GestionConexion;
 import vistas.GestionCliente;
 import vistas.ModCliente;
 import vistas.Principal;
+import vistas.PrincipalEmpleado;
 
 /**
  *
@@ -37,7 +38,16 @@ public class ControladorCliente {
         Generarnumeracion();
         mostrarClientes();
     }
-
+    
+     public ControladorCliente(PrincipalEmpleado principal, GestionConexion conexion) {
+        this.conn = conexion;
+        this.cliente = new Cliente();
+        altacli = new GestionCliente(principal, true, this, cliente);
+        altacli.setVisible(true);
+        Generarnumeracion();
+        mostrarClientes();
+    }
+     
     public void Generarnumeracion() {
         String SQL = "SELECT max(idCliente) FROM cliente";
 
@@ -174,7 +184,7 @@ public class ControladorCliente {
                     + "WHERE idCliente = " + cliente.getIdCliente() + ";";
             Statement st = conn.getStatement();
             st.executeUpdate(qquery);
-            JOptionPane.showMessageDialog(altacli, "El Cliente fue modificado.. sea feliz XD  ");
+            JOptionPane.showMessageDialog(altacli, "El Cliente fue modificado ");
             System.out.println("Proveedor Modificado");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorCliente.class.getName()).log(Level.SEVERE, null, ex);
