@@ -234,7 +234,7 @@ public class ModConcepto extends javax.swing.JFrame {
      
         concepto.setIdConcepto(Integer.valueOf(txtCodigo_con_mod.getText()));
         concepto.setDescripcion(txtDescripcion_mod.getText());
-        concepto.setImporte(Integer.valueOf(txtImporte_conc_mod.getText()));
+        concepto.setImporte(Float.valueOf(txtImporte_conc_mod.getText()));
     
         if (op_Haber_mod.isSelected()){
             concepto.setTipo_concepto(op_Haber_mod.getText());

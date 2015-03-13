@@ -101,6 +101,7 @@ public class GestionGrupoFamiliar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Grupo Familiar");
         setBackground(new java.awt.Color(16, 165, 117));
+        setResizable(false);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Familiares a Cargo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
 

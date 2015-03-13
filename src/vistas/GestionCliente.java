@@ -86,6 +86,7 @@ public class GestionCliente extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         lblnomyap.setText("Nombre y Apellido ");
 

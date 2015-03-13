@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681996f4-3fa3-419e-9445-6a8ef042808b">
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     concepto_liquidacion.`tipoConcepto` AS concepto_liquidacion_tipoConcepto,
+     linea_de_liquidacion.`descripcion` AS linea_de_liquidacion_descripcion,
+     linea_de_liquidacion.`subtotal` AS linea_de_liquidacion_subtotal,
+     linea_de_liquidacion.`concepto_liquidacion_idConcepto` AS linea_de_liquidacion_concepto_liquidacion_idConcepto,
+     sueldo.`idSueldo` AS sueldo_idSueldo,
+     sueldo.`perAbonado` AS sueldo_perAbonado,
+     sueldo.`fechaPago` AS sueldo_fechaPago,
+     sueldo.`lugarPago` AS sueldo_lugarPago,
+     sueldo.`contratacion` AS sueldo_contratacion,
+     sueldo.`sdoNeto` AS sueldo_sdoNeto,
+     empleado.`nombre` AS empleado_nombre,
+     empleado.`apellido` AS empleado_apellido,
+     empleado.`dni` AS empleado_dni,
+     empleado.`tipo` AS empleado_tipo,
+     empleado.`fechaIngreso` AS empleado_fechaIngreso,
+     sueldo.`empleado_idEmpleado` AS sueldo_empleado_idEmpleado
+FROM
+     `sueldo` sueldo INNER JOIN `empleado` empleado ON sueldo.`empleado_idEmpleado` = empleado.`idEmpleado`
+     INNER JOIN `linea_de_liquidacion` linea_de_liquidacion ON sueldo.`idSueldo` = linea_de_liquidacion.`sueldo_idSueldo`
+     INNER JOIN `concepto_liquidacion` concepto_liquidacion ON linea_de_liquidacion.`concepto_liquidacion_idConcepto` = concepto_liquidacion.`idConcepto`
+WHERE
+     sueldo.`idSueldo` = 3500]]>
+	</queryString>
+	<field name="sueldo_idSueldo" class="java.lang.Integer"/>
+	<field name="sueldo_perAbonado" class="java.lang.String"/>
+	<field name="sueldo_fechaPago" class="java.lang.String"/>
+	<field name="sueldo_lugarPago" class="java.lang.String"/>
+	<field name="empleado_nombre" class="java.lang.String"/>
+	<field name="empleado_apellido" class="java.lang.String"/>
+	<field name="empleado_dni" class="java.lang.Integer"/>
+	<field name="empleado_tipo" class="java.lang.String"/>
+	<field name="sueldo_contratacion" class="java.lang.String"/>
+	<field name="concepto_liquidacion_tipoConcepto" class="java.lang.String"/>
+	<field name="linea_de_liquidacion_descripcion" class="java.lang.String"/>
+	<field name="linea_de_liquidacion_subtotal" class="java.lang.Integer"/>
+	<field name="linea_de_liquidacion_concepto_liquidacion_idConcepto" class="java.lang.Integer"/>
+	<field name="empleado_fechaIngreso" class="java.lang.String"/>
+	<field name="sueldo_empleado_idEmpleado" class="java.lang.Integer"/>
+	<field name="sueldo_sdoNeto" class="java.lang.Float"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126" uuid="997c290b-3e46-4f1e-98a2-b9054cd882a4"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="5d37d72b-6b65-47fa-9ddb-c494a7891769"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="196" height="22" uuid="161c0ac1-5d0b-4b62-b8a1-87d71531f1cf"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42" uuid="9bbd130f-4c12-4182-9985-39a615128dd2"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="433" y="-115" width="267" height="209" uuid="98066e13-fe12-4d45-ad21-102f92937b78"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="0a8558e1-e2ed-4c4e-bee0-8f776a2d2f11"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="34" height="15" forecolor="#736343" uuid="4fd25c0d-fa87-49a3-afe1-24e3f0f0d533"/>
+				<text><![CDATA[sueldo_idSueldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="34" y="0" width="34" height="15" forecolor="#736343" uuid="b8467d28-9d04-4183-b8d5-cc72f9c82f44"/>
+				<text><![CDATA[sueldo_perAbonado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="68" y="0" width="34" height="15" forecolor="#736343" uuid="9578543e-4017-431a-8e46-f22e311d004b"/>
+				<text><![CDATA[sueldo_fechaPago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="102" y="0" width="34" height="15" forecolor="#736343" uuid="950ecc11-9636-4abd-8a2c-68fddd3d0085"/>
+				<text><![CDATA[sueldo_lugarPago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="136" y="0" width="34" height="15" forecolor="#736343" uuid="273e305c-5506-46cb-a8c7-2c62290108dc"/>
+				<text><![CDATA[empleado_nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="170" y="0" width="34" height="15" forecolor="#736343" uuid="96541ac8-3fc5-4391-9411-46c18b9a13c9"/>
+				<text><![CDATA[empleado_apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="204" y="0" width="34" height="15" forecolor="#736343" uuid="fc2b0f7d-31d1-4339-a0fc-a7c6161920fe"/>
+				<text><![CDATA[empleado_dni]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="238" y="0" width="34" height="15" forecolor="#736343" uuid="72f9dc37-f8d3-4dc1-a0e1-8b787cb56fb4"/>
+				<text><![CDATA[empleado_tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="272" y="0" width="34" height="15" forecolor="#736343" uuid="cc476357-04ad-485a-be59-a5e619a15f5b"/>
+				<text><![CDATA[sueldo_contratacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="306" y="0" width="34" height="15" forecolor="#736343" uuid="41e905ef-f158-4118-a3a0-c70a2caf4c3c"/>
+				<text><![CDATA[concepto_liquidacion_tipoConcepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="340" y="0" width="34" height="15" forecolor="#736343" uuid="b3cc1a9f-0440-47a3-ab1d-5075cc28ed92"/>
+				<text><![CDATA[linea_de_liquidacion_descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="374" y="0" width="34" height="15" forecolor="#736343" uuid="0b85c94e-da64-4474-8e45-bae4a184e0e8"/>
+				<text><![CDATA[linea_de_liquidacion_subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="408" y="0" width="34" height="15" forecolor="#736343" uuid="8e14ba0f-d583-46c2-a72a-bb542b0a5295"/>
+				<text><![CDATA[linea_de_liquidacion_concepto_liquidacion_idConcepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="442" y="0" width="34" height="15" forecolor="#736343" uuid="d0031815-71f8-4ce0-93ee-303738c663f3"/>
+				<text><![CDATA[empleado_fechaIngreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="476" y="0" width="34" height="15" forecolor="#736343" uuid="da758420-0a60-41f3-8144-e8178a4c6fb5"/>
+				<text><![CDATA[sueldo_empleado_idEmpleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="510" y="0" width="34" height="15" forecolor="#736343" uuid="5a04c783-e740-4903-8509-97fda4dacfc2"/>
+				<text><![CDATA[sueldo_sdoNeto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="6ce5fbd9-2127-49b2-85be-b9d3af0db462"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="34" height="15" uuid="aa96ac03-0766-4afe-a07a-77222204f046"/>
+					<textFieldExpression><![CDATA[$F{sueldo_idSueldo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="34" y="0" width="34" height="15" uuid="b50d4666-4c9a-4192-9f57-9ab5e5f0279c"/>
+					<textFieldExpression><![CDATA[$F{sueldo_perAbonado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="68" y="0" width="34" height="15" uuid="be0349a6-318a-4c03-a8cf-23022f8b8fe9"/>
+					<textFieldExpression><![CDATA[$F{sueldo_fechaPago}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="102" y="0" width="34" height="15" uuid="1aaca451-49ca-4a18-861f-6712a5103783"/>
+					<textFieldExpression><![CDATA[$F{sueldo_lugarPago}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="136" y="0" width="34" height="15" uuid="d497b614-c4a0-4063-9475-b36b2678bcd2"/>
+					<textFieldExpression><![CDATA[$F{empleado_nombre}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="170" y="0" width="34" height="15" uuid="834ea9dd-f17b-4e60-b565-3aeb12acc3d8"/>
+					<textFieldExpression><![CDATA[$F{empleado_apellido}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="204" y="0" width="34" height="15" uuid="08327ae2-34b0-4478-aa56-00cb384fe0e2"/>
+					<textFieldExpression><![CDATA[$F{empleado_dni}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="238" y="0" width="34" height="15" uuid="c97e768f-7b2d-4bf0-906a-57a469988e7d"/>
+					<textFieldExpression><![CDATA[$F{empleado_tipo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="272" y="0" width="34" height="15" uuid="395a3126-c733-4d9a-b50a-290da98eab08"/>
+					<textFieldExpression><![CDATA[$F{sueldo_contratacion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="306" y="0" width="34" height="15" uuid="26b79a92-6f8a-4357-915a-367cbf9f2f68"/>
+					<textFieldExpression><![CDATA[$F{concepto_liquidacion_tipoConcepto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="340" y="0" width="34" height="15" uuid="cd97de06-33d1-4d7f-9c78-cb28b2540aad"/>
+					<textFieldExpression><![CDATA[$F{linea_de_liquidacion_descripcion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="374" y="0" width="34" height="15" uuid="c3b7748b-54de-4425-adde-2c503aaf8d48"/>
+					<textFieldExpression><![CDATA[$F{linea_de_liquidacion_subtotal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="408" y="0" width="34" height="15" uuid="d353ab02-308e-4178-bd53-5171127ecf55"/>
+					<textFieldExpression><![CDATA[$F{linea_de_liquidacion_concepto_liquidacion_idConcepto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="442" y="0" width="34" height="15" uuid="425084ac-5ef0-4b8d-b479-23f20f845bdb"/>
+					<textFieldExpression><![CDATA[$F{empleado_fechaIngreso}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="476" y="0" width="34" height="15" uuid="e08debe4-985b-4c33-930e-b112c0375b69"/>
+					<textFieldExpression><![CDATA[$F{sueldo_empleado_idEmpleado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="510" y="0" width="34" height="15" uuid="b3f1e383-dfb7-4506-b550-213612055579"/>
+					<textFieldExpression><![CDATA[$F{sueldo_sdoNeto}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="58ea7a71-2190-4336-9be5-c2c274340e40"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="6b1fed45-e2b2-4dea-821a-8f5d8db354ba"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343" uuid="fd668689-c357-4c41-8aaf-4b051ee04bdc"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343" uuid="ada47ea1-50ae-441b-aa17-53426df68981"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="c849f074-6a78-4b6d-8989-658f109254df"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

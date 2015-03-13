@@ -79,6 +79,7 @@ public class AltaProducto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alta Producto");
+        setResizable(false);
 
         jLabel1.setText("Codigo");
 

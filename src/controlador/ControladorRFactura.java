@@ -59,4 +59,20 @@ public class ControladorRFactura {
         }
         
     }
+    
+     public void ejecutarReporteLiquidacion(String ds){
+        try {
+            String dir="C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\ReciboSueldo.jrxml";
+            JasperReport reporteJasper=JasperCompileManager.compileReport(dir);
+            int idSearch=Integer.valueOf(ds);
+            Map parametro=new HashMap();
+            parametro.put("idSueldo", idSearch);
+            
+        JasperPrint jasperPrint = JasperFillManager.fillReport(reporteJasper, parametro, conexion.getConnection());
+        JasperViewer.viewReport(jasperPrint);
+        } catch (JRException ex) {
+            Logger.getLogger(ControladorRFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

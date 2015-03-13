@@ -45,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem24 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         laber_usuario = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuProducto = new javax.swing.JMenu();
         menuItAltaProd = new javax.swing.JMenuItem();
@@ -74,10 +75,25 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem24.setText("jMenuItem24");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Usuario:");
 
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
         menuProducto.setText("Producto");
+        menuProducto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         menuItAltaProd.setLabel("Alta");
         menuItAltaProd.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +122,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(menuProducto);
 
         menuVenta.setText("Venta");
+        menuVenta.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         menuItNvaVenta.setText("Nueva");
         menuItNvaVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +138,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(menuVenta);
 
         menuCompra.setText("Compra");
+        menuCompra.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         menuItNvaCpra.setText("Nueva");
         menuItNvaCpra.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +154,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(menuCompra);
 
         menuProveedor.setText("Proveedores");
+        menuProveedor.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         menuGestionProv.setText("Gestion de Proveedor");
         menuGestionProv.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +167,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(menuProveedor);
 
         menuPersonal.setText("Personal");
+        menuPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         menuItLiqSdoPer.setText("Liqudacion Sueldo");
         menuItLiqSdoPer.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +204,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(menuPersonal);
 
         menuCliente.setText("Cliente");
+        menuCliente.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         menuIGestionCli.setText("Gestionar Cliente");
         menuIGestionCli.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +217,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(menuCliente);
 
         menuUsuario.setText("Mi Cuenta");
+        menuUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
 
         changePass.setText("Cambiar Contraseña");
         changePass.addActionListener(new java.awt.event.ActionListener() {
@@ -225,12 +247,14 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(laber_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 364, Short.MAX_VALUE))
+                .addGap(0, 616, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 249, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(laber_usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -309,6 +333,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JLabel laber_usuario;
     private javax.swing.JMenuItem menuAltaDomicilio;
     private javax.swing.JMenu menuCliente;

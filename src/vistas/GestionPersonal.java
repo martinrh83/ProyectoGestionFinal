@@ -77,6 +77,7 @@ public class GestionPersonal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Personal");
+        setResizable(false);
 
         jLabel1.setText("ID usuario:");
 
