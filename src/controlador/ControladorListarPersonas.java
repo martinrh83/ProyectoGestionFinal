@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.GestionConexion;
@@ -27,10 +28,10 @@ public class ControladorListarPersonas {
     private DefaultTableModel modelo;
     private AltaDomicilio domic;
 
-    public ControladorListarPersonas(AltaDomicilio dom,GestionConexion conn) {
+    public ControladorListarPersonas(AltaDomicilio dom, GestionConexion conn) {
         conexion = conn;
-        domic=dom;
-        persona = new ListarPersona(conexion, this,domic);
+        domic = dom;
+        persona = new ListarPersona(conexion, this, domic);
         persona.setVisible(true);
     }
 
@@ -105,35 +106,42 @@ public class ControladorListarPersonas {
     public String obtenerID(String person) {
         switch (person) {
             case "Empleado":
-                String idEmpleado ="";
+                String idEmpleado = "";
                 int flagE = persona.getTb_Person().getSelectedRow();
 
                 if (flagE > -1) {
                     idEmpleado = (String) persona.getTb_Person().getModel().getValueAt(flagE, 0);
+                    persona.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
                 }
-                return "Empleado:"+idEmpleado;
+                return "Empleado:" + idEmpleado;
 
             case "Cliente":
-                String idCliente="";
+                String idCliente = "";
                 int flagC = persona.getTb_Person().getSelectedRow();
 
                 if (flagC > -1) {
                     idCliente = (String) persona.getTb_Person().getModel().getValueAt(flagC, 0);
+                    persona.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
                 }
-                return "Cliente:"+idCliente;
-                
+                return "Cliente:" + idCliente;
 
             case "Proveedor":
-                String idProveedor="";
+                String idProveedor = "";
                 int flagP = persona.getTb_Person().getSelectedRow();
 
                 if (flagP > -1) {
                     idProveedor = (String) persona.getTb_Person().getModel().getValueAt(flagP, 0);
+                    persona.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
                 }
-                return "Proveedor:"+idProveedor;
+                return "Proveedor:" + idProveedor;
         }
         return null;
-        
 
     }
 

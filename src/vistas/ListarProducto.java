@@ -6,7 +6,9 @@
 package vistas;
 
 import controlador.BuscarProducto;
-import controlador.ControladorProducto;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import modelo.GestionConexion;
 
@@ -32,6 +34,14 @@ public class ListarProducto extends javax.swing.JFrame {
 
     public void limpiar() {
         txtName_LProd.setText(null);
+    }
+
+    public JTable getTablaProducto() {
+        return tablaProducto;
+    }
+
+    public void setTablaProducto(JTable tablaProducto) {
+        this.tablaProducto = tablaProducto;
     }
 
     @SuppressWarnings("unchecked")
@@ -189,13 +199,17 @@ public class ListarProducto extends javax.swing.JFrame {
     private void btnEdit_LProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_LProdActionPerformed
         ModProducto window = new ModProducto(conexion);
         window.setVisible(true);
-        control.modificarProd(window);
         control.llenarCB(window);
-        
+        try {
+            control.modificarProd(window);
+        } catch (ParseException ex) {
+            Logger.getLogger(ListarProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEdit_LProdActionPerformed
 
     private void btnDelete_LProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete_LProdActionPerformed
         control.eliminarProd(tablaProducto);
+        control.busquedaPredictiva(null, tablaProducto);
     }//GEN-LAST:event_btnDelete_LProdActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -219,7 +233,6 @@ public class ListarProducto extends javax.swing.JFrame {
 
     private void rb_BusCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_BusCatActionPerformed
         if (rb_BusCat.isSelected()) {
-            
             this.limpiar();
             cmbCat_LProd.setEnabled(true);
             btnBuscar.setEnabled(true);
@@ -241,13 +254,5 @@ public class ListarProducto extends javax.swing.JFrame {
     private javax.swing.JTable tablaProducto;
     private javax.swing.JTextField txtName_LProd;
     // End of variables declaration//GEN-END:variables
-
-    public JTable getTablaProducto() {
-        return tablaProducto;
-    }
-
-    public void setTablaProducto(JTable tablaProducto) {
-        this.tablaProducto = tablaProducto;
-    }
 
 }

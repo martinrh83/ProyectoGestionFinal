@@ -48,7 +48,6 @@ public class ListarPersona extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_Person = new javax.swing.JTable();
         btn_AcepPerson = new javax.swing.JButton();
-        btn_Exit = new javax.swing.JButton();
         btn_BuscarPersona = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,13 +71,6 @@ public class ListarPersona extends javax.swing.JFrame {
         btn_AcepPerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_AcepPersonActionPerformed(evt);
-            }
-        });
-
-        btn_Exit.setText("Salir");
-        btn_Exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ExitActionPerformed(evt);
             }
         });
 
@@ -107,12 +99,10 @@ public class ListarPersona extends javax.swing.JFrame {
                         .addComponent(btn_BuscarPersona)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btn_AcepPerson)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,11 +114,9 @@ public class ListarPersona extends javax.swing.JFrame {
                     .addComponent(btn_BuscarPersona))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_AcepPerson)
-                    .addComponent(btn_Exit))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(btn_AcepPerson)
+                .addContainerGap())
         );
 
         pack();
@@ -141,19 +129,14 @@ public class ListarPersona extends javax.swing.JFrame {
 
     private void btn_AcepPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AcepPersonActionPerformed
         String persona = cmb_buscarPer.getSelectedItem().toString();
-        String id=control.obtenerID(persona);
+        String id = control.obtenerID(persona);
         domic.getTxt_person().setText(id);
     }//GEN-LAST:event_btn_AcepPersonActionPerformed
-
-    private void btn_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExitActionPerformed
-       this.dispose();
-    }//GEN-LAST:event_btn_ExitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_AcepPerson;
     private javax.swing.JButton btn_BuscarPersona;
-    private javax.swing.JButton btn_Exit;
     private javax.swing.JComboBox cmb_buscarPer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

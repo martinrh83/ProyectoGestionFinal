@@ -31,7 +31,7 @@ public class ControladorVenta {
     private Venta venta;
 
     String datos[] = new String[7];
-    String[] titulos = {"Codigo", "Nombre", "Descripción", "Marca", "Cantidad", "Precio","Subtotal"};
+    String[] titulos = {"Codigo", "Nombre", "Descripción", "Marca", "Cantidad", "Precio", "Subtotal"};
 
     public ControladorVenta(GestionConexion conn, String us) {
         conexion = conn;
@@ -78,14 +78,19 @@ public class ControladorVenta {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     public void obtenerFecha(JTextField fecha) {
         Calendar Cal = Calendar.getInstance();
-        String fec = Cal.get(Cal.YEAR) + "-" + (Cal.get(Cal.MONTH) + 1) + "-" + Cal.get(Cal.DATE) + " " + Cal.get(Cal.HOUR_OF_DAY) + ":" + Cal.get(Cal.MINUTE) + ":" + Cal.get(Cal.SECOND);
+        int nroMes = Cal.get(Cal.MONTH) + 1;
+        String mes = "";
+        if (nroMes <= 9) {
+            mes = "0" + nroMes;
+        }
+        String fec = Cal.get(Cal.DATE) + "/" + mes + "/" + Cal.get(Cal.YEAR)/* + " " + Cal.get(Cal.HOUR_OF_DAY) + ":" + Cal.get(Cal.MINUTE) + ":" + Cal.get(Cal.SECOND)*/;
 
         fecha.setText(fec);
         fecha.setEnabled(false);
@@ -93,7 +98,7 @@ public class ControladorVenta {
 
     public void agregarCarrito(int codigo, JTable tVenta, String cant) {
 
-        String sql = "SELECT * FROM  producto WHERE idProducto=" + codigo + "";
+        String sql = "SELECT * FROM  producto WHERE idProducto=" + codigo + " AND cantidad >=" + cant + ";";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -104,13 +109,39 @@ public class ControladorVenta {
                 datos[3] = rs.getString("marca");
                 datos[4] = cant;
                 datos[5] = rs.getString("pcioMin");
-                datos[6] =""+Integer.valueOf(cant)*Integer.valueOf(datos[5]);
+                datos[6] = "" + Integer.valueOf(cant) * Integer.valueOf(datos[5]);
                 modelo.addRow(datos);
             }
+
             tVenta.setModel(modelo);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void quitarFila(JTable tabla) {
+        try {
+            modelo = (DefaultTableModel) tabla.getModel();
+            modelo.removeRow(tabla.getSelectedRow());
+            tabla.addRowSelectionInterval(0, 0);
+            modelo = null;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccione la fila que desea quitar.");
+        }
+    }
+
+    public void disminuirSubtotal(NuevaVenta tVenta) {
+        int flag = tVenta.getTbVenta().getSelectedRow();
+        if (flag > -1) {
+
+            String sub = (String) tVenta.getTbVenta().getModel().getValueAt(flag, 6);
+            float subtotal = Float.valueOf(sub);
+            float importe = Float.valueOf(tVenta.getTxtTotal_Venta().getText());
+            float total = importe - subtotal;
+            tVenta.getTxtTotal_Venta().setText("" + total);
+
         }
 
     }
@@ -123,24 +154,24 @@ public class ControladorVenta {
         for (int i = 0; i < tbVenta.getRowCount(); i++) {
             codigo = Integer.valueOf(tbVenta.getValueAt(i, 0).toString());
             int cantidad = Integer.valueOf(tbVenta.getValueAt(i, 4).toString());
-        String consul = "SELECT * FROM producto WHERE  idProducto=" + codigo + "";
-        try {
-            Statement st = conexion.getStatement();
-            ResultSet rs = st.executeQuery(consul);
-            while (rs.next()) {
-                stockPast = rs.getInt(5);
-            }
+            String consul = "SELECT * FROM producto WHERE  idProducto=" + codigo + "";
+            try {
+                Statement st = conexion.getStatement();
+                ResultSet rs = st.executeQuery(consul);
+                while (rs.next()) {
+                    stockPast = rs.getInt(5);
+                }
 
-        } catch (Exception e) {
+            } catch (Exception e) {
+            }
+            stockFinal = stockPast - cantidad;
+            String query = "UPDATE producto SET cantidad=" + stockFinal + " WHERE idProducto = " + codigo + "";
+            try {
+                Statement st = conexion.getStatement();
+                st.executeUpdate(query);
+            } catch (Exception e) {
+            }
         }
-        stockFinal = stockPast - cantidad;
-        String query = "UPDATE producto SET cantidad=" + stockFinal + " WHERE idProducto = " + codigo + "";
-        try {
-            Statement st = conexion.getStatement();
-            st.executeUpdate(query);
-        } catch (Exception e) {
-        }
-       }
     }
 
     public void agregarLVenta(JTable tVenta, JTextField idVenta) {
@@ -156,7 +187,7 @@ public class ControladorVenta {
                 String sql = "INSERT INTO Linea_de_Venta(cantidad,subtotal,producto_idProducto,venta_idVenta) VALUES (" + cantidad + "," + subtotal + "," + codprod + "," + id + ")";
                 conexion.getStatement().executeUpdate(sql);
             } catch (SQLException ex) {
-                Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorVenta.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -178,7 +209,6 @@ public class ControladorVenta {
 
             importe = precio * cantidad;
             subtotal = subtotal + importe;
-            
 
         }
         venta.getTxtTotal_Venta().setText("" + subtotal);
@@ -188,16 +218,17 @@ public class ControladorVenta {
     public void grabarVenta() {
         try {
             conexion.getStatement().executeUpdate("INSERT INTO venta (idVenta,fechaVta,tipoVta,impTotal,empleado_idEmpleado,cliente_idCliente)"
-                    + "VALUES (" + venta.getIdVenta() + ",'" 
-                    + venta.getFechaVta() + "','" 
-                    + venta.getTipoVta() + "'," 
-                    + venta.getImpTotal()+ "," 
+                    + "VALUES (" + venta.getIdVenta() + ",'"
+                    + venta.getFechaVta() + "','"
+                    + venta.getTipoVta() + "',"
+                    + venta.getImpTotal() + ","
                     + venta.getUsuario_idUsuario() + ","
                     + venta.getCliente_idCliente() + ");");
         } catch (SQLException ex) {
-            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         JOptionPane.showMessageDialog(null, "Se registro la venta");
+
     }
 }

@@ -321,7 +321,7 @@ public class ControladorLiquidacionSueldo {
         window = v1;
         for (int i = 0; i < window.getTablaSueldo().getRowCount(); i++) {
             String descripcion = window.getTablaSueldo().getValueAt(i, 0).toString();
-            int subtotal = Integer.valueOf(window.getTablaSueldo().getValueAt(i, 1).toString());
+            float subtotal = Float.valueOf(window.getTablaSueldo().getValueAt(i, 1).toString());
             int idConcepto = Integer.valueOf(window.getTablaSueldo().getValueAt(i, 2).toString());
             int idSueldo = Integer.valueOf(window.getTxtSueldo().getText());
 

@@ -148,9 +148,9 @@ public class NuevaCompra extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btn_ConfComp.setText("Confirmar Compra");
-        btn_ConfComp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ConfCompActionPerformed(evt);
+        btn_ConfComp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_ConfCompMousePressed(evt);
             }
         });
 
@@ -275,9 +275,9 @@ public class NuevaCompra extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_DeleteLCpra)
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_TotCpra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_TotCpra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -320,22 +320,6 @@ public class NuevaCompra extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_SalirCompActionPerformed
 
-    private void btn_ConfCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConfCompActionPerformed
-       
-        compra.setIdCompra(Integer.valueOf(txt_NumCpra.getText()));
-        compra.setFecCompra(txt_FecCpra.getText());
-        compra.setImpTotal(Float.valueOf(txt_TotCpra.getText()));
-        compra.setUsuario_idUsuario(Integer.valueOf(label_id.getText()));
-        String datos=cmb_ProvNvaCpra.getSelectedItem().toString();        
-        String[] parts = datos.split(":"); 
-        String part1 = parts[0];
-        compra.setProveedor_idProveedor(Integer.valueOf(part1));
-        
-        control.aumentarStock(tbCpra);
-        control.agregarLCompra(tbCpra, txt_NumCpra);
-        control.guardarCompra();
-    }//GEN-LAST:event_btn_ConfCompActionPerformed
-
     private void btnBusProdLCpraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusProdLCpraActionPerformed
         int codigo = Integer.valueOf(txtCodProd.getText());
         String cant = txtCant.getText();
@@ -348,6 +332,23 @@ public class NuevaCompra extends javax.swing.JFrame {
          jasper=new ControladorRFactura(conexion);
        jasper.ejecutarReporteCompra(idComp);
     }//GEN-LAST:event_btn_ComprobanteActionPerformed
+
+    private void btn_ConfCompMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfCompMousePressed
+        compra.setIdCompra(Integer.valueOf(txt_NumCpra.getText()));
+        compra.setFecCompra(txt_FecCpra.getText());
+        compra.setImpTotal(Float.valueOf(txt_TotCpra.getText()));
+        compra.setUsuario_idUsuario(Integer.valueOf(label_id.getText()));
+        String datos=cmb_ProvNvaCpra.getSelectedItem().toString();        
+        String[] parts = datos.split(":"); 
+        String part1 = parts[0];
+        compra.setProveedor_idProveedor(Integer.valueOf(part1));
+        
+        control.aumentarStock(tbCpra);
+        control.agregarLCompra(tbCpra, txt_NumCpra);
+        control.guardarCompra();
+        
+        btn_ConfComp.setEnabled(false);
+    }//GEN-LAST:event_btn_ConfCompMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusProdLCpra;

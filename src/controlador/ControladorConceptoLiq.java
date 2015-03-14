@@ -45,20 +45,16 @@ public class ControladorConceptoLiq {
 
         conceptowin.getTxtCodigo_con().setEnabled(false);
         int c = 0;
-        int b = 0;
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(SQL);
             while (rs.next()) {
                 c = rs.getInt(1);
             }
-
             if (c == 0) {
                 conceptowin.getTxtCodigo_con().setText("456783");
-
             } else {
                 conceptowin.getTxtCodigo_con().setText("" + (c + 1));
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorConceptoLiq.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,7 +95,6 @@ public class ControladorConceptoLiq {
     }
 
     public void eliminarFilaConcepto(GestionConcepto tabla) {
-
         int flag = tabla.getTablaConceptos().getSelectedRow();
         if (flag > -1) {
             int n = JOptionPane.showConfirmDialog(tabla, "Esta seguro de Borrar ?", "Mensaje de Confirmación", JOptionPane.YES_NO_OPTION);
@@ -114,7 +109,6 @@ public class ControladorConceptoLiq {
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorConceptoLiq.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
             }
         } else {
             JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
@@ -122,10 +116,13 @@ public class ControladorConceptoLiq {
 
     }
 
-    public void modificarConcepto(ModConcepto mod_Concepto) {
+    public void modificarConcepto() {
+         ModConcepto windown;
         int flag = conceptowin.tablaConceptos.getSelectedRow();
         String des = "", importe = "";
         if (flag > -1) {
+            windown = new ModConcepto(conexion,concepto,this);
+       windown.setVisible(true);
             String idCalculo = (String) conceptowin.tablaConceptos.getModel().getValueAt(flag, 0);
             Integer.valueOf(idCalculo);
             try {
@@ -133,19 +130,16 @@ public class ControladorConceptoLiq {
                 Statement st = conexion.getStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-
                     des = rs.getString("descripcion");
                     importe = "" + rs.getInt("importe");
                 }
-
-                mod_Concepto.txtCodigo_con_mod.setText(idCalculo);
-                mod_Concepto.getTxtDescripcion_mod().setText(des);
-                mod_Concepto.getTxtImporte_conc_mod().setText(importe);
+                windown.txtCodigo_con_mod.setText(idCalculo);
+                windown.getTxtDescripcion_mod().setText(des);
+                windown.getTxtImporte_conc_mod().setText(importe);
 
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorConceptoLiq.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } else {
             JOptionPane.showMessageDialog(conceptowin.tablaConceptos, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
         }

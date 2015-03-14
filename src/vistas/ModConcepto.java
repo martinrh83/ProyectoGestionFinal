@@ -18,23 +18,21 @@ import modelo.GestionConexion;
  */
 public class ModConcepto extends javax.swing.JFrame {
 
-    
     private GestionConexion conexion;
     private Concepto concepto;
     private ControladorConceptoLiq control;
-    
 
-    public ModConcepto(GestionConexion conexion, Concepto concepto,ControladorConceptoLiq control) {
+    public ModConcepto(GestionConexion conexion, Concepto concepto, ControladorConceptoLiq control) {
         this.conexion = conexion;
         this.concepto = concepto;
         this.control = control;
         initComponents();
         this.setLocationRelativeTo(null);
-       control.modificarConcepto(this);
-        
+       
+
     }
 
-     public void limpiar() {
+    public void limpiar() {
         txtDescripcion_mod.setText(null);
         txtImporte_conc_mod.setText(null);
     }
@@ -86,9 +84,7 @@ public class ModConcepto extends javax.swing.JFrame {
     public void setTipoConceptoaMod(ButtonGroup tipoConceptoaMod) {
         this.tipoConceptoaMod = tipoConceptoaMod;
     }
-     
-     
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -227,16 +223,16 @@ public class ModConcepto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigo_con_modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo_con_modActionPerformed
-        
+
     }//GEN-LAST:event_txtCodigo_con_modActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-     
+
         concepto.setIdConcepto(Integer.valueOf(txtCodigo_con_mod.getText()));
         concepto.setDescripcion(txtDescripcion_mod.getText());
         concepto.setImporte(Float.valueOf(txtImporte_conc_mod.getText()));
-    
-        if (op_Haber_mod.isSelected()){
+
+        if (op_Haber_mod.isSelected()) {
             concepto.setTipo_concepto(op_Haber_mod.getText());
         } else {
             concepto.setTipo_concepto(op_Deber_mod.getText());
@@ -251,7 +247,6 @@ public class ModConcepto extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

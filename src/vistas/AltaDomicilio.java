@@ -7,6 +7,8 @@ package vistas;
 
 import controlador.ControladorDomicilio;
 import controlador.ControladorListarPersonas;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.Domicilio;
 import modelo.GestionConexion;
@@ -68,6 +70,7 @@ public class AltaDomicilio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alta Domicilio");
+        setResizable(false);
 
         jLabel1.setText("Calle:");
 
@@ -87,9 +90,21 @@ public class AltaDomicilio extends javax.swing.JFrame {
 
         txt_idDom.setEnabled(false);
 
+        txt_nroCalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nroCalleKeyTyped(evt);
+            }
+        });
+
+        txt_CP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_CPKeyTyped(evt);
+            }
+        });
+
         jLabel9.setText("Provincia:");
 
-        cmboProvincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Salta", "Tucuman" }));
+        cmboProvincia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán", " " }));
 
         btn_agregar.setText("Agregar");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,63 +137,59 @@ public class AltaDomicilio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_Dep, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txt_CP, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel1))
+                                        .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txt_Barrio, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                        .addComponent(txt_Calle, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txt_idDom, javax.swing.GroupLayout.Alignment.LEADING)))))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_Piso, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                            .addComponent(txt_nroCalle))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txt_CP, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel1))
-                                            .addComponent(jLabel3))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txt_Barrio, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                            .addComponent(txt_Calle, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txt_idDom, javax.swing.GroupLayout.Alignment.LEADING))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_nroCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmboProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txt_person, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(96, 96, 96)
-                                        .addComponent(btn_agregar)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_out)
-                                    .addComponent(btn_search))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(59, 59, 59))
+                                .addComponent(txt_person, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_agregar))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_out)
+                            .addComponent(btn_search))
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(10, 10, 10)
-                        .addComponent(txt_Dep, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Piso, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 23, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel4))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmboProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,41 +250,51 @@ public class AltaDomicilio extends javax.swing.JFrame {
     }
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        street.setIdDomicilio(Integer.valueOf(txt_idDom.getText()));
-        street.setCalle(txt_Calle.getText());
-        street.setNroCalle(Integer.valueOf(txt_nroCalle.getText()));
-        street.setBarrio(txt_Barrio.getText());
-        street.setDepartamento(txt_Dep.getText());
-        street.setNroPiso(Integer.valueOf(txt_Piso.getText()));
-        street.setProvincia(cmboProvincia.getSelectedItem().toString());
-        street.setCiudad(txt_Ciudad.getText());
-        street.setCp(Integer.valueOf(txt_CP.getText()));
-        String cadena = txt_person.getText();
-        String[] parts = cadena.split(":");
-        String part1 = parts[0];
-        int part2 = Integer.valueOf(parts[1]);
-        switch (part1) {
-            case "Empleado":
-                street.setIdEmpleado(part2);
-                street.setIdCliente(0);
-                street.setIdProveedor(0);
-                break;
+        if (txt_Calle.getText().trim().isEmpty()
+                || txt_nroCalle.getText().trim().isEmpty()
+                || txt_Barrio.getText().trim().isEmpty()
+                || txt_Dep.getText().trim().isEmpty()
+                || txt_Piso.getText().trim().isEmpty()
+                || txt_Ciudad.getText().trim().isEmpty()
+                || txt_CP.getText().trim().isEmpty()
+                || txt_person.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campos Vacios. Intoducir todos los datos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            street.setIdDomicilio(Integer.valueOf(txt_idDom.getText()));
+            street.setCalle(txt_Calle.getText());
+            street.setNroCalle(Integer.valueOf(txt_nroCalle.getText()));
+            street.setBarrio(txt_Barrio.getText());
+            street.setDepartamento(txt_Dep.getText());
+            street.setNroPiso(Integer.valueOf(txt_Piso.getText()));
+            street.setProvincia(cmboProvincia.getSelectedItem().toString());
+            street.setCiudad(txt_Ciudad.getText());
+            street.setCp(Integer.valueOf(txt_CP.getText()));
+            String cadena = txt_person.getText();
+            String[] parts = cadena.split(":");
+            String part1 = parts[0];
+                int part2 = Integer.valueOf(parts[1]);
+                switch (part1) {
+                    case "Empleado":
+                        street.setIdEmpleado(part2);
+                        street.setIdCliente(0);
+                        street.setIdProveedor(0);
+                        break;
 
-            case "Cliente":
-                street.setIdCliente(part2);
-                street.setIdEmpleado(0);
-                street.setIdProveedor(0);
-                break;
+                    case "Cliente":
+                        street.setIdCliente(part2);
+                        street.setIdEmpleado(0);
+                        street.setIdProveedor(0);
+                        break;
 
-            case "Proveedor":
-                street.setIdProveedor(part2);
-                street.setIdCliente(0);
-                street.setIdEmpleado(0);
-                break;
+                    case "Proveedor":
+                        street.setIdProveedor(part2);
+                        street.setIdCliente(0);
+                        street.setIdEmpleado(0);
+                        break;
+                }
+                this.control.agregarDomicilio();
+                       this.dispose();
         }
-        this.control.agregarDomicilio();
-
-        this.dispose();
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
@@ -283,6 +304,22 @@ public class AltaDomicilio extends javax.swing.JFrame {
     private void btn_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_outActionPerformed
         this.dispose();
     }//GEN-LAST:event_btn_outActionPerformed
+
+    private void txt_nroCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nroCalleKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Solo numeros");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_nroCalleKeyTyped
+
+    private void txt_CPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_CPKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Solo numeros");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_CPKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

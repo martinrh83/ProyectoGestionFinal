@@ -13,16 +13,15 @@ import javax.swing.JTable;
 import modelo.GestionConexion;
 
 public class GestionProveedor extends javax.swing.JFrame {
-    
+
     private GestionConexion connection;
     private Proveedor proveedor;
     private ControladorProveedor control;
-    
-    
+
     public GestionProveedor(ControladorProveedor cont, GestionConexion conn, Proveedor prov) {
         connection = conn;
         proveedor = prov;
-        control = cont;        
+        control = cont;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -73,6 +72,18 @@ public class GestionProveedor extends javax.swing.JFrame {
 
         jLabel9.setText("Telefono");
 
+        txt_nombreProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreProvKeyTyped(evt);
+            }
+        });
+
+        txt_telProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telProvKeyTyped(evt);
+            }
+        });
+
         txt_cuitProv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_cuitProvKeyTyped(evt);
@@ -108,18 +119,18 @@ public class GestionProveedor extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_addProv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_editProv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_deleteProv, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_deleteProv, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_editProv)
+                    .addComponent(btn_addProv, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_addProv)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_editProv)
@@ -159,10 +170,11 @@ public class GestionProveedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
+                        .addGap(153, 153, 153)
                         .addComponent(btn_cancelProv, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btn_finProv, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89)
+                        .addComponent(btn_finProv, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,14 +209,14 @@ public class GestionProveedor extends javax.swing.JFrame {
                                     .addComponent(combo_rsProv, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(22, 22, 22))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_idProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
@@ -224,16 +236,14 @@ public class GestionProveedor extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txt_mailProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelProv)
                     .addComponent(btn_finProv))
-                .addContainerGap())
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,22 +266,29 @@ public class GestionProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cancelProvActionPerformed
 
     private void btn_addProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addProvActionPerformed
-        proveedor.setIdProveedor(Integer.valueOf(txt_idProv.getText()));
-        proveedor.setCuitProv(Integer.valueOf(txt_cuitProv.getText()));
-        proveedor.setNombreProv(txt_nombreProv.getText());
-        proveedor.setTelefonoProv(Integer.valueOf(txt_telProv.getText()));
-        proveedor.setRazonSocProv(combo_rsProv.getSelectedItem().toString());
-        proveedor.setEmailProv(txt_mailProv.getText());
-        
-        control.agregarProveedor();
-        this.limpiar();
-        control.generarNumeracion();
-        control.mostrarProveedores();
+        if (txt_cuitProv.getText().trim().isEmpty()
+                || txt_nombreProv.getText().trim().isEmpty()
+                || txt_telProv.getText().trim().isEmpty()
+                || txt_mailProv.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campos Vacios. Intoducir todos los datos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            proveedor.setIdProveedor(Integer.valueOf(txt_idProv.getText()));
+            proveedor.setCuitProv(Integer.valueOf(txt_cuitProv.getText()));
+            proveedor.setNombreProv(txt_nombreProv.getText());
+            proveedor.setTelefonoProv(Integer.valueOf(txt_telProv.getText()));
+            proveedor.setRazonSocProv(combo_rsProv.getSelectedItem().toString());
+            proveedor.setEmailProv(txt_mailProv.getText());
+
+            control.agregarProveedor();
+            this.limpiar();
+            control.generarNumeracion();
+            control.mostrarProveedores();
+        }
     }//GEN-LAST:event_btn_addProvActionPerformed
 
     private void btn_editProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editProvActionPerformed
-       ModProveedor window = new ModProveedor(control, connection, proveedor);
-       window.setVisible(true);
+        ModProveedor window = new ModProveedor(control, connection, proveedor);
+        window.setVisible(true);
     }//GEN-LAST:event_btn_editProvActionPerformed
 
     private void btn_deleteProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteProvActionPerformed
@@ -284,6 +301,25 @@ public class GestionProveedor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_finProvActionPerformed
 
+    private void txt_telProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telProvKeyTyped
+        char car = evt.getKeyChar();
+
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Solo numeros");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_telProvKeyTyped
+
+    private void txt_nombreProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreProvKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)
+                && car != 'ñ' && car != 'Ñ') {
+            JOptionPane.showMessageDialog(this, "Ingrese solo letras");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_nombreProvKeyTyped
+
     public JTable getTablaProveedor() {
         return tablaProveedor;
     }
@@ -291,8 +327,8 @@ public class GestionProveedor extends javax.swing.JFrame {
     public void setTablaProveedor(JTable tablaProveedor) {
         this.tablaProveedor = tablaProveedor;
     }
-    
-    public void limpiar(){
+
+    public void limpiar() {
         txt_cuitProv.setText(null);
         txt_mailProv.setText(null);
         txt_nombreProv.setText(null);

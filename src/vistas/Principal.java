@@ -14,6 +14,7 @@ import controlador.ControladorCompra;
 import controlador.ControladorConceptoLiq;
 import controlador.ControladorDomicilio;
 import controlador.ControladorLiquidacionSueldo;
+import controlador.ControladorListarVentas;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
 import modelo.GestionConexion;
@@ -75,6 +76,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem24.setText("jMenuItem24");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú Principal - Administración");
         setResizable(false);
 
         jLabel1.setText("Usuario:");
@@ -133,6 +135,11 @@ public class Principal extends javax.swing.JFrame {
         menuVenta.add(menuItNvaVenta);
 
         menuItListVenta.setText("Listado");
+        menuItListVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItListVentaActionPerformed(evt);
+            }
+        });
         menuVenta.add(menuItListVenta);
 
         jMenuBar1.add(menuVenta);
@@ -325,6 +332,10 @@ public class Principal extends javax.swing.JFrame {
     private void menuItLiqSdoPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItLiqSdoPerActionPerformed
         ControladorLiquidacionSueldo v1= new ControladorLiquidacionSueldo(conexion);
     }//GEN-LAST:event_menuItLiqSdoPerActionPerformed
+
+    private void menuItListVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListVentaActionPerformed
+        ControladorListarVentas v1=new ControladorListarVentas(conexion);
+    }//GEN-LAST:event_menuItListVentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem changePass;

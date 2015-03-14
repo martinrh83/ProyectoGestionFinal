@@ -63,6 +63,7 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         jMenuItem24.setText("jMenuItem24");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú Principal");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N

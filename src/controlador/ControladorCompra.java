@@ -110,9 +110,22 @@ public class ControladorCompra {
         }
     }
     
-    public void obtenerFecha(JTextField fecha) {
+    /*public void obtenerFecha(JTextField fecha) {
         Calendar Cal = Calendar.getInstance();
         String fec = Cal.get(Cal.YEAR) + "-" + (Cal.get(Cal.MONTH) + 1) + "-" + Cal.get(Cal.DATE) + " " + Cal.get(Cal.HOUR_OF_DAY) + ":" + Cal.get(Cal.MINUTE) + ":" + Cal.get(Cal.SECOND);
+
+        fecha.setText(fec);
+        fecha.setEnabled(false);
+    }*/
+    
+    public void obtenerFecha(JTextField fecha) {
+        Calendar Cal = Calendar.getInstance();
+        int nroMes=Cal.get(Cal.MONTH)+1;
+        String mes="";
+        if(nroMes<=9){
+             mes="0"+nroMes;
+        }
+        String fec = Cal.get(Cal.DATE) +  "/" + mes + "/" +  Cal.get(Cal.YEAR)/* + " " + Cal.get(Cal.HOUR_OF_DAY) + ":" + Cal.get(Cal.MINUTE) + ":" + Cal.get(Cal.SECOND)*/;
 
         fecha.setText(fec);
         fecha.setEnabled(false);

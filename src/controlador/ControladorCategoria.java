@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controlador;
 
 import java.sql.ResultSet;
@@ -11,10 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Categoria;
 import modelo.GestionConexion;
 import vistas.AltaCategoria;
-
 
 /**
  *
@@ -34,7 +33,7 @@ public class ControladorCategoria {
         this.generarNumeracion();
     }
 
-   public void generarNumeracion() {
+    public void generarNumeracion() {
         String sql = "SELECT MAX(idCategoria) FROM categoria";
         alta.getTxt_idCat().setEnabled(false);
         int c = 0;
@@ -59,10 +58,10 @@ public class ControladorCategoria {
         try {
             conn.getStatement().executeUpdate("INSERT INTO categoria (idCategoria, descripcion)"
                     + "VALUES (" + cat.getIdCategoria() + ", '" + cat.getDescripcion() + "');");
+            JOptionPane.showMessageDialog(alta.getTxt_descCat(), "Se agrego una nueva categoria", "Mensaje de Informacion", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(AltaCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
 }

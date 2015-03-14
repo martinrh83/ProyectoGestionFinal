@@ -59,7 +59,7 @@ public class ControladorLogin {
                 log.dispose();
             }
             if ((!cap.equals("Administrador")) && (!cap.equals("Empleado"))) {
-                JOptionPane.showMessageDialog(null, "No existe sus datos. Ingrese nuevamente");
+                JOptionPane.showMessageDialog(null,"No existe sus datos. Ingrese nuevamente");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);

@@ -23,10 +23,11 @@ public class AltaProducto extends javax.swing.JFrame {
     private Producto producto;
     private ControladorProducto alta;
     private GestionConexion conexion;
+
     /**
      * Creates new form AltaProducto
      */
-    public AltaProducto(ControladorProducto cAlta, Producto produ,GestionConexion conn) {
+    public AltaProducto(ControladorProducto cAlta, Producto produ, GestionConexion conn) {
 
         initComponents();
         this.setLocationRelativeTo(null);
@@ -36,9 +37,8 @@ public class AltaProducto extends javax.swing.JFrame {
         alta.llenarCB(combo_cat);
     }
 
-    public void limpiar(){
+    public void limpiar() {
         txtCant_Prod.setText(null);
-        txtCod_Prod.setText(null);
         txtDesc_Prod.setText(null);
         txtMarca_Prod.setText(null);
         txtName_Prod.setText(null);
@@ -47,7 +47,7 @@ public class AltaProducto extends javax.swing.JFrame {
         txtPcioCpra.setText(null);
         jDateChooser2.setDate(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,9 +134,27 @@ public class AltaProducto extends javax.swing.JFrame {
 
         jLabel5.setText("Minorista");
 
+        txtPMin_Prod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPMin_ProdKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("Mayorista");
 
+        txtPMay_Prod.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPMay_ProdKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("Compra");
+
+        txtPcioCpra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPcioCpraKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -159,15 +177,15 @@ public class AltaProducto extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtPMin_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPMay_Prod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPMay_Prod)
                     .addComponent(jLabel10)
-                    .addComponent(txtPcioCpra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPcioCpra)
+                    .addComponent(txtPMin_Prod))
                 .addContainerGap())
         );
 
@@ -273,25 +291,36 @@ public class AltaProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregar_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar_ProdActionPerformed
-        producto.setCodigoProd(Integer.valueOf(txtCod_Prod.getText()));
-        producto.setNombreProd(txtName_Prod.getText());
-        producto.setDescripcionProd(txtDesc_Prod.getText());
-        producto.setCantProd(Integer.valueOf(txtCant_Prod.getText()));
-        producto.setMarca(txtMarca_Prod.getText());
-        producto.setPrecMin(Float.valueOf(txtPMin_Prod.getText()));
-        producto.setPrecMay(Float.valueOf(txtPMay_Prod.getText()));
-        String datos =  combo_cat.getSelectedItem().toString();        
-        String[] parts = datos.split(":"); 
-        String part1 = parts[0];
-        producto.setIdCategoria(Integer.valueOf(part1));
-        producto.setPcioCpra(Float.valueOf(txtPcioCpra.getText()));
-        Date fechaVenc = jDateChooser2.getDate();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        producto.setFechaVenc(formato.format(fechaVenc));
-        this.alta.agregarProducto();
+        if (txtName_Prod.getText().trim().isEmpty()
+                || txtDesc_Prod.getText().trim().isEmpty()
+                || txtCant_Prod.getText().trim().isEmpty()
+                || txtMarca_Prod.getText().trim().isEmpty()
+                || txtPMin_Prod.getText().trim().isEmpty()
+                || txtPMay_Prod.getText().trim().isEmpty()
+                || txtPcioCpra.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campos Vacios. Intoducir todos los datos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            producto.setCodigoProd(Integer.valueOf(txtCod_Prod.getText()));
 
-        this.limpiar();
-        alta.generarNumeracion();
+            producto.setNombreProd(txtName_Prod.getText());
+            producto.setDescripcionProd(txtDesc_Prod.getText());
+            producto.setCantProd(Integer.valueOf(txtCant_Prod.getText()));
+            producto.setMarca(txtMarca_Prod.getText());
+            producto.setPrecMin(Float.valueOf(txtPMin_Prod.getText()));
+            producto.setPrecMay(Float.valueOf(txtPMay_Prod.getText()));
+            String datos = combo_cat.getSelectedItem().toString();
+            String[] parts = datos.split(":");
+            String part1 = parts[0];
+            producto.setIdCategoria(Integer.valueOf(part1));
+            producto.setPcioCpra(Float.valueOf(txtPcioCpra.getText()));
+            Date fechaVenc = jDateChooser2.getDate();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            producto.setFechaVenc(formato.format(fechaVenc));
+            this.alta.agregarProducto();
+
+            this.limpiar();
+            alta.generarNumeracion();
+        }
     }//GEN-LAST:event_btnAgregar_ProdActionPerformed
 
     private void txtCant_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCant_ProdKeyTyped
@@ -305,7 +334,8 @@ public class AltaProducto extends javax.swing.JFrame {
     private void txtName_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtName_ProdKeyTyped
         char car = evt.getKeyChar();
         if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z')
-                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+                && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE)
+                && car != 'ñ' && car != 'Ñ') {
             JOptionPane.showMessageDialog(this, "Ingrese solo letras");
             evt.consume();
         }
@@ -318,6 +348,33 @@ public class AltaProducto extends javax.swing.JFrame {
     private void btnFin_ProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFin_ProdActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnFin_ProdActionPerformed
+
+    private void txtPMin_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPMin_ProdKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)
+                && car != '.') {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPMin_ProdKeyTyped
+
+    private void txtPMay_ProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPMay_ProdKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)
+                && car != '.') {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPMay_ProdKeyTyped
+
+    private void txtPcioCpraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPcioCpraKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)
+                && car != '.') {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPcioCpraKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

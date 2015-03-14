@@ -66,7 +66,7 @@ public class NuevaVenta extends javax.swing.JFrame {
         txtCant = new javax.swing.JTextField();
         btnBusProdLVta = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnFacturar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         confVenta = new javax.swing.JButton();
         label_id = new javax.swing.JLabel();
@@ -89,12 +89,6 @@ public class NuevaVenta extends javax.swing.JFrame {
         jLabel9.setText("Total:");
 
         jLabel10.setText("Nº de Venta:");
-
-        txtNum_Venta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNum_VentaActionPerformed(evt);
-            }
-        });
 
         jLabel12.setText("Fecha y Hora:");
 
@@ -152,10 +146,10 @@ public class NuevaVenta extends javax.swing.JFrame {
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("Facturar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFacturar.setText("Facturar");
+        btnFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFacturarActionPerformed(evt);
             }
         });
 
@@ -181,7 +175,7 @@ public class NuevaVenta extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(confVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -192,7 +186,7 @@ public class NuevaVenta extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67))
         );
@@ -229,17 +223,14 @@ public class NuevaVenta extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel13))
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(343, 343, 343))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtNum_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fechaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtNum_Venta, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(label_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fechaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +324,8 @@ public class NuevaVenta extends javax.swing.JFrame {
     }
 
     private void btnEliminarLVtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLVtaActionPerformed
-        // TODO add your handling code here:
+        control.disminuirSubtotal(this);
+        control.quitarFila(tbVenta);
     }//GEN-LAST:event_btnEliminarLVtaActionPerformed
 
     private void btnBusProdLVtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusProdLVtaActionPerformed
@@ -344,9 +336,12 @@ public class NuevaVenta extends javax.swing.JFrame {
         this.cleanProduc();
     }//GEN-LAST:event_btnBusProdLVtaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void confVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confVentaActionPerformed
-        
-        venta.setIdVenta(Integer.valueOf(txtNum_Venta.getText()));
+       venta.setIdVenta(Integer.valueOf(txtNum_Venta.getText()));
         venta.setFechaVta(fechaVenta.getText());
         venta.setImpTotal(Float.valueOf(txtTotal_Venta.getText()));
         venta.setUsuario_idUsuario(Integer.valueOf(label_id.getText()));
@@ -356,29 +351,22 @@ public class NuevaVenta extends javax.swing.JFrame {
         control.descontarstock(tbVenta);       
         control.agregarLVenta(tbVenta, txtNum_Venta);
         control.grabarVenta();
-
+        confVenta.setEnabled(false);
     }//GEN-LAST:event_confVentaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
         jasper=new ControladorRFactura(conexion);
         String paramReporte=txtNum_Venta.getText();
         jasper.ejecutarReporte(paramReporte);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txtNum_VentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNum_VentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNum_VentaActionPerformed
+        btnFacturar.setEnabled(false);
+    }//GEN-LAST:event_btnFacturarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusProdLVta;
     private javax.swing.JButton btnEliminarLVta;
+    private javax.swing.JButton btnFacturar;
     private javax.swing.JButton confVenta;
     private javax.swing.JTextField fechaVenta;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

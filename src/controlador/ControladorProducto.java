@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import modelo.GestionConexion;
 import vistas.AltaProducto;
 import vistas.Principal;
@@ -100,5 +101,6 @@ public class ControladorProducto {
         } catch (SQLException ex) {
             Logger.getLogger(AltaProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(null, "Se registro el producto");
     }
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vistas;
 
 import com.toedter.calendar.JMonthChooser;
@@ -12,6 +11,7 @@ import controlador.ControladorLiquidacionSueldo;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import modelo.GestionConexion;
@@ -21,19 +21,18 @@ import modelo.GestionConexion;
  * @author Martin
  */
 public class LiquidacionSueldo extends javax.swing.JFrame {
+
     private GestionConexion conexion;
     private ControladorLiquidacionSueldo control;
-    
-         
-    
-    public LiquidacionSueldo(GestionConexion conn,ControladorLiquidacionSueldo ctrl) {
-        conexion=conn;
-        control=ctrl;
+
+    public LiquidacionSueldo(GestionConexion conn, ControladorLiquidacionSueldo ctrl) {
+        conexion = conn;
+        control = ctrl;
         initComponents();
         this.setLocationRelativeTo(null);
         control.llenarConceptos(this);
         control.obtenerFecha(this);
-      
+
     }
 
     public JTable getTablaConceptos() {
@@ -51,8 +50,6 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
     public void setTablaSueldo(JTable tablaSueldo) {
         this.tablaSueldo = tablaSueldo;
     }
-
- 
 
     public JTextField getTxt_id() {
         return txt_id;
@@ -174,13 +171,6 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
         this.mes = mes;
     }
 
-   
-    
-
-    
-    
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -376,19 +366,19 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
                     .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(btn_Buscar))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txt_nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txt_apel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txt_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(txt_horas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txt_fecIng, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,9 +396,9 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_calcular.setText("Confirmar");
-        btn_calcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_calcularActionPerformed(evt);
+        btn_calcular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_calcularMousePressed(evt);
             }
         });
 
@@ -542,7 +532,7 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(mes, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
@@ -576,40 +566,48 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
-        control.seleccionarConceptos(this);
-        control.calcularsueldoBasico(this);
-        control.calcularAsignacionxHijo(this);
-        control.calcularAntiguedad();
+        if (txt_dias.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete los campos requeridos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            control.seleccionarConceptos(this);
+            control.calcularsueldoBasico(this);
+            control.calcularAsignacionxHijo(this);
+            control.calcularAntiguedad();
+        }
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
-       control.buscarEmp(this);
+        if (txt_id.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete los campos requeridos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            control.buscarEmp(this);
+        }
     }//GEN-LAST:event_btn_BuscarActionPerformed
-
-    private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
-        control.calcularSueldo();
-        control.agregarLliquidacion(this);
-        control.grabarLiquidacion(this);
-    }//GEN-LAST:event_btn_calcularActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idKeyTyped
-       char c =evt.getKeyChar();
-        if (c==KeyEvent.VK_ENTER) {
-           btn_Buscar.doClick();
+        char c = evt.getKeyChar();
+        if (c == KeyEvent.VK_ENTER) {
+            btn_Buscar.doClick();
         }
     }//GEN-LAST:event_txt_idKeyTyped
 
     private void txt_diasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_diasKeyTyped
-char c =evt.getKeyChar();
-        if (c==KeyEvent.VK_ENTER) {
-           txt_dias.setEnabled(false);
-        }       
+        char c = evt.getKeyChar();
+        if (c == KeyEvent.VK_ENTER) {
+            txt_dias.setEnabled(false);
+        }
     }//GEN-LAST:event_txt_diasKeyTyped
 
+    private void btn_calcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_calcularMousePressed
+        control.calcularSueldo();
+        control.agregarLliquidacion(this);
+        control.grabarLiquidacion(this);
+        btn_calcular.setEnabled(false);
+    }//GEN-LAST:event_btn_calcularMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
