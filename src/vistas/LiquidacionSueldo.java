@@ -618,8 +618,9 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
        jasper = new ControladorRFactura(conexion);
         String paramReporte = txtSueldo.getText();
-        jasper.ejecutarReporte(paramReporte);
+        jasper.ejecutarReporteLiquidacion(paramReporte);
         btnImprimir.setEnabled(false);
+        this.dispose();
     }//GEN-LAST:event_btnImprimirActionPerformed
 
 

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package controlador;
 
 import java.sql.ResultSet;
@@ -12,42 +13,43 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.GestionConexion;
-import vistas.ListarVenta;
+import vistas.ListarCompra;
+
 
 /**
  *
  * @author Martin
  */
-public class ControladorListarVentas {
+public class ControladorListarCompras {
     
     private DefaultTableModel modelo;
     private GestionConexion conexion;
-    private ListarVenta window;
+    private ListarCompra window;
     
-    public ControladorListarVentas(GestionConexion conn) {
+    public ControladorListarCompras(GestionConexion conn) {
         conexion = conn;
-        window = new ListarVenta(this, conexion);
+        window = new ListarCompra(this, conexion);
         window.setVisible(true);
     }
     
-    public void listarVentasDiarias(String fec, ListarVenta v1) {
+    public void listarComprasDiarias(String fec, ListarCompra v1) {
         
-        String[] titulos = {"id", "Fecha", "Tipo", "Importe", "Empleado"};
+        String[] titulos = {"id", "Fecha", "Proveedor", "Importe", "Empleado"};
         modelo = new DefaultTableModel(null, titulos);
         String datos[] = new String[5];
-        String sql = "SELECT * FROM venta where fechaVta='" + fec + "';";
+        String sql = "SELECT * FROM compra where fechaCpra='" + fec + "';";
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString("idVenta");
-                datos[1] = rs.getString("fechaVta");
-                datos[2] = rs.getString("tipoVta");
+                datos[0] = rs.getString("idCompra");
+                datos[1] = rs.getString("fechaCpra");
+                datos[2] = rs.getString("proveedor_idProveedor");
                 datos[3] = rs.getString("impTotal");
                 datos[4] = rs.getString("empleado_idEmpleado");
                 modelo.addRow(datos);
             }
-            window.getTablaVentas().setModel(modelo);
+            window.getTablaCompras().setModel(modelo);
             
         } catch (SQLException ex) {
             Logger.getLogger(ControladorConceptoLiq.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,3 +57,4 @@ public class ControladorListarVentas {
         
     }
 }
+

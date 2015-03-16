@@ -10,6 +10,8 @@ import controlador.ControladorProducto;
 import controlador.ControladorUsuario;
 import controlador.ControladorCliente;
 import controlador.ControladorCompra;
+import controlador.ControladorListarCompras;
+import controlador.ControladorListarVentas;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
 import modelo.GestionConexion;
@@ -117,6 +119,11 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         menuVenta.add(menuItNvaVenta);
 
         menuItListVenta.setText("Listado");
+        menuItListVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItListVentaActionPerformed(evt);
+            }
+        });
         menuVenta.add(menuItListVenta);
 
         jMenuBar1.add(menuVenta);
@@ -133,6 +140,11 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         menuCompra.add(menuItNvaCpra);
 
         menuItListMCpra.setText("Listado");
+        menuItListMCpra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItListMCpraActionPerformed(evt);
+            }
+        });
         menuCompra.add(menuItListMCpra);
 
         jMenuBar1.add(menuCompra);
@@ -235,6 +247,14 @@ public class PrincipalEmpleado extends javax.swing.JFrame {
         String user = laber_usuario.getText();
         ControladorCompra compra = new ControladorCompra(conexion, user);
     }//GEN-LAST:event_menuItNvaCpraActionPerformed
+
+    private void menuItListVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListVentaActionPerformed
+        ControladorListarVentas v1=new ControladorListarVentas(conexion);
+    }//GEN-LAST:event_menuItListVentaActionPerformed
+
+    private void menuItListMCpraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListMCpraActionPerformed
+        ControladorListarCompras v1=new ControladorListarCompras(conexion);
+    }//GEN-LAST:event_menuItListMCpraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem changePass;

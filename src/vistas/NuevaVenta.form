@@ -37,7 +37,7 @@
                   <Component id="label_id" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel12" min="-2" pref="77" max="-2" attributes="0"/>
+              <Component id="jLabel12" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="fechaVenta" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
@@ -152,7 +152,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha y Hora:"/>
+        <Property name="text" type="java.lang.String" value="Fecha :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">

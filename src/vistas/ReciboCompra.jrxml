@@ -61,6 +61,13 @@ WHERE
 				<reportElement x="-21" y="-21" width="608" height="100" uuid="b442bdc2-1c0f-4a9b-86b2-3aa503ce5d06"/>
 				<imageExpression><![CDATA["C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\bannerARGestion Final.jpg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="274" y="39" width="89" height="20" uuid="cda23f47-bb0d-4761-a13e-a1f0540481cd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruta 301 km.10 ]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

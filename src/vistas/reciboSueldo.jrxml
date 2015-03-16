@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo de Sueldo" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681996f4-3fa3-419e-9445-6a8ef042808b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reciboSueldo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681996f4-3fa3-419e-9445-6a8ef042808b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -109,7 +109,7 @@ WHERE
 					<text><![CDATA[Lugar de Pago:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="374" y="39" width="131" height="15" uuid="1aaca451-49ca-4a18-861f-6712a5103783"/>
+					<reportElement style="Detail" x="374" y="39" width="167" height="15" uuid="1aaca451-49ca-4a18-861f-6712a5103783"/>
 					<textFieldExpression><![CDATA[$F{sueldo_lugarPago}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -134,9 +134,9 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="100" splitType="Stretch">
+		<band height="107" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="555" height="92" uuid="496d1ea9-a0eb-46f3-a578-ed1df43aa73f"/>
+				<reportElement x="0" y="0" width="555" height="97" uuid="496d1ea9-a0eb-46f3-a578-ed1df43aa73f"/>
 				<box>
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -193,7 +193,7 @@ WHERE
 					<textFieldExpression><![CDATA[$F{sueldo_contratacion}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="Column header" mode="Transparent" x="272" y="62" width="102" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d0031815-71f8-4ce0-93ee-303738c663f3"/>
+					<reportElement style="Column header" mode="Transparent" x="272" y="47" width="102" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="d0031815-71f8-4ce0-93ee-303738c663f3"/>
 					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
 						<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
@@ -201,7 +201,7 @@ WHERE
 					<text><![CDATA[Fecha Ingreso:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="389" y="62" width="102" height="15" uuid="425084ac-5ef0-4b8d-b479-23f20f845bdb"/>
+					<reportElement style="Detail" x="389" y="47" width="102" height="15" uuid="425084ac-5ef0-4b8d-b479-23f20f845bdb"/>
 					<textFieldExpression><![CDATA[$F{empleado_fechaIngreso}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -252,7 +252,7 @@ WHERE
 	<detail>
 		<band height="29" splitType="Stretch">
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="6ce5fbd9-2127-49b2-85be-b9d3af0db462"/>
+				<reportElement style="Row" isPrintRepeatedValues="false" mode="Transparent" x="0" y="0" width="555" height="15" uuid="6ce5fbd9-2127-49b2-85be-b9d3af0db462"/>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="340" y="0" width="85" height="15" uuid="26b79a92-6f8a-4357-915a-367cbf9f2f68"/>
 					<textFieldExpression><![CDATA[$F{concepto_liquidacion_tipoConcepto}]]></textFieldExpression>
@@ -297,7 +297,4 @@ WHERE
 	<pageFooter>
 		<band height="25" splitType="Stretch"/>
 	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
 </jasperReport>

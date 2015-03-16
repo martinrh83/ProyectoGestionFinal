@@ -66,7 +66,7 @@ public class ControladorRFactura {
     
      public void ejecutarReporteLiquidacion(String ds){
         try {
-            String dir="C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\ReciboSueldo.jrxml";
+            String dir="C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\reciboSueldo.jrxml";
             JasperReport reporteJasper=JasperCompileManager.compileReport(dir);
             int idSearch=Integer.valueOf(ds);
             Map parametro=new HashMap();

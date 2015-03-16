@@ -14,6 +14,7 @@ import controlador.ControladorCompra;
 import controlador.ControladorConceptoLiq;
 import controlador.ControladorDomicilio;
 import controlador.ControladorLiquidacionSueldo;
+import controlador.ControladorListarCompras;
 import controlador.ControladorListarVentas;
 import controlador.ControladorProveedor;
 import controlador.ControladorVenta;
@@ -157,6 +158,11 @@ public class Principal extends javax.swing.JFrame {
         menuCompra.add(menuItNvaCpra);
 
         menuItListMCpra.setText("Listado");
+        menuItListMCpra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItListMCpraActionPerformed(evt);
+            }
+        });
         menuCompra.add(menuItListMCpra);
 
         jMenuBar1.add(menuCompra);
@@ -337,6 +343,10 @@ public class Principal extends javax.swing.JFrame {
     private void menuItListVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListVentaActionPerformed
         ControladorListarVentas v1=new ControladorListarVentas(conexion);
     }//GEN-LAST:event_menuItListVentaActionPerformed
+
+    private void menuItListMCpraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItListMCpraActionPerformed
+      ControladorListarCompras v1=new ControladorListarCompras(conexion);
+    }//GEN-LAST:event_menuItListMCpraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem changePass;

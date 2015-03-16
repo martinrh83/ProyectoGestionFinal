@@ -338,33 +338,7 @@ public class ControladorLiquidacionSueldo {
 
         }
     }
-/*
-    public void grabarLiquidacion(LiquidacionSueldo v1) {
-        window = v1;
 
-        int sueldo = Integer.valueOf(window.getTxtSueldo().getText());
-        String fecha = window.getTxtFecActual().getText();
-        String lugarP = window.getCmbLugar().getSelectedItem().toString();
-        String contratacion = obtenerContratacion();
-        float total = Float.valueOf(window.getTxt_total().getText());
-        int idEmpleado = Integer.valueOf(window.getTxt_id().getText());
-        String periodo = (window.getMes().getMonth() + 1) + "/" + window.getAnio().getYear();
-        try {
-            conexion.getStatement().executeUpdate("INSERT INTO sueldo (idSueldo,perAbonado,fechaPago,lugarPago,contratacion,sdoNeto,empleado_idEmpleado)"
-                    + "VALUES (" + sueldo + ",'"
-                    + periodo + "','"
-                    + fecha + "','"
-                    + lugarP + "','"
-                    + contratacion + "',"
-                    + total + ","
-                    + idEmpleado + ");");
-        } catch (SQLException ex) {
-            Logger.getLogger(ControladorLiquidacionSueldo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        JOptionPane.showMessageDialog(null, "Se registro la Liquidación");
-    }*/
-    
      public void grabarLiquidacion(LiquidacionSueldo v1) {
         window = v1;
 
