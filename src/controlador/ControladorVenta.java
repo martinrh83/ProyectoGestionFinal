@@ -7,6 +7,8 @@ package controlador;
 
 import modelo.Venta;
 import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,21 +104,23 @@ public class ControladorVenta {
         try {
             Statement st = conexion.getStatement();
             ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
+            if (rs.next() == true) {
+                //while (rs.next()) {
                 datos[0] = rs.getString("idProducto");
                 datos[1] = rs.getString("nombre");
                 datos[2] = rs.getString("descripcion");
                 datos[3] = rs.getString("marca");
                 datos[4] = cant;
                 datos[5] = rs.getString("pcioMin");
-                datos[6] = "" + Integer.valueOf(cant) * Integer.valueOf(datos[5]);
+                datos[6] = "" + Integer.valueOf(cant) * Float.valueOf(datos[5]);
                 modelo.addRow(datos);
+                //}
+
+                tVenta.setModel(modelo);
+            } else {
+                JOptionPane.showMessageDialog(null, "Cantidad no disponible", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            tVenta.setModel(modelo);
-
         } catch (Exception e) {
-
         }
 
     }
@@ -199,19 +203,17 @@ public class ControladorVenta {
         float precio;
         int cantidad;
         float importe;
-
-        /*can=Integer.parseInt(cant);
-         imp=pre*can;
-         dato[4]=Float.toString(imp);*/
+        DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
+        simbolos.setDecimalSeparator('.');
+        DecimalFormat subt = new DecimalFormat("0.00", simbolos);
         for (int i = 0; i < tVenta.getRowCount(); i++) {
             cantidad = Integer.valueOf(tVenta.getValueAt(i, 4).toString());
             precio = Float.valueOf(tVenta.getValueAt(i, 5).toString());
 
             importe = precio * cantidad;
             subtotal = subtotal + importe;
-
         }
-        venta.getTxtTotal_Venta().setText("" + subtotal);
+        venta.getTxtTotal_Venta().setText("" + subt.format(subtotal));
 
     }
 

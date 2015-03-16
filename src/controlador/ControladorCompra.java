@@ -143,7 +143,7 @@ public class ControladorCompra {
                 val[3] = cant;
                 val[4] = rs.getString("marca");
                 val[5] = rs.getString("pcioCpra");
-                val[6] = "" + Integer.valueOf(cant) * Integer.valueOf(val[5]);
+                val[6] = "" + Integer.valueOf(cant) * Float.valueOf(val[5]);
 
                 modelo.addRow(val);
             }
@@ -155,6 +155,31 @@ public class ControladorCompra {
 
     }
     
+    
+     public void quitarFila(JTable tabla) {
+        try {
+            modelo = (DefaultTableModel) tabla.getModel();
+            modelo.removeRow(tabla.getSelectedRow());
+            tabla.addRowSelectionInterval(0, 0);
+            modelo = null;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Seleccione la fila que desea quitar.");
+        }
+    }
+
+    public void disminuirSubtotal(NuevaCompra cpra) {
+        int flag = cpra.getTbCpra().getSelectedRow();
+        if (flag > -1) {
+
+            String sub = (String) cpra.getTbCpra().getModel().getValueAt(flag, 6);
+            float subtotal = Float.valueOf(sub);
+            float importe = Float.valueOf(cpra.getTxt_TotCpra().getText());
+            float total = importe - subtotal;
+            cpra.getTxt_TotCpra().setText("" + total);
+
+        }
+
+    }
     public void calcular(JTable tbCompra) {
         double total = 0;
         float precio;

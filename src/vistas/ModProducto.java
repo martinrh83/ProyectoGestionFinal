@@ -29,9 +29,9 @@ public class ModProducto extends javax.swing.JFrame {
     /**
      * Creates new form AltaProducto
      */
-    public ModProducto(GestionConexion conn) {
-        
+    public ModProducto(BuscarProducto c, GestionConexion conn) {
         conexion = conn;
+        control=c;
         initComponents();
         this.setLocationRelativeTo(null);
  
@@ -372,8 +372,8 @@ public class ModProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCant_MProdActionPerformed
 
     private void btnMod_MProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMod_MProdActionPerformed
-        control = new BuscarProducto(conexion);
         control.actualizarProd(this);
+        this.dispose();
     }//GEN-LAST:event_btnMod_MProdActionPerformed
 
     private void btnFin_MProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFin_MProdActionPerformed

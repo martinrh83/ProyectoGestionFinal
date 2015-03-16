@@ -197,11 +197,8 @@ public class ListarProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFin_LProdActionPerformed
 
     private void btnEdit_LProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit_LProdActionPerformed
-        ModProducto window = new ModProducto(conexion);
-        window.setVisible(true);
-        control.llenarCB(window);
         try {
-            control.modificarProd(window);
+            control.modificarProd();
         } catch (ParseException ex) {
             Logger.getLogger(ListarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }

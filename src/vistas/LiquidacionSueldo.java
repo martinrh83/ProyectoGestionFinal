@@ -8,6 +8,7 @@ package vistas;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
 import controlador.ControladorLiquidacionSueldo;
+import controlador.ControladorRFactura;
 import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -24,7 +25,7 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
 
     private GestionConexion conexion;
     private ControladorLiquidacionSueldo control;
-
+    private ControladorRFactura jasper;
     public LiquidacionSueldo(GestionConexion conn, ControladorLiquidacionSueldo ctrl) {
         conexion = conn;
         control = ctrl;
@@ -212,7 +213,7 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btn_calcular = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txt_total = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -411,7 +412,12 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Imprimir");
+        btnImprimir.setText("Imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -422,7 +428,7 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_calcular, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
@@ -431,7 +437,7 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btn_calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -609,15 +615,22 @@ public class LiquidacionSueldo extends javax.swing.JFrame {
         btn_calcular.setEnabled(false);
     }//GEN-LAST:event_btn_calcularMousePressed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+       jasper = new ControladorRFactura(conexion);
+        String paramReporte = txtSueldo.getText();
+        jasper.ejecutarReporte(paramReporte);
+        btnImprimir.setEnabled(false);
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JYearChooser anio;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSelect;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_calcular;
     private javax.swing.JComboBox cmbLugar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

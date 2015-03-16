@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vistas;
 
 import com.toedter.calendar.JDateChooser;
 import controlador.ControladorListarVentas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.GestionConexion;
 
@@ -21,10 +21,10 @@ public class ListarVentas extends javax.swing.JFrame {
 
     private ControladorListarVentas control;
     private GestionConexion conexion;
-    
+
     public ListarVentas(ControladorListarVentas aThis, GestionConexion conn) {
-        control=aThis;
-        conexion=conn;
+        control = aThis;
+        conexion = conn;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -44,9 +44,7 @@ public class ListarVentas extends javax.swing.JFrame {
     public void setTxt_fecha(JDateChooser txt_fecha) {
         this.txt_fecha = txt_fecha;
     }
-    
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,12 +111,11 @@ public class ListarVentas extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         Date fechaIngreso = txt_fecha.getDate();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/M/yyyy");
-        String fecha=formato.format(fechaIngreso);
-        control.listarVentasDiarias(fecha,this);
+        SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+        String fecha = formato.format(fechaIngreso);
+        control.listarVentasDiarias(fecha, this);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

@@ -58,6 +58,13 @@ WHERE
 				<reportElement x="-21" y="-19" width="610" height="100" uuid="3987c8ae-bcb6-450a-8708-5fcaab23adce"/>
 				<imageExpression><![CDATA["C:\\Users\\Martin\\Documents\\NetBeansProjects\\ProyectoFinalGestion\\ProyectoFinalGestion\\src\\vistas\\bannerARGestion Final.jpg"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="280" y="41" width="89" height="20" uuid="5714c771-e837-4e5d-84b2-7ce039e3f670"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ruta 301 km.10 ]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -91,7 +98,7 @@ WHERE
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="428" y="10" width="60" height="52" uuid="c2bc4d7e-abc0-4813-883a-4475ddf8a7c8"/>
+				<reportElement style="Detail" x="428" y="10" width="96" height="52" uuid="c2bc4d7e-abc0-4813-883a-4475ddf8a7c8"/>
 				<textFieldExpression><![CDATA[$F{venta_fechaVta}]]></textFieldExpression>
 			</textField>
 			<staticText>

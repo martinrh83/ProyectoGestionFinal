@@ -37,7 +37,9 @@ public class ControladorRFactura {
             parametro.put("idFacturar", idSearch);
             
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporteJasper, parametro, conexion.getConnection());
-        JasperViewer.viewReport(jasperPrint);
+        //JasperViewer.viewReport(jasperPrint);
+        JasperViewer jv=new JasperViewer(jasperPrint,false);
+        jv.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(ControladorRFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +55,9 @@ public class ControladorRFactura {
             parametro.put("idImprimir", idSearch);
             
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporteJasper, parametro, conexion.getConnection());
-        JasperViewer.viewReport(jasperPrint);
+        //JasperViewer.viewReport(jasperPrint);
+        JasperViewer jv=new JasperViewer(jasperPrint,false);
+        jv.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(ControladorRFactura.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,10 +70,12 @@ public class ControladorRFactura {
             JasperReport reporteJasper=JasperCompileManager.compileReport(dir);
             int idSearch=Integer.valueOf(ds);
             Map parametro=new HashMap();
-            parametro.put("idSueldo", idSearch);
+            parametro.put("nroSueldo", idSearch);
             
         JasperPrint jasperPrint = JasperFillManager.fillReport(reporteJasper, parametro, conexion.getConnection());
-        JasperViewer.viewReport(jasperPrint);
+        //JasperViewer.viewReport(jasperPrint);
+        JasperViewer jv=new JasperViewer(jasperPrint,false);
+        jv.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(ControladorRFactura.class.getName()).log(Level.SEVERE, null, ex);
         }

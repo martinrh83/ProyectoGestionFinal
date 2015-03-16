@@ -3,27 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package vistas;
-
 
 import controlador.ControladorLogin;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import modelo.GestionConexion;
 import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  *
  * @author Martin
  */
 public class Login extends javax.swing.JFrame {
-     private GestionConexion conexion;
+
+    private GestionConexion conexion;
+
     /**
      * Creates new form Login
      */
     public Login(GestionConexion conn) {
-        conexion=conn;
+        conexion = conn;
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -123,13 +125,16 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_accederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_accederActionPerformed
 
-           String usuario= txt_user.getText();
-           //String pass=txt_pass.getText();
-           String password=txt_Pass.getText();
-           String PassCrypto=DigestUtils.md5Hex(password);
-           ControladorLogin login=new ControladorLogin(conexion);
-           login.acceder(usuario, PassCrypto,this);
-           
+        if (txt_user.getText().trim().isEmpty()
+                || txt_Pass.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Complete los campos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String usuario = txt_user.getText();
+            String password = txt_Pass.getText();
+            String PassCrypto = DigestUtils.md5Hex(password);
+            ControladorLogin login = new ControladorLogin(conexion);
+            login.acceder(usuario, PassCrypto, this);
+        }
     }//GEN-LAST:event_btn_accederActionPerformed
 
     private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
@@ -144,12 +149,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_userKeyTyped
 
     private void txt_PassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PassKeyTyped
-        char c =evt.getKeyChar();
-        if (c==KeyEvent.VK_ENTER) {
-           btn_acceder.doClick();
+        char c = evt.getKeyChar();
+        if (c == KeyEvent.VK_ENTER) {
+            btn_acceder.doClick();
         }
     }//GEN-LAST:event_txt_PassKeyTyped
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

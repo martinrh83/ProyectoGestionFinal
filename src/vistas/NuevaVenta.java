@@ -7,14 +7,9 @@ package vistas;
 
 import controlador.ControladorRFactura;
 import controlador.ControladorVenta;
+import java.awt.event.KeyEvent;
 import modelo.Venta;
-import java.text.ParseException;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import modelo.GestionConexion;
@@ -29,6 +24,7 @@ public class NuevaVenta extends javax.swing.JFrame {
     private ControladorVenta control;
     private Venta venta;
     private ControladorRFactura jasper;
+
     public NuevaVenta(ControladorVenta cont, GestionConexion conn, Venta vta) {
         conexion = conn;
         control = cont;
@@ -75,6 +71,7 @@ public class NuevaVenta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nueva Venta");
+        setResizable(false);
 
         tbVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,7 +102,19 @@ public class NuevaVenta extends javax.swing.JFrame {
 
         jLabel5.setText("Cod Prod.");
 
+        txtCodProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodProdKeyTyped(evt);
+            }
+        });
+
         jLabel6.setText("Cantidad");
+
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantKeyTyped(evt);
+            }
+        });
 
         btnBusProdLVta.setText("OK");
         btnBusProdLVta.addActionListener(new java.awt.event.ActionListener() {
@@ -301,8 +310,6 @@ public class NuevaVenta extends javax.swing.JFrame {
         this.tbVenta = tbVenta;
     }
 
-
-
     public JTextField getTxtTotal_Venta() {
         return txtTotal_Venta;
     }
@@ -312,13 +319,13 @@ public class NuevaVenta extends javax.swing.JFrame {
     }
 
     /*public JLabel getUser_label() {
-        return user_label;
-    }
+     return user_label;
+     }
 
-    public void setUser_label(JLabel user_label) {
-        this.user_label = user_label;
-    }*/
-    public void cleanProduc(){
+     public void setUser_label(JLabel user_label) {
+     this.user_label = user_label;
+     }*/
+    public void cleanProduc() {
         txtCodProd.setText(null);
         txtCant.setText(null);
     }
@@ -329,11 +336,16 @@ public class NuevaVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarLVtaActionPerformed
 
     private void btnBusProdLVtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusProdLVtaActionPerformed
-        int codigo = Integer.valueOf(txtCodProd.getText());
-        String cant = txtCant.getText();
-        control.agregarCarrito(codigo, tbVenta, cant);
-        control.calcular(this, tbVenta);
-        this.cleanProduc();
+        if (txtCant.getText().trim().isEmpty()
+                || txtCodProd.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campo vacio. Introduzca Descripcion", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int codigo = Integer.valueOf(txtCodProd.getText());
+            String cant = txtCant.getText();
+            control.agregarCarrito(codigo, tbVenta, cant);
+            control.calcular(this, tbVenta);
+            this.cleanProduc();
+        }
     }//GEN-LAST:event_btnBusProdLVtaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -341,25 +353,42 @@ public class NuevaVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void confVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confVentaActionPerformed
-       venta.setIdVenta(Integer.valueOf(txtNum_Venta.getText()));
+        venta.setIdVenta(Integer.valueOf(txtNum_Venta.getText()));
         venta.setFechaVta(fechaVenta.getText());
         venta.setImpTotal(Float.valueOf(txtTotal_Venta.getText()));
         venta.setUsuario_idUsuario(Integer.valueOf(label_id.getText()));
         venta.setCliente_idCliente(0);
         venta.setTipoVta("Minorista");
-       
-        control.descontarstock(tbVenta);       
+
+        control.descontarstock(tbVenta);
         control.agregarLVenta(tbVenta, txtNum_Venta);
         control.grabarVenta();
         confVenta.setEnabled(false);
     }//GEN-LAST:event_confVentaActionPerformed
 
     private void btnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturarActionPerformed
-        jasper=new ControladorRFactura(conexion);
-        String paramReporte=txtNum_Venta.getText();
+        jasper = new ControladorRFactura(conexion);
+        String paramReporte = txtNum_Venta.getText();
         jasper.ejecutarReporte(paramReporte);
         btnFacturar.setEnabled(false);
+        this.dispose();
     }//GEN-LAST:event_btnFacturarActionPerformed
+
+    private void txtCodProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodProdKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodProdKeyTyped
+
+    private void txtCantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE)) {
+            JOptionPane.showMessageDialog(this, "Ingrese solo números");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusProdLVta;

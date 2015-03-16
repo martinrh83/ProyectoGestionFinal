@@ -151,13 +151,15 @@ public class BuscarProducto {
         return ls;
     }
 
-    public void modificarProd(ModProducto m) throws ParseException {
-        mod = m;
-        int flag = window.getTablaProducto().getSelectedRow(), cate;
+    public void modificarProd() throws ParseException {
+        int flag = window.getTablaProducto().getSelectedRow();
         String nom = "", des = "", fv = "", mar = "", pmin = "", pmay = "", can = "", pcpra = "", cat = "";
         if (flag > -1) {
             String idP = (String) window.getTablaProducto().getModel().getValueAt(flag, 0);
             Integer.valueOf(idP);
+            ModProducto mod = new ModProducto(this, conexion);
+            mod.setVisible(true);
+            llenarCB(mod);
             try {
                 String sql = "SELECT * FROM producto WHERE idProducto = " + idP + ";";
                 Statement st = conexion.getStatement();
@@ -192,7 +194,6 @@ public class BuscarProducto {
             }
         } else {
             JOptionPane.showMessageDialog(window.getTablaProducto(), "Debe seleccionar una fila", "MENSAJE DE ERROR", JOptionPane.ERROR_MESSAGE);
-            m.dispose();
         }
     }
 
@@ -239,10 +240,10 @@ public class BuscarProducto {
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorProducto.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else {
+            } 
+        }else {
                 JOptionPane.showMessageDialog(tabla, "Debe seleccionar una fila", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
     }
 
 }

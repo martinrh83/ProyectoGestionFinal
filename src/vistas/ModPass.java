@@ -156,46 +156,49 @@ public class ModPass extends javax.swing.JFrame {
     }
 
     private void btn_ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ChangeActionPerformed
-        try {
-            
-            String oldPass = DigestUtils.md5Hex(txt_OldPass.getText());
-            
-            String newPass = DigestUtils.md5Hex(txt_NewPass.getText());
-            
-            String newCpass =DigestUtils.md5Hex(txt_NewCpass.getText());
-            String pass="";
-            String sql = "SELECT pass FROM  empleado where user='" + user + "';";
-            
-            Statement st = conexion.getStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
+        if (txt_OldPass.getText().trim().isEmpty()
+                || txt_NewPass.getText().trim().isEmpty()
+                || txt_NewCpass.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Campo vacio. Introduzca Descripcion", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
 
-                pass = rs.getString("pass");
+                String oldPass = DigestUtils.md5Hex(txt_OldPass.getText());
 
-            }
-            if (pass.equals(oldPass)) {
-                if (newPass.equals(newCpass)) {
-                    String query = "UPDATE empleado SET pass='" + newCpass + "' where user='"+user+"' ;";
-                    try {
+                String newPass = DigestUtils.md5Hex(txt_NewPass.getText());
 
-                        st.executeUpdate(query);
-                        JOptionPane.showMessageDialog(null, "Se ha cambiado su contraseña correctamente"); 
-                    } catch (Exception e) {
+                String newCpass = DigestUtils.md5Hex(txt_NewCpass.getText());
+                String pass = "";
+                String sql = "SELECT pass FROM  empleado where user='" + user + "';";
+
+                Statement st = conexion.getStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    pass = rs.getString("pass");
+
+                }
+                if (pass.equals(oldPass)) {
+                    if (newPass.equals(newCpass)) {
+                        String query = "UPDATE empleado SET pass='" + newCpass + "' where user='" + user + "' ;";
+                        try {
+
+                            st.executeUpdate(query);
+                            JOptionPane.showMessageDialog(null, "Se ha cambiado su contraseña correctamente");
+                        } catch (Exception e) {
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Las contraseñas ingresadas no coinciden");
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Introduzca su contraseña nuevamente");
                 }
-                else{
-                JOptionPane.showMessageDialog(null, "Las contraseñas ingresadas no coinciden");
-                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ModPass.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else{
-            JOptionPane.showMessageDialog(null, "Introduzca su contraseña nuevamente");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ModPass.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-       
-       this.dispose();
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_ChangeActionPerformed
 
     private void btn_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_outActionPerformed
@@ -205,7 +208,6 @@ public class ModPass extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Change;
